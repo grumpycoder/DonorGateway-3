@@ -1,8 +1,7 @@
 {
-  "name": "ASP.NET",
+  "name": "asp.net",
   "private": true,
   "dependencies": {
-    "jquery": "2.1.4",
     "angular": "1.4.6",
     "angular-ui-router": "^0.2.18",
     "angular-animate": "^1.5.5",
@@ -19,9 +18,8 @@
     "toastr": "^2.1.2",
     "lodash": "3.10.1",
     "moment": "~2.13.0",
-    "clj-fuzzy": "^0.3.1",
     "AdminLTE": "admin-lte#^2.3.3",
-    "bootstrap": "3.3.6"
+    "bootstrap": "^3.3.6"
   },
   "overrides": {
     "bootstrap": {
@@ -34,16 +32,6 @@
         "dist/fonts/glyphicons-halflings-regular.woff"
       ]
     },
-    "clj-fuzzy": {
-      "main": [
-        "src-js/clj-fuzzy.js"
-      ]
-    },
-    "bootswatch": {
-      "main": [
-        "cosmo/css/bootstrap.css"
-      ]
-    },
     "AdminLTE": {
       "main": [
         "dist/css/AdminLTE.css",
@@ -53,22 +41,6 @@
     }
   },
   "resolutions": {
-    "jquery": ">=1.6.3",
     "angular": "1.4.11"
-  },
-  "authors": [
-    "Mark Lawrence <marklawrence72@gmail.com>"
-  ],
-  "description": "",
-  "main": "",
-  "license": "MIT",
-  "homepage": "",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "lib",
-    "test",
-    "tests"
-  ]
+  }
 }

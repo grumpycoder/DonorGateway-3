@@ -1,8 +1,14 @@
 {
-  "name"        : "jquery",
-  "version"     : "1.7.2",
-  "main"        : "./jquery.js",
-  "dependencies": {
-  }
+  "name": "jquery",
+  "main": "dist/jquery.js",
+  "license": "MIT",
+  "ignore": [
+    "package.json"
+  ],
+  "keywords": [
+    "jquery",
+    "javascript",
+    "browser",
+    "library"
+  ]
 }
-

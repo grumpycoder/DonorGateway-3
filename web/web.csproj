@@ -134,11 +134,31 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.module.js" />
+    <Content Include="app\blocks\exception\exception-handler.provider.js" />
+    <Content Include="app\blocks\exception\exception.js" />
+    <Content Include="app\blocks\exception\exception.module.js" />
+    <Content Include="app\blocks\logger\logger.js" />
+    <Content Include="app\blocks\logger\logger.module.js" />
+    <Content Include="app\core\config.js" />
+    <Content Include="app\core\core.module.js" />
+    <Content Include="app\filters\app.filters.js" />
+    <Content Include="app\filters\filter.module.js" />
+    <Content Include="app\modules.min.js" />
+    <Content Include="app\nav\nav.js" />
+    <Content Include="app\nav\nav.module.js" />
+    <Content Include="app\services\service.module.js" />
+    <Content Include="app\services\user.service.js" />
+    <Content Include="app\users\users.js" />
+    <Content Include="app\users\users.module.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\site.css" />
+    <Content Include="css\site.min.css" />
     <Content Include="css\vendor.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -146,16 +166,17 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="gulpfile.js" />
+    <Content Include="js\jquery.js" />
     <Content Include="js\vendor.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="bower.json" />
-    <Content Include=".bowerrc" />
-    <Content Include="package.json" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="package.json" />
+    <Content Include="bower.json" />
+    <Content Include=".bowerrc" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -184,7 +205,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
