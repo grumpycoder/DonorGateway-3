@@ -40,7 +40,6 @@
         vm.addItem = function () {
             vm.user.fullName = parseFullName(vm.user.userName);
             vm.user.email = vm.user.userName + defaults.EMAIL_SUFFIX;
-            logger.log('new user', vm.user);
             service.create(vm.user)
                 .then(function (data) {
                     //TODO: mapping would allow removal of extend method

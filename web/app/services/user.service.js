@@ -32,7 +32,6 @@
             });
         }
 
-        //TODO: Need a getbyname function
         function get() {
             return $http.get(url).then(_success);
         }
