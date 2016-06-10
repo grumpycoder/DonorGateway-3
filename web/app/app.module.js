@@ -10,6 +10,7 @@
             'app.filter',
 
             //feature areas
-            'app.nav'
+            'app.nav',
+            'app.users'
         ]);
 })();

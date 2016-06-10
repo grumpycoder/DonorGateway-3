@@ -40,7 +40,7 @@
         vm.addItem = function () {
             vm.user.fullName = parseFullName(vm.user.userName);
             vm.user.email = vm.user.userName + defaults.EMAIL_SUFFIX;
-
+            logger.log('new user', vm.user);
             service.create(vm.user)
                 .then(function (data) {
                     //TODO: mapping would allow removal of extend method
@@ -82,7 +82,6 @@
 
             vm.currentEdit[user.id] = false;
             angular.copy(user, vm.lastUpdated = {});
-            logger.log('lastUpdated', vm.lastUpdated);
             var roles = [];
 
             _.forEach(vm.itemToEdit.roles,

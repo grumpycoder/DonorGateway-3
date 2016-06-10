@@ -25,10 +25,7 @@
     };
 
     var apiEndPoints = {
-        Censor: 'censor',
-        Person: 'person',
-        User: 'users',
-        Configuration: 'configuration'
+        User: 'users'
     };
 
     var config = {
