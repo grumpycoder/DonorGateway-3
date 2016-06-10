@@ -55,5 +55,20 @@
   "resolutions": {
     "jquery": ">=1.6.3",
     "angular": "1.4.11"
-  }
+  },
+  "authors": [
+    "Mark Lawrence <marklawrence72@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests"
+  ]
 }
