@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web", "web\web.csproj", "{45160062-78D2-4752-B930-782BD163D5BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonorGateway.Domain", "DonorGateway.domain\DonorGateway.Domain.csproj", "{4A2C5030-4877-4424-9CC9-43CB3E9EF66E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonorGateway.Data", "DonorGateway.Data\DonorGateway.Data.csproj", "{62B7F33B-2057-4E84-8020-36BE9412B31A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{45160062-78D2-4752-B930-782BD163D5BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45160062-78D2-4752-B930-782BD163D5BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45160062-78D2-4752-B930-782BD163D5BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A2C5030-4877-4424-9CC9-43CB3E9EF66E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A2C5030-4877-4424-9CC9-43CB3E9EF66E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A2C5030-4877-4424-9CC9-43CB3E9EF66E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A2C5030-4877-4424-9CC9-43CB3E9EF66E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62B7F33B-2057-4E84-8020-36BE9412B31A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62B7F33B-2057-4E84-8020-36BE9412B31A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62B7F33B-2057-4E84-8020-36BE9412B31A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62B7F33B-2057-4E84-8020-36BE9412B31A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
