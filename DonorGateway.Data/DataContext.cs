@@ -30,6 +30,16 @@ namespace DonorGateway.Data
             builder.Entity<IdentityUserClaim>().ToTable("UserClaims", "Security");
             builder.Entity<IdentityUserLogin>().ToTable("UserLogins", "Security");
             builder.Entity<IdentityRole>().ToTable("Roles", "Security");
+
+            builder.Entity<Constituent>().HasMany(t => t.TaxItems);
+            builder.Entity<TaxItem>().Property(p => p.DonationDate).HasColumnType("date");
         }
+
+        public DbSet<Constituent> Constituents { get; set; }
+        public DbSet<TaxItem> TaxItems { get; set; }
+        public DbSet<Template> Templates { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<Mailer> Mailers { get; set; }
     }
 }
