@@ -11,6 +11,7 @@
 
             //feature areas
             'app.nav',
-            'app.users'
+            'app.users',
+            'app.tax'
         ]);
 })();

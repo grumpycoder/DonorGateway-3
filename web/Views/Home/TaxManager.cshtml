@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Tax";
+}
+
+<div ng-controller="TaxController as vm">
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            {{vm.title}}<small>{{vm.description}}</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Tax Manager</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="box box-warning box-solid">
+                    <div class="box-header with-border">
+                        <small>({{vm.searchModel.filteredCount}} / {{vm.searchModel.totalCount}}) Total Records</small>
+                        <span class="pull-right">
+                            <small>Page {{vm.searchModel.page}} of {{vm.searchModel.totalPages}}</small>
+                        </span>
+
+                        <button class="btn btn-default"
+                                ng-csv="vm.downloadCsv()"
+                                csv-header="['RecordId', 'LookupID', 'FinderNumber', 'Name', 'EmailAddress', 'AddressLine1', 'AddressLine2', 'City', 'State', 'ZIP']"
+                                quote-strings="true" filename="data.csv" uib-tooltip="Export current filtered records to CSV">
+                            <i class="fa fa-download"></i>&nbsp; Export to CSV
+                        </button>
+                    </div><!-- /.box-header -->
+
+                    <div class="box-body">
+                        <div class="col-md-12">
+
+                            <table st-table="vm.people" st-pipe="vm.search" class="table table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="sort-header"></th>
+                                        <th class="sort-header" st-sort="Name">Name</th>
+                                        <th class="sort-header" st-sort="LookupId">Lookup Id</th>
+                                        <th class="sort-header" st-sort="FinderNumber">Finder Number</th>
+                                        <th class="sort-header">Address</th>
+                                        <th class="sort-header" st-sort="Phone">Phone</th>
+                                        <th class="sort-header" st-sort="Email">Email</th>
+                                        <th class="sort-header" st-sort="Status">Status</th>
+                                        <th class="sort-header"></th>
+                                    </tr>
+                                    <tr>
+                                        <th st-toggle-all="vm.data.items"></th>
+                                        <th><input type="text" st-clear-key st-search="name" class="form-control" placeholder="Donor Name" /></th>
+                                        <th><input type="text" st-clear-key st-search="lookupId" class="form-control" placeholder="Lookup Id" /></th>
+                                        <th><input type="text" st-clear-key st-search="finderNumber" class="form-control" placeholder="Finder Number" /></th>
+                                        <th><input type="text" st-clear-key st-search="zipCode" class="form-control" placeholder="Zip Code" /></th>
+                                        <th><input type="text" st-clear-key st-search="phone" class="form-control" placeholder="Phone Number" /></th>
+                                        <th><input type="text" st-clear-key st-search="email" class="form-control" placeholder="Email Address" /></th>
+                                        <th>
+                                            <select st-search="updateStatus" class="form-control">
+                                                <option ng-repeat="status in vm.updateStatusOptions" value="{{status.id}}">{{status.title}}</option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            @*<button class="btn btn-success" ng-click="vm.reconcileSelected()" uib-tooltip="Reconcile Selected"><i class="fa fa-check"></i>&nbsp;</button>*@
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="person in vm.people" st-select-row="person" st-select-mode="multiple">
+                                        <td style="white-space: nowrap;">
+                                            <button class="btn btn-primary" ng-click="vm.editItem(person, $event)">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-default" ng-click="vm.showTaxItems(person)">
+                                                <i class="fa fa-usd"></i>
+                                            </button>
+                                        </td>
+                                        <td>{{person.name}}</td>
+                                        <td>{{person.lookupId}}</td>
+                                        <td>{{person.finderNumber}}</td>
+                                        <td>
+                                            <address>
+                                                {{person.street}}<br>
+                                                {{person.street2}}<br>
+                                                {{person.city}}, {{person.state}} {{person.zipcode}}<br>
+                                            </address>
+                                        </td>
+                                        <td>{{person.phone}}</td>
+                                        <td>{{person.email}}</td>
+                                        <td>{{person.updateStatus | updateStatus}}</td>
+                                        <td>
+                                            <button class="btn btn-success" ng-click="vm.reconcileItem(person)" ng-disabled="person.updateStatus != 2">
+                                                <i class="fa fa-check"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <uib-pagination total-items="vm.searchModel.filteredCount"
+                                            ng-model="vm.searchModel.page"
+                                            max-size="5"
+                                            items-per-page="vm.searchModel.pageSize"
+                                            class="pagination-sm"
+                                            boundary-link-numbers="true"
+                                            ng-change="vm.paged()"
+                                            rotate="false">
+                            </uib-pagination>
+                        </div>
+                    </div><!--/box-body-->
+
+                    <div class="overlay" ng-show="vm.isBusy">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                </div><!--/box-->
+            </div>
+        </div>
+    </section>
+</div>
