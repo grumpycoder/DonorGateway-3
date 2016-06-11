@@ -37,6 +37,7 @@
             logger.log(controllerId + ' activated');
         }
 
+        //TODO: Export constituent changes
         function downloadCsv() {
             return service.download(vm.data)
                 .then(function (data) {

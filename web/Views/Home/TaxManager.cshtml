@@ -27,12 +27,12 @@
                             <small>Page {{vm.searchModel.page}} of {{vm.searchModel.totalPages}}</small>
                         </span>
 
-                        <button class="btn btn-default"
-                                ng-csv="vm.downloadCsv()"
-                                csv-header="['RecordId', 'LookupID', 'FinderNumber', 'Name', 'EmailAddress', 'AddressLine1', 'AddressLine2', 'City', 'State', 'ZIP']"
-                                quote-strings="true" filename="data.csv" uib-tooltip="Export current filtered records to CSV">
-                            <i class="fa fa-download"></i>&nbsp; Export to CSV
-                        </button>
+                        @*<button class="btn btn-default"
+                                    ng-csv="vm.downloadCsv()"
+                                    csv-header="['RecordId', 'LookupID', 'FinderNumber', 'Name', 'EmailAddress', 'AddressLine1', 'AddressLine2', 'City', 'State', 'ZIP']"
+                                    quote-strings="true" filename="data.csv" uib-tooltip="Export current filtered records to CSV">
+                                <i class="fa fa-download"></i>&nbsp; Export to CSV
+                            </button>*@
                     </div><!-- /.box-header -->
 
                     <div class="box-body">
