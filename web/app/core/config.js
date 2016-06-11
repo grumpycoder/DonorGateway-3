@@ -25,7 +25,9 @@
     };
 
     var apiEndPoints = {
-        User: 'users'
+        User: 'users',
+        Constituent: 'constituent',
+        Tax: 'tax'
     };
 
     var config = {

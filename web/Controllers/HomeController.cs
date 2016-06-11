@@ -13,5 +13,10 @@ namespace web.Controllers
         {
             return View();
         }
+
+        public ActionResult TaxManager()
+        {
+            return View();
+        }
     }
 }
