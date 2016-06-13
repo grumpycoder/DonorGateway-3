@@ -19,7 +19,8 @@
     "lodash": "3.10.1",
     "moment": "~2.13.0",
     "AdminLTE": "admin-lte#^2.3.3",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "textAngular": "^1.5.1"
   },
   "overrides": {
     "bootstrap": {

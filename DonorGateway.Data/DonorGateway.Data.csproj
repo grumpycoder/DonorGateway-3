@@ -64,6 +64,22 @@
     <Compile Include="Migrations\201606100256453_domain-entities.Designer.cs">
       <DependentUpon>201606100256453_domain-entities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606112008439_template-event-name.cs" />
+    <Compile Include="Migrations\201606112008439_template-event-name.Designer.cs">
+      <DependentUpon>201606112008439_template-event-name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606112010553_template-remove-event-name.cs" />
+    <Compile Include="Migrations\201606112010553_template-remove-event-name.Designer.cs">
+      <DependentUpon>201606112010553_template-remove-event-name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606112016140_template-photo.cs" />
+    <Compile Include="Migrations\201606112016140_template-photo.Designer.cs">
+      <DependentUpon>201606112016140_template-photo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606112026441_template-image.cs" />
+    <Compile Include="Migrations\201606112026441_template-image.Designer.cs">
+      <DependentUpon>201606112026441_template-image.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -83,6 +99,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606100256453_domain-entities.resx">
       <DependentUpon>201606100256453_domain-entities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606112008439_template-event-name.resx">
+      <DependentUpon>201606112008439_template-event-name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606112010553_template-remove-event-name.resx">
+      <DependentUpon>201606112010553_template-remove-event-name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606112016140_template-photo.resx">
+      <DependentUpon>201606112016140_template-photo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606112026441_template-image.resx">
+      <DependentUpon>201606112026441_template-image.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

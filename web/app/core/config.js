@@ -27,7 +27,10 @@
     var apiEndPoints = {
         User: 'users',
         Constituent: 'constituent',
-        Tax: 'tax'
+        Tax: 'tax',
+        Template: 'template',
+        Campaign: 'campaign',
+        Mailer: 'mailer'
     };
 
     var config = {
