@@ -33,6 +33,7 @@ namespace DonorGateway.Data
 
             builder.Entity<Constituent>().HasMany(t => t.TaxItems);
             builder.Entity<TaxItem>().Property(p => p.DonationDate).HasColumnType("date");
+            builder.Entity<Event>().HasMany(t => t.Guests);
         }
 
         public DbSet<Constituent> Constituents { get; set; }
@@ -42,5 +43,7 @@ namespace DonorGateway.Data
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<Mailer> Mailers { get; set; }
         public DbSet<SuppressReason> SuppressReasons { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Guest> Guests { get; set; }
     }
 }
