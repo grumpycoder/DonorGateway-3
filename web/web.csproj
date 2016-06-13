@@ -172,6 +172,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ReasonController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\MailerController.cs" />
     <Compile Include="Controllers\ConstituentController.cs" />
@@ -203,6 +204,7 @@
     <Content Include="app\core\core.module.js" />
     <Content Include="app\directives\clear-key.directive.js" />
     <Content Include="app\directives\smart-table.directive.js" />
+    <Content Include="app\directives\toggleCheckbox.directive.js" />
     <Content Include="app\filters\app.filters.js" />
     <Content Include="app\filters\filter.module.js" />
     <Content Include="app\mailers\mailers.js" />
@@ -213,6 +215,7 @@
     <Content Include="app\services\campaign.service.js" />
     <Content Include="app\services\constituent.service.js" />
     <Content Include="app\services\mailer.service.js" />
+    <Content Include="app\services\reason.service.js" />
     <Content Include="app\services\service.module.js" />
     <Content Include="app\services\tax.service.js" />
     <Content Include="app\services\template.service.js" />

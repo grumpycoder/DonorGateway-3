@@ -12,6 +12,7 @@ namespace web.ViewModels
         public string State { get; set; }
         public string ZipCode { get; set; }
         public int CampaignId { get; set; }
+        public int? ReasonId { get; set; }
         public string SourceCode { get; set; }
         public bool? Suppress { get; set; }
     }

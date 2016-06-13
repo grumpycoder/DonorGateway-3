@@ -31,7 +31,7 @@ namespace web.Controllers
             var suppress = vm.Suppress ?? false;
 
             var pred = PredicateBuilder.True<Mailer>();
-            if (suppress) pred = pred.And(p => p.Suppress == suppress);
+            pred = pred.And(p => p.Suppress == suppress);
             if (!string.IsNullOrWhiteSpace(vm.FinderNumber)) pred = pred.And(p => p.FinderNumber.StartsWith(vm.FinderNumber));
             if (!string.IsNullOrWhiteSpace(vm.FirstName)) pred = pred.And(p => p.FirstName.Contains(vm.FirstName));
             if (!string.IsNullOrWhiteSpace(vm.LastName)) pred = pred.And(p => p.LastName.Contains(vm.LastName));
@@ -48,7 +48,6 @@ namespace web.Controllers
                 list = context.Mailers.AsQueryable()
                     .Where(pred)
                     .OrderBy(x => x.Id)
-                    //.ProjectTo<ConstituentViewModel>()
                     .ToList();
             }
             else
@@ -56,7 +55,6 @@ namespace web.Controllers
                 list = context.Mailers.AsQueryable()
                              .Order(vm.OrderBy, vm.OrderDirection == "desc" ? SortDirection.Descending : SortDirection.Ascending)
                              .Where(pred)
-                             .Include(x => x.Campaign)
                              .Skip(skipRows)
                              .Take(pageSize)
                              .ToList();
@@ -77,6 +75,7 @@ namespace web.Controllers
         {
             context.Mailers.AddOrUpdate(vm);
             context.SaveChanges();
+            vm = context.Mailers.Find(vm.Id);
             return Ok(vm);
         }
 

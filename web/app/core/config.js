@@ -30,7 +30,8 @@
         Tax: 'tax',
         Template: 'template',
         Campaign: 'campaign',
-        Mailer: 'mailer'
+        Mailer: 'mailer',
+        Reason: 'reason'
     };
 
     var config = {

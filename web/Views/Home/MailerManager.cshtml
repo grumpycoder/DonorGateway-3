@@ -40,9 +40,9 @@
 
                             <table st-table="vm.mailers" st-pipe="vm.search" class="table table-responsive table-bordered">
 
-                                <thead>
+                                <thead class="text-nowrap">
                                     <tr>
-                                        <th></th>
+                                        <th class="sort-header">Suppress</th>
                                         <th class="sort-header">First Name</th>
                                         <th class="sort-header">Last Name</th>
                                         <th class="sort-header">Address</th>
@@ -52,22 +52,28 @@
                                         <th class="sort-header">Finder</th>
                                         <th class="sort-header">Source Code</th>
                                         <th class="sort-header">Campaign</th>
+                                        <th class="sort-header">Reason</th>
                                     </tr>
                                     <tr>
-                                        <th>
-                                            <toggle st-search="suppress" ng-model="vm.toggleSuppress" ng-change="vm.filterSuppress()"></toggle>
-                                        </th>
-
-                                        <th><input type="text" st-clear-key st-search="firstName" class="form-control" placeholder="First Name" /></th>
-                                        <th><input type="text" st-clear-key st-search="lastName" class="form-control" placeholder="Last Name" /></th>
-                                        <th><input type="text" st-clear-key st-search="address" class="form-control" placeholder="Address" /></th>
-                                        <th><input type="text" st-clear-key st-search="city" class="form-control" placeholder="City" /></th>
-                                        <th><input type="text" st-clear-key st-search="state" class="form-control" placeholder="State" /></th>
-                                        <th><input type="text" st-clear-key st-search="zipCode" class="form-control" placeholder="Zipcode" /></th>
-                                        <th><input type="text" st-clear-key st-search="finderNumber" class="form-control" placeholder="Finder Number" /></th>
-                                        <th><input type="text" st-clear-key st-search="sourceCode" class="form-control" placeholder="Source Code" /></th>
-                                        <th>
-                                            <select st-search="campaignId" ng-model="vm.searchViewModel.campaignId" class="form-control">
+                                        <td>
+                                            <input toggle-checkbox type="checkbox"
+                                                   data-toggle="toggle"
+                                                   ng-model="vm.searchModel.suppress"
+                                                   data-onstyle="danger"
+                                                   data-offstyle="success"
+                                                   data-size="small"
+                                                   ng-change="vm.filterSuppress()">
+                                        </td>
+                                        <td><input type="text" st-clear-key st-search="firstName" class="form-control" placeholder="First Name" /></td>
+                                        <td><input type="text" st-clear-key st-search="lastName" class="form-control" placeholder="Last Name" /></td>
+                                        <td><input type="text" st-clear-key st-search="address" class="form-control" placeholder="Address" /></td>
+                                        <td><input type="text" st-clear-key st-search="city" class="form-control" placeholder="City" /></td>
+                                        <td><input type="text" st-clear-key st-search="state" class="form-control" placeholder="State" /></td>
+                                        <td><input type="text" st-clear-key st-search="zipCode" class="form-control" placeholder="Zipcode" /></td>
+                                        <td><input type="text" st-clear-key st-search="finderNumber" class="form-control" placeholder="Finder Number" /></td>
+                                        <td><input type="text" st-clear-key st-search="sourceCode" class="form-control" placeholder="Source Code" /></td>
+                                        <td>
+                                            <select st-search="campaignId" ng-model="vm.searchModel.campaignId" class="form-control">
                                                 <option value="">
                                                     All items
                                                 </option>
@@ -75,14 +81,21 @@
                                                     {{ item.name }}
                                                 </option>
                                             </select>
-                                        </th>
+                                        </td>
+                                        <td>
+                                            <input type="text" st-clear-key st-search="reason" class="form-control" placeholder="Reason" />
+                                        </td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="m in vm.mailers">
                                         <td>
-                                            <button class="btn btn-danger btn-sm" ng-click="vm.setSuppress(m)" ng-hide="m.suppress">Suppress</button>
-                                            <button class="btn btn-success btn-sm" ng-click="vm.setSuppress(m)" ng-show="m.suppress">Restore</button>
+                                            <button class="btn  btn-success" ng-hide="vm.currentEdit[m.id]" ng-click="vm.editItem(m)"><i class="fa fa-flag"></i></button>
+                                            <button class="btn  btn-primary" ng-show="vm.currentEdit[m.id]" ng-click="vm.save(m)"><i class="fa fa-floppy-o"></i></button>
+                                            <button class="btn  btn-default" ng-show="vm.currentEdit[m.id]" ng-click="vm.cancelEdit(m.id)"><i class="fa fa-ban"></i></button>
+
+                                            @*<button class="btn btn-danger btn-sm" ng-click="vm.setSuppress(m)" ng-hide="m.suppress">Suppress</button>*@
+                                            @*<button class="btn btn-success btn-sm" ng-click="vm.setSuppress(m)" ng-show="m.suppress">Restore</button>*@
                                         </td>
                                         <td>{{m.firstName}}</td>
                                         <td>{{m.lastName}}</td>
@@ -100,6 +113,20 @@
                                         <td>{{m.finderNumber}}</td>
                                         <td>{{m.sourceCode}}</td>
                                         <td>{{m.campaign.name}}</td>
+                                        <td>
+                                            <span ng-hide="vm.currentEdit[m.id]">
+                                                {{m.reason.reason}}
+                                            </span>
+                                            <div class="form-group" ng-show="vm.currentEdit[m.id]">
+                                                <select ng-model="vm.itemToEdit.reasonId"
+                                                        ng-options="reason.id as reason.reason for reason in vm.reasons"
+                                                        ng-disabled="false"
+                                                        class="form-control"
+                                                        style="width: 175px;">
+                                                    <option value="">Choose a Reason</option>
+                                                </select>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -80,6 +80,14 @@
     <Compile Include="Migrations\201606112026441_template-image.Designer.cs">
       <DependentUpon>201606112026441_template-image.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606131427118_Mailer-Reason.cs" />
+    <Compile Include="Migrations\201606131427118_Mailer-Reason.Designer.cs">
+      <DependentUpon>201606131427118_Mailer-Reason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606131429269_SuppressionReason.cs" />
+    <Compile Include="Migrations\201606131429269_SuppressionReason.Designer.cs">
+      <DependentUpon>201606131429269_SuppressionReason.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -111,6 +119,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606112026441_template-image.resx">
       <DependentUpon>201606112026441_template-image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606131427118_Mailer-Reason.resx">
+      <DependentUpon>201606131427118_Mailer-Reason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606131429269_SuppressionReason.resx">
+      <DependentUpon>201606131429269_SuppressionReason.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
