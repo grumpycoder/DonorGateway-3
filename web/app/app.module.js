@@ -14,6 +14,7 @@
             'app.users',
             'app.tax',
             'app.template',
-            'app.mailers'
+            'app.mailers',
+            'app.events'
         ]);
 })();

@@ -205,6 +205,8 @@
     <Content Include="app\directives\clear-key.directive.js" />
     <Content Include="app\directives\smart-table.directive.js" />
     <Content Include="app\directives\toggleCheckbox.directive.js" />
+    <Content Include="app\events\event.module.js" />
+    <Content Include="app\events\events.js" />
     <Content Include="app\filters\app.filters.js" />
     <Content Include="app\filters\filter.module.js" />
     <Content Include="app\mailers\mailers.js" />
@@ -278,6 +280,7 @@
     <Content Include="Views\Home\TaxManager.cshtml" />
     <Content Include="Views\Home\Template.cshtml" />
     <Content Include="Views\Home\MailerManager.cshtml" />
+    <Content Include="Views\Home\Events.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
