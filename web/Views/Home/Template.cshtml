@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "Template";
+}
+
+<div ng-controller="TemplateController as vm" ng-cloak>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            {{vm.title}}<small>{{vm.description}}</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Template Manager</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <form name="form" novalidate="">
+                <div class="box box-default box-solid">
+
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{vm.selectedTemplate.name}}</h3>
+                    </div><!-- /.box-header -->
+
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <select ng-model="vm.selectedTemplate"
+                                            ng-options="template.name for template in vm.templates"
+                                            ng-disabled="false"
+                                            ng-change="vm.changeTemplate()"
+                                            class="form-control">
+                                        <option value="">Choose a template</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Template Name</label>
+                                    <input type="text" class="form-control" ng-model="vm.selectedTemplate.name" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="box box-info">
+                                    <div class="box-header">
+                                        <h3 class="box-title">
+                                            Image <small>Image to appear as heading</small>
+                                        </h3>
+                                        <!-- tools box -->
+                                        <div class="pull-right box-tools">
+                                            <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <!-- /. tools -->
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body pad">
+                                        <div ngf-drop ngf-select
+                                             class="drop-box"
+                                             ng-model="vm.file"
+                                             ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
+                                             ngf-change="vm.fileSelected($files, $file, $event, $rejectedFiles)"
+                                             accept="image/**"
+                                             ngf-pattern="'image/**'">
+
+                                            <div>
+                                                Drop images here or click to upload
+                                            </div>
+                                            <img alt="User Avatar" ng-show="vm.file" ngf-thumbnail="vm.file" class="widget-user-image" height="160" width="160" />
+
+                                            <img ng-show="vm.selectedTemplate.image && !vm.file" class="widget-user-image" ng-hide="vm.file" ng-src="data:{{vm.selectedTemplate.mimeType}};base64,{{vm.selectedTemplate.image}}">
+                                        </div>
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.box -->
+                            </div>
+                            <div class="col-md-12">
+                                <div class="box box-info">
+                                    <div class="box-header">
+                                        <h3 class="box-title">
+                                            Header <small>Text to appear as heading</small>
+                                        </h3>
+                                        <!-- tools box -->
+                                        <div class="pull-right box-tools">
+                                            <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <!-- /. tools -->
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body pad">
+                                        <text-angular name="headerText" ng-model="vm.selectedTemplate.headerText"></text-angular>
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.box -->
+                            </div>
+                            <div class="col-md-12">
+                                <div class="box box-warning collapsed-box">
+                                    <div class="box-header">
+                                        <h3 class="box-title">
+                                            Body <small>Text to appear as body</small>
+                                        </h3>
+                                        <!-- tools box -->
+                                        <div class="pull-right box-tools">
+                                            <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <!-- /. tools -->
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body pad">
+                                        <text-angular name="bodyText" ng-model="vm.selectedTemplate.bodyText" markdownedit></text-angular>
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.box -->
+                            </div>
+                            <div class="col-md-12">
+                                <div class="box box-danger collapsed-box">
+                                    <div class="box-header">
+                                        <h3 class="box-title">
+                                            FAQ <small>Text to appear as FAQ</small>
+                                        </h3>
+                                        <!-- tools box -->
+                                        <div class="pull-right box-tools">
+                                            <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <!-- /. tools -->
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body pad">
+                                        <text-angular name="faqText" ng-model="vm.selectedTemplate.faqText" markdownedit></text-angular>
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.box -->
+                            </div>
+                            <div class="col-md-12">
+                                <div class="box box-success collapsed-box">
+                                    <div class="box-header">
+                                        <h3 class="box-title">
+                                            Footer <small>Text to appear as footer</small>
+                                        </h3>
+                                        <!-- tools box -->
+                                        <div class="pull-right box-tools">
+                                            <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <!-- /. tools -->
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body pad">
+                                        <text-angular name="footerText" ng-model="vm.selectedTemplate.footerText" markdownedit></text-angular>
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.box -->
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <button class="btn btn-success btn-flat" ng-disabled="form.$pristine" ng-click="vm.save()">Save</button>
+                        </div><!--/box-footer-->
+                        <div class="overlay" ng-show="vm.isBusy">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div><!--/box-body-->
+                </div><!--/box-->
+            </form>
+        </div><!--/.row-->
+    </section>
+</div>

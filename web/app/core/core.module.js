@@ -21,7 +21,8 @@
             'ngFileUpload',
             'rzModule',
             'switcher',
-            'gfl.textAvatar'
+            'gfl.textAvatar',
+            'textAngular'
         ])
         .constant('toastr', toastr)
         .constant('moment', moment);;

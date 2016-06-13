@@ -18,5 +18,15 @@ namespace web.Controllers
         {
             return View();
         }
+
+        public ActionResult Template()
+        {
+            return View();
+        }
+
+        public ActionResult MailerManager()
+        {
+            return View();
+        }
     }
 }

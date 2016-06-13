@@ -41,5 +41,6 @@ namespace DonorGateway.Data
         public DbSet<State> States { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<Mailer> Mailers { get; set; }
+        public DbSet<SuppressReason> SuppressReasons { get; set; }
     }
 }
