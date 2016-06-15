@@ -1,0 +1,7 @@
+﻿<h2>Guest List</h2>
+
+<ul>
+    <li ng-repeat="guest in vm.selectedEvent.guests | filter: { isAttending: true}">
+        {{guest.name}}
+    </li>
+</ul>

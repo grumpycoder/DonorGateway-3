@@ -21,6 +21,7 @@
 /// <reference path="../app/nav/nav.module.js" />
 /// <reference path="../app/services/campaign.service.js" />
 /// <reference path="../app/services/constituent.service.js" />
+/// <reference path="../app/services/event.service.js" />
 /// <reference path="../app/services/mailer.service.js" />
 /// <reference path="../app/services/reason.service.js" />
 /// <reference path="../app/services/service.module.js" />

@@ -7,7 +7,7 @@
             //angular modules
             'ngMessages',
             'angularLocalStorage',
-            'ui.router',
+            'ngRoute',
             'ngAnimate',
 
             //custom modules

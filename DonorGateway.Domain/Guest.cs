@@ -15,6 +15,8 @@ namespace DonorGateway.Domain
         public string Zipcode { get; set; }
 
         public bool? IsAttending { get; set; }
+        public bool? IsWaiting { get; set; }
+        public bool? TicketIssued { get; set; }
         public int? GuestCount { get; set; }
 
         public virtual Event Event { get; set; }

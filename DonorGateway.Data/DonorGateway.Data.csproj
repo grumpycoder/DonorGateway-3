@@ -92,6 +92,18 @@
     <Compile Include="Migrations\201606132035201_Event-Guest.Designer.cs">
       <DependentUpon>201606132035201_Event-Guest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606142337258_guest-waiting.cs" />
+    <Compile Include="Migrations\201606142337258_guest-waiting.Designer.cs">
+      <DependentUpon>201606142337258_guest-waiting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606142349237_guest-waiting-update.cs" />
+    <Compile Include="Migrations\201606142349237_guest-waiting-update.Designer.cs">
+      <DependentUpon>201606142349237_guest-waiting-update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606142353177_guest-ticketissue.cs" />
+    <Compile Include="Migrations\201606142353177_guest-ticketissue.Designer.cs">
+      <DependentUpon>201606142353177_guest-ticketissue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -132,6 +144,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606132035201_Event-Guest.resx">
       <DependentUpon>201606132035201_Event-Guest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606142337258_guest-waiting.resx">
+      <DependentUpon>201606142337258_guest-waiting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606142349237_guest-waiting-update.resx">
+      <DependentUpon>201606142349237_guest-waiting-update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606142353177_guest-ticketissue.resx">
+      <DependentUpon>201606142353177_guest-ticketissue.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

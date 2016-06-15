@@ -22,7 +22,8 @@
     "bootstrap": "^3.3.6",
     "textAngular": "^1.5.1",
     "bootstrap-toggle": "^2.2.2",
-    "angular-switcher": "^0.2.6"
+    "angular-switcher": "^0.2.6",
+    "angular-route": "^1.5.6"
   },
   "overrides": {
     "bootstrap": {
