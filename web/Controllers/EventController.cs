@@ -35,7 +35,9 @@ namespace web.Controllers
         [HttpGet, Route("{id:int}")]
         public IHttpActionResult Get(int id)
         {
-            var vm = context.Events.AsQueryable().Where(x => x.Id == id).Include(x => x.Guests).FirstOrDefault();
+            var vm = context.Events.AsQueryable().Where(x => x.Id == id)
+                                                 .Include(x => x.Guests)
+                                                 .FirstOrDefault();
             return Ok(vm);
         }
 

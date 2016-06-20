@@ -1,0 +1,73 @@
+﻿<form name="form" novalidate>
+    <div class="modal-header">
+        <div class="modal-title">
+            New Event
+        </div>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label class="control-label">
+                Name
+            </label>
+            <input type="text" ng-model="vm.event.name" name="name" class="form-control" placeholder="New Event name..." ng-required="true" />
+            <div ng-messages="form.name.$error" class="error-messages" ng-show="form.name.$dirty">
+                <div ng-message="required">Required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">
+                Venue
+            </label>
+            <input type="text" class="form-control" name="venue" ng-model="vm.event.venue" placeholder="Venue"
+                   minlength="2"
+                   maxlength="50"
+                   required />
+            <div ng-messages="form.venue.$error" class="error-messages" ng-messages-multiple ng-show="form.venue.$dirty">
+                <div ng-message="required">Required</div>
+                <div ng-message="minlength">Too Short</div>
+                <div ng-message="maxlength">Too Long</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">
+                Event Start Date/Time
+            </label>
+            <p class="input-group">
+                <input type="datetime" class="form-control"
+                       uib-datepicker-popup="M!/d!/yyyy"
+                       ng-model="vm.event.startDate"
+                       is-open="startDate.opened"
+                       ng-required="true"
+                       close-text="Close" />
+                <uib-timepicker type="time" ng-model="vm.event.startDate" hour-step="1" minute-step="1" show-meridian="true"></uib-timepicker>
+                <!--<uib-timepicker ng-model="vm.startTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></uib-timepicker>-->
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="startDate.opened = !startDate.opened"><i class="fa fa-calendar"></i></button>
+                </span>
+                <span>
+                </span>
+            </p><!-- /.input group -->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="vm.save()" ng-disabled="form.$pristine || form.$invalid" ng-enabled="form.$dirty">
+            Create
+        </button>
+        <button class="btn btn-default pull-left" ng-click="vm.cancel()">
+            Cancel
+        </button>
+    </div>
+    <!--<div class="col-md-12">
+
+        <div class="col-md-12">
+            Nested Form:
+            <pre>{{ form | json }}</pre>
+        </div>
+    </div>-->
+</form>
+
+<div class="row">
+</div>

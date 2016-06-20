@@ -210,6 +210,7 @@
     <Content Include="app\directives\toggleCheckbox.directive.js" />
     <Content Include="app\events\event.module.js" />
     <Content Include="app\events\events.js" />
+    <Content Include="app\events\views\template.html" />
     <Content Include="app\events\views\ticket-list.html" />
     <Content Include="app\events\views\wait-list.html" />
     <Content Include="app\events\views\home.html" />
@@ -234,6 +235,7 @@
     <Content Include="app\tax\manager.js" />
     <Content Include="app\tax\tax.module.js" />
     <Content Include="app\tax\views\constituent.html" />
+    <Content Include="app\events\views\create-event.html" />
     <Content Include="app\tax\views\taxitems.html" />
     <Content Include="app\templates\template.module.js" />
     <Content Include="app\templates\template.js" />

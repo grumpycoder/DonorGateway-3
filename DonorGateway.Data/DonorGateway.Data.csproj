@@ -116,6 +116,18 @@
     <Compile Include="Migrations\201606172025264_guest-response.Designer.cs">
       <DependentUpon>201606172025264_guest-response.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606201711534_event-template.cs" />
+    <Compile Include="Migrations\201606201711534_event-template.Designer.cs">
+      <DependentUpon>201606201711534_event-template.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606201721145_event-template2.cs" />
+    <Compile Include="Migrations\201606201721145_event-template2.Designer.cs">
+      <DependentUpon>201606201721145_event-template2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606201724004_event-template3.cs" />
+    <Compile Include="Migrations\201606201724004_event-template3.Designer.cs">
+      <DependentUpon>201606201724004_event-template3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -174,6 +186,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606172025264_guest-response.resx">
       <DependentUpon>201606172025264_guest-response.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606201711534_event-template.resx">
+      <DependentUpon>201606201711534_event-template.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606201721145_event-template2.resx">
+      <DependentUpon>201606201721145_event-template2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606201724004_event-template3.resx">
+      <DependentUpon>201606201724004_event-template3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

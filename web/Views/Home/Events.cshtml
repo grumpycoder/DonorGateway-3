@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Events";
 }
-<base href="/events">
+<base href="/">
 <div ng-controller="EventController as vm">
 
     <!-- Content Header (Page header) -->
@@ -43,17 +43,25 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <button class="btn btn-primary pull-right" ng-click="showNewEvent = !showNewEvent">
-                                    <i class="fa fa-plus"></i> New Event
+                                <button class="btn btn-primary pull-right" ng-click="vm.showCreateEvent()">
+                                    <i class="fa fa-plus"></i>
+                                    New Event
                                 </button>
                             </div>
                         </div>
+
                         <div class="row">
-                            <div class="col-md-12" ng-show="showNewEvent">
+                            <div class="col-md-6" ng-show="showNewEvent">
                                 <input type="text" ng-model="vm.newEvent.name" class="form-control" placeholder="New Event name..." />
-                                <button class="btn btn-primary" ng-click="vm.createEvent(); showNewEvent = false">Create</button>
+                                <button class="btn btn-primary" ng-click="vm.createEvent(); showNewEvent = false">
+                                    Create
+                                </button>
+                                <button class="btn btn-default" ng-click="vm.newEvent = {}; showNewEvent = false">
+                                    Cancel
+                                </button>
                             </div>
                         </div>
+
                         <div class="row" ng-hide="vm.selectedEvent">
                             <div class="col-md-12">
                                 <h4>
@@ -70,15 +78,6 @@
                                     </uib-tab>
                                 </uib-tabset>
                             </div>
-                            @*<div class="col-md-12">
-
-                                    <div class="col-md-12">
-                                        Model:
-                                        <pre>{{ vm.selectedEvent | json }}</pre>
-                                        Nested Form:
-                                        <pre>{{ outerForm.nestedForm | json }}</pre>
-                                    </div>
-                                </div>*@
                         </div>
                     </div><!--/box-body-->
 

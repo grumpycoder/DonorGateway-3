@@ -25,7 +25,7 @@
                     </button>
                 </legend>
                 <div class="col-md-6">
-                    <div class="formgroup">
+                    <div class="form-group">
                         <label class="control-label">
                             Name
                         </label>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="formgroup">
+                    <div class="form-group">
                         <label class="control-label">
                             Venue
                         </label>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="formgroup">
+                    <div class="form-group">
                         <label class="control-label">
                             Speaker
                         </label>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="formgroup">
+                    <div class="form-group">
                         <label class="control-label">
                             Capacity
                         </label>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="formgroup">
+                    <div class="form-group">
                         <label class="control-label">
                             Tickets Allowance
                         </label>
@@ -71,7 +71,7 @@
                     Times
                 </legend>
                 <div class="col-md-6">
-                    <div class="formgroup">
+                    <div class="form-group">
                         <label class="control-label">
                             Event Start Date/Time
                         </label>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="formgroup">
+                    <div class="form-group">
                         <label class="control-label">
                             Event End Date/Time
                         </label>
@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="formgroup">
+                    <div class="form-group">
                         <label class="control-label">
                             Venue Doors Open Date/Time
                         </label>
@@ -136,7 +136,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="formgroup">
+                    <div class="form-group">
                         <label class="control-label">
                             Registration Close Date/Time
                         </label>
@@ -194,31 +194,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!--<div class="formgroup">
-                    <label class="control-label">
-                        Street
-                    </label>
-                    <input type="text" class="form-control" ng-model="vm.selectedEvent.street" />
-                </div>
-                <div class="formgroup">
-                    <label class="control-label">
-                        City
-                    </label>
-                    <input type="text" class="form-control" ng-model="vm.selectedEvent.city" />
-                </div>
-                <div class="formgroup">
-                    <label class="control-label">
-                        State
-                    </label>
-                    <input type="text" class="form-control" ng-model="vm.selectedEvent.state" />
-                </div>
-                <div class="formgroup">
-                    <label class="control-label">
-                        Zipcode
-                    </label>
-                    <input type="text" class="form-control" ng-model="vm.selectedEvent.zipcode" />
-                </div>-->
             </fieldset>
         </form><!-- /.form -->
     </div><!-- /.box-body -->
@@ -226,7 +201,7 @@
         <i class="fa fa-refresh fa-spin"></i>
     </div>
     <div class="box-footer">
-        <button class="btn btn-danger" ng-click="vm.delete(vm.selectedEvent.id)">Delete</button>
+        <button class="btn btn-danger" ng-click="vm.deleteEvent(vm.selectedEvent.id)">Delete</button>
         <button class="btn btn-primary pull-right" ng-click="vm.save()">Save</button>
     </div><!-- /.box-footer-->
 </div><!-- /.box -->

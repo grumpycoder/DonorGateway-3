@@ -46,9 +46,13 @@
         };
 
         vm.save = function () {
+            vm.isBusy = true;
             service.update(vm.selectedTemplate)
                 .then(function (data) {
                     vm.selectedTemplate = angular.extend(vm.selectedTemplate, data);
+                    logger.success('Saved ' + vm.selectedTemplate.name);
+                }).finally(function () {
+                    vm.isBusy = false;
                 });
         }
     }

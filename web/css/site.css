@@ -1,4 +1,10 @@
-﻿[ng-click], a {
+﻿@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,700);
+
+html, body {
+    font-family: 'roboto', sans-serif;
+}
+
+[ng-click], a {
     cursor: pointer;
 }
 
@@ -27,6 +33,41 @@ th[st-sort] {
 .st-sort-descent:before {
     content: '\25BC';
 }
+
+.error-messages {
+    color: maroon;
+    font-weight: bold;
+    position: relative;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+    .error-messages div {
+        position: absolute;
+        opacity: 1;
+        transition: 0.3s linear all;
+        font-size: 0.9em;
+    }
+
+        .error-messages div.ng-enter {
+            opacity: 0;
+            top: -20px;
+        }
+
+            .error-messages div.ng-enter.ng-enter-active {
+                opacity: 1;
+                top: 0;
+            }
+
+        .error-messages div.ng-leave {
+            opacity: 1;
+            top: 0;
+        }
+
+        .error-messages div.ng-leave-active {
+            opacity: 0;
+            top: 20px;
+        }
 
 /*table {
     box-sizing: border-box;

@@ -24,7 +24,9 @@ namespace DonorGateway.Domain
         public DateTime? RegistrationCloseDate { get; set; }
         public int? TicketsAllowance { get; set; }
         public bool? IsCancelled { get; set; }
+        public int? TemplateId { get; set; }
 
         public ICollection<Guest> Guests { get; set; }
+        public virtual Template Template { get; set; }
     }
 }
