@@ -1,7 +1,21 @@
-﻿<h2>Guest List</h2>
+﻿<h2>Wait List</h2>
 
-<ul>
-    <li ng-repeat="guest  in vm.selectedEvent.guests | filter: { isWaiting: true }">
-        {{guest.name}}
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="g in vm.selectedEvent.guests | filter:{ isWaiting: 'true' }">
+        <span>
+            {{g.name}}
+        </span>
+        <address>
+            {{g.street}}
+            <br>
+            {{g.street2}}<br>
+            {{g.street3}}
+            <br />
+            {{g.city}}, {{g.state}} {{g.zipcode}}
+        </address>
+        {{g.email}}<br />
+        {{g.phone}}<br />
+        {{g.ticketCount}}<br />
+        <button class="btn btn-success" ng-click="vm.addToTicketQueue(g)">Add to Ticket Queue</button>
     </li>
 </ul>

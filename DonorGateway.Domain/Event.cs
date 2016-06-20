@@ -23,6 +23,7 @@ namespace DonorGateway.Domain
         public DateTime? VenueOpenDate { get; set; }
         public DateTime? RegistrationCloseDate { get; set; }
         public int? TicketsAllowance { get; set; }
+        public bool? IsCancelled { get; set; }
 
         public ICollection<Guest> Guests { get; set; }
     }

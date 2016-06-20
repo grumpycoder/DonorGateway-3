@@ -6,18 +6,18 @@
         .config(function ($routeProvider, $locationProvider) {
             $locationProvider.html5Mode(true);
             $routeProvider.when('/events',
-            {
-                templateUrl: 'app/events/views/home.html',
-                caseInsensitiveMatch: true
-            }).otherwise({
-                controller: function () {
-                    window.location = window.location.href;
-                },
-                template: "<div></div>"
-            });
+                {
+                    templateUrl: 'app/events/views/home.html',
+                    caseInsensitiveMatch: true
+                });
         })
-        .run(['$rootScope', 'logger', function ($rootScope, logger) {
-            $rootScope.$on('$routeChangeStart', function (event, next, current) {
-            });
-        }]);
+        .run([
+            '$rootScope', 'logger', function ($rootScope, logger) {
+                $rootScope.$on('$locationChangeStart',
+                    function (event, next, current) {
+                        //HACK: Route to MVC routing if not Events url
+                        if (!next.endsWith("Events")) window.location = next;
+                    });
+            }
+        ]);
 })();

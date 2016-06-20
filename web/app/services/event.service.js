@@ -1,5 +1,5 @@
 ﻿//mark.lawrence
-//campaign.service.js
+//event.service.js
 
 (function () {
     'use strict';
@@ -12,6 +12,8 @@
         var url = config.apiUrl + config.apiEndPoints.Event;
 
         var service = {
+            create: create,
+            remove: remove,
             get: get,
             getById: getById,
             update: update,
@@ -22,6 +24,17 @@
         }
 
         return service;
+
+        function create(event) {
+            return $http.post(url, event)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function remove(id) {
+            return $http.delete(url + '/' + id).then(_success);
+        };
 
         function get() {
             return $http.get(url)
@@ -44,11 +57,15 @@
                 });
         }
 
-        function update(template) {
-            return $http.put(url, template)
+        function update(event) {
+            return $http.put(url, event)
                 .then(function (response) {
                     return response.data;
                 });
         }
+
+        function _success(response) {
+            return response.data;
+        };
     }
 })();

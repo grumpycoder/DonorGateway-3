@@ -32,7 +32,8 @@
         Campaign: 'campaign',
         Mailer: 'mailer',
         Reason: 'reason',
-        Event: 'event'
+        Event: 'event',
+        Guest: 'guest'
     };
 
     var config = {

@@ -173,6 +173,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\ReasonController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\MailerController.cs" />
@@ -220,6 +221,7 @@
     <Content Include="app\modules.min.js" />
     <Content Include="app\nav\nav.js" />
     <Content Include="app\nav\nav.module.js" />
+    <Content Include="app\services\guest.service.js" />
     <Content Include="app\services\event.service.js" />
     <Content Include="app\services\campaign.service.js" />
     <Content Include="app\services\constituent.service.js" />
@@ -259,6 +261,7 @@
     <Content Include="package.json" />
     <Content Include="bower.json" />
     <Content Include=".bowerrc" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

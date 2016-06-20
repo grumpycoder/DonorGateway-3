@@ -104,6 +104,18 @@
     <Compile Include="Migrations\201606142353177_guest-ticketissue.Designer.cs">
       <DependentUpon>201606142353177_guest-ticketissue.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606152122564_smalldatetime-change.cs" />
+    <Compile Include="Migrations\201606152122564_smalldatetime-change.Designer.cs">
+      <DependentUpon>201606152122564_smalldatetime-change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606161643531_cancel-expired-fields.cs" />
+    <Compile Include="Migrations\201606161643531_cancel-expired-fields.Designer.cs">
+      <DependentUpon>201606161643531_cancel-expired-fields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606172025264_guest-response.cs" />
+    <Compile Include="Migrations\201606172025264_guest-response.Designer.cs">
+      <DependentUpon>201606172025264_guest-response.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -153,6 +165,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606142353177_guest-ticketissue.resx">
       <DependentUpon>201606142353177_guest-ticketissue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606152122564_smalldatetime-change.resx">
+      <DependentUpon>201606152122564_smalldatetime-change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606161643531_cancel-expired-fields.resx">
+      <DependentUpon>201606161643531_cancel-expired-fields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606172025264_guest-response.resx">
+      <DependentUpon>201606172025264_guest-response.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

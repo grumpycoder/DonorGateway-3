@@ -21,6 +21,15 @@ var config = {
     css: ['css/**/*.css', '!**/*.min.css']
 }
 
+gulp.task('watch',
+    function () {
+        gulp.watch('app/**/*.js', ['build-app:js']);
+        gulp.watch('css/*.css', ['build-app:css']);
+
+        gulp.watch('lib/**/*.js', ['build-vendor:js']);
+        gulp.watch('lib/**/*.css', ['build-vendor:css']);
+    });
+
 gulp.task('default', function () {
     // place code for your default task here
 });
@@ -58,6 +67,7 @@ gulp.task('fonts', function () {
         // Only return the font files
         filter: /.*\.(eot|svg|ttf|woff|woff2)$/i
     }))
+      .pipe(print())
       .pipe(gulp.dest('fonts'));
 });
 

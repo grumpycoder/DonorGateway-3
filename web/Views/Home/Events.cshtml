@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Events";
 }
-<base href="/">
+<base href="/events">
 <div ng-controller="EventController as vm">
 
     <!-- Content Header (Page header) -->
@@ -20,46 +20,65 @@
         <div class="row">
             <div class="col-md-12">
 
-                <div class="box box-warning box-solid">
+                <div class="box box-warning" ng-class="{'box-solid' : vm.selectedEvent}">
                     <div class="box-header with-border">
-                        {{vm.selectedEvent.name}}
+                        <span class="box-title">
+                            Event: {{vm.selectedEvent.name}}
+                        </span>
                     </div><!-- /.box-header -->
 
                     <div class="box-body">
+
                         <div class="row">
 
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <select ng-model="vm.selectedEvent"
                                             ng-options="event.name for event in vm.events"
                                             ng-disabled="false"
-                                            ng-change="vm.changeEvent()"
+                                            ng-change="vm.changeEvent(); showNewEvent = false"
                                             class="form-control">
                                         <option value="">Choose a Event</option>
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-primary pull-right" ng-click="showNewEvent = !showNewEvent">
+                                    <i class="fa fa-plus"></i> New Event
+                                </button>
+                            </div>
                         </div>
-
                         <div class="row">
+                            <div class="col-md-12" ng-show="showNewEvent">
+                                <input type="text" ng-model="vm.newEvent.name" class="form-control" placeholder="New Event name..." />
+                                <button class="btn btn-primary" ng-click="vm.createEvent(); showNewEvent = false">Create</button>
+                            </div>
+                        </div>
+                        <div class="row" ng-hide="vm.selectedEvent">
                             <div class="col-md-12">
-                                @*<div ng-view></div>*@
+                                <h4>
+                                    Choose an event from the list above to begin editing
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="vm.selectedEvent">
 
+                            <div class="col-md-12">
                                 <uib-tabset>
                                     <uib-tab ng-repeat="tab in vm.tabs" heading="{{ tab.title }}" a active="tab.active">
                                         <div ng-include="tab.template"></div>
                                     </uib-tab>
                                 </uib-tabset>
                             </div>
-                            <div class="col-md-12">
+                            @*<div class="col-md-12">
 
-                                <div class="col-md-12">
-                                    Model:
-                                    <pre>{{ vm.selectedEvent | json }}</pre>
-                                    Nested Form:
-                                    <pre>{{ outerForm.nestedForm | json }}</pre>
-                                </div>
-                            </div>
+                                    <div class="col-md-12">
+                                        Model:
+                                        <pre>{{ vm.selectedEvent | json }}</pre>
+                                        Nested Form:
+                                        <pre>{{ outerForm.nestedForm | json }}</pre>
+                                    </div>
+                                </div>*@
                         </div>
                     </div><!--/box-body-->
 

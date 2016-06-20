@@ -23,7 +23,7 @@ namespace DonorGateway.Data
             base.OnModelCreating(builder);
 
             builder.Properties<string>().Configure(c => c.HasColumnType("varchar"));
-            builder.Properties<DateTime>().Configure(c => c.HasColumnType("datetime2"));
+            builder.Properties<DateTime>().Configure(c => c.HasColumnType("smalldatetime"));
 
             builder.Entity<ApplicationUser>().ToTable("Users", "Security");
             builder.Entity<IdentityUserRole>().ToTable("UserRoles", "Security");

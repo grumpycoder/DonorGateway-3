@@ -1,5 +1,4 @@
-﻿
-[ng-click], a {
+﻿[ng-click], a {
     cursor: pointer;
 }
 
@@ -7,21 +6,75 @@
     display: none !important;
 }
 
+.ng-hide-add, .ng-hide-remove {
+    /* ensure visibility during the transition */
+    display: block !important; /* yes, important */
+}
+
 form#logoutForm {
     border: none;
     margin-left: 18px;
 }
 
-.white-txt { color: #fff; }
+th[st-sort] {
+    cursor: pointer;
+}
 
-.blue-text { color: #3498db; }
+.st-sort-ascent:before {
+    content: '\25B2';
+}
 
-.red-text { color: #e74c3c; }
+.st-sort-descent:before {
+    content: '\25BC';
+}
 
-.green-text { color: #2ecc71; }
+/*table {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 800px;
+}
 
-.yellow-text { color: #f1c40f; }
+    table * {
+        box-sizing: inherit;
+        -moz-box-sizing: inherit;
+    }
 
-.orange-text { color: #e67e22; }
+thead {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
 
-.purple-text { color: #9b59b6; }
+tbody {
+    overflow-y: scroll;
+    display: inline-block;
+}
+
+    thead > tr, tbody > tr, tfoot > tr {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+thead, tfoot {
+    flex-shrink: 0;
+}
+
+th, tbody td {
+    width: 20%;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+tfoot {
+    display: inline-block;
+}
+
+    tfoot td {
+        width: 100%;
+        display: inline-block;
+    }*/

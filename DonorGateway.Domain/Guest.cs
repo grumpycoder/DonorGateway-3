@@ -1,3 +1,5 @@
+using System;
+
 namespace DonorGateway.Domain
 {
     public class Guest : BaseEntity
@@ -13,10 +15,12 @@ namespace DonorGateway.Domain
         public string City { get; set; }
         public string State { get; set; }
         public string Zipcode { get; set; }
+        public DateTime ResponseDate { get; set; }
 
         public bool? IsAttending { get; set; }
         public bool? IsWaiting { get; set; }
         public bool? TicketIssued { get; set; }
+        public bool? HasResponded { get; set; }
         public int? GuestCount { get; set; }
 
         public virtual Event Event { get; set; }
