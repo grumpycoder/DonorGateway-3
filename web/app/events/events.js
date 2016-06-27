@@ -15,6 +15,9 @@
         vm.title = 'Event Manager';
         vm.description = "Manage Donor Events";
 
+        vm.currentDate = new Date();
+
+        vm.dateFormat = "MM/DD/YYYY hh:mm";
         vm.events = [];
         vm.tabs = [
             { title: 'Details', template: 'app/events/views/home.html', active: true },
@@ -23,8 +26,6 @@
             { title: 'Ticket Queue', template: 'app/events/views/ticket-list.html', active: false },
             { title: 'Template', template: 'app/events/views/template.html', active: false }
         ];
-
-        vm.dateFormat = "MM/DD/YYYY hh:mm";
 
         activate();
 
@@ -51,21 +52,9 @@
             service.getById(vm.selectedEvent.id)
                 .then(function (data) {
                     angular.extend(vm.selectedEvent, data);
+                    vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
                     vm.guests = [].concat(vm.selectedEvent.guests);
-                    logger.log('Selected Event', vm.selectedEvent);
                 });
-        }
-
-        vm.startDateChange = function () {
-            logger.log('startDate', vm.selectedEvent.startDate);
-        }
-
-        vm.onTimeSet = function (newDate, startDate) {
-            //newDate = moment(newDate).format();
-            //newDate = moment.utc(newDate).format('l LT');
-            logger.log('newDate', newDate);
-            startDate = newDate;
-            logger.log('startDate', startDate);
         }
 
         vm.showCreateEvent = function () {
@@ -107,18 +96,10 @@
 
         vm.save = function () {
             vm.isBusy = true;
-            //vm.selectedEvent.startDate = moment.toISOString(vm.selectedEvent.startDate.toString());
-            //logger.log('before save', vm.selectedEvent);
-            //vm.selectedEvent.startDate = moment.utc(vm.selectedEvent.startDate).format();
-            //logger.log('after conversion', vm.selectedEvent);
-
-            //debugger;
             return service.update(vm.selectedEvent)
                 .then(function (data) {
                     logger.success('Saved Event: ' + data.name);
-                    //angular.extend(vm.selectedEvent, data);
-
-                    //vm.selectedEvent.startDate = moment.utc(vm.selectedEvent.startDate).format('l LT');
+                    vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
                     logger.log('after save', vm.selectedEvent);
                 })
                 .finally(function () {

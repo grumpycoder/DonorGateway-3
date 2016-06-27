@@ -77,7 +77,7 @@ gulp.task('build-vendor:js', function () {
       //.pipe(filter(['**/*.js', '!*AdminLTE*']))
       .pipe(print())
       .pipe(sourcemaps.init())
-      //.pipe(uglify())
+      .pipe(uglify())
       .pipe(concat('vendor.min.js'))
       .pipe(sourcemaps.write())
       .pipe(gulp.dest('js/'));
