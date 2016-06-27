@@ -35,7 +35,13 @@
             <label class="control-label">
                 Event Start Date/Time
             </label>
-            <p class="input-group">
+            <input type="text" class="form-control input-sm"
+                   datetimepicker
+                   datetimepicker-options="{icons:{next:'glyphicon glyphicon-arrow-right',previous:'glyphicon glyphicon-arrow-left',up:'glyphicon glyphicon-arrow-up',down:'glyphicon glyphicon-arrow-down'}}"
+                   placeholder="..."
+                   name="time"
+                   ng-model="vm.event.startDate">
+            <!--<p class="input-group">
                 <input type="datetime" class="form-control"
                        uib-datepicker-popup="M!/d!/yyyy"
                        ng-model="vm.event.startDate"
@@ -43,13 +49,13 @@
                        ng-required="true"
                        close-text="Close" />
                 <uib-timepicker type="time" ng-model="vm.event.startDate" hour-step="1" minute-step="1" show-meridian="true"></uib-timepicker>
-                <!--<uib-timepicker ng-model="vm.startTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></uib-timepicker>-->
-                <span class="input-group-btn">
+                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="startDate.opened = !startDate.opened"><i class="fa fa-calendar"></i></button>
                 </span>
                 <span>
                 </span>
-            </p><!-- /.input group -->
+            </p>-->
+            <!-- /.input group -->
         </div>
     </div>
     <div class="modal-footer">

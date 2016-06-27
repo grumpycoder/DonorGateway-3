@@ -3,6 +3,8 @@
         padding: 10px 0;
     }
 </style>
+<script type="text/javascript" src="https://rawgit.com/betsol/angular-input-date/master/src/angular-input-date.js"></script>
+
 <div class="box box-default">
 
     <div class="box-body">
@@ -71,25 +73,45 @@
                     Times
                 </legend>
                 <div class="col-md-6">
+
                     <div class="form-group">
                         <label class="control-label">
                             Event Start Date/Time
                         </label>
-                        <p class="input-group">
-                            <input type="datetime" class="form-control"
-                                   uib-datepicker-popup="M!/d!/yyyy"
-                                   ng-model="vm.selectedEvent.startDate"
-                                   is-open="startDate.opened"
-                                   ng-required="true"
-                                   close-text="Close" />
-                            <uib-timepicker type="time" ng-model="vm.selectedEvent.startDate" hour-step="1" minute-step="1" show-meridian="true"></uib-timepicker>
-                            <!--<uib-timepicker ng-model="vm.startTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></uib-timepicker>-->
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="startDate.opened = !startDate.opened"><i class="fa fa-calendar"></i></button>
-                            </span>
-                            <span>
-                            </span>
-                        </p><!-- /.input group -->
+
+                        <div class="dropdown">
+                            <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                                <div class="input-append">
+                                    <input class="form-control" type="text"
+                                           ng-model="vm.selectedEvent.startDate"
+                                           date-input="{{vm.dateFormat}}">
+                                    <span class="add-on">
+                                        <i class="icon-calendar"></i>
+                                    </span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker data-ng-model="vm.selectedEvent.startDate"
+                                                date-format
+                                                data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
+                            </ul>
+                        </div>
+
+                        <!--<div class="dropdown">
+                            <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                                <div class="input-append">
+                                    <input class="form-control" type="text" ng-model="vm.selectedEvent.startDate" mo-date-input="{{vm.dateFormat}}">
+                                    <span class="add-on">
+                                        <i class="icon-calendar"></i>
+                                    </span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker data-ng-model="vm.selectedEvent.startDate"
+                                                my-date
+                                                data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
+                            </ul>
+                        </div>-->
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -97,21 +119,6 @@
                         <label class="control-label">
                             Event End Date/Time
                         </label>
-                        <p class="input-group">
-                            <input type="datetime" class="form-control"
-                                   uib-datepicker-popup="M!/d!/yyyy"
-                                   ng-model="vm.selectedEvent.endDate"
-                                   is-open="endDate.opened"
-                                   ng-required="true"
-                                   close-text="Close" />
-                            <uib-timepicker type="time" ng-model="vm.selectedEvent.endDate" hour-step="1" minute-step="1" show-meridian="true"></uib-timepicker>
-                            <!--<uib-timepicker ng-model="vm.startTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></uib-timepicker>-->
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="endDate.opened = !endDate.opened"><i class="fa fa-calendar"></i></button>
-                            </span>
-                            <span>
-                            </span>
-                        </p><!-- /.input group -->
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -119,20 +126,6 @@
                         <label class="control-label">
                             Venue Doors Open Date/Time
                         </label>
-                        <p class="input-group">
-                            <input type="datetime" class="form-control"
-                                   uib-datepicker-popup="M!/d!/yyyy"
-                                   ng-model="vm.selectedEvent.venueOpenDate"
-                                   is-open="venueOpenDate.opened"
-                                   ng-required="true"
-                                   close-text="Close" />
-                            <uib-timepicker type="time" ng-model="vm.venueOpenDate.endDate" hour-step="1" minute-step="1" show-meridian="true"></uib-timepicker>
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="venueOpenDate.opened = !venueOpenDate.opened"><i class="fa fa-calendar"></i></button>
-                            </span>
-                            <span>
-                            </span>
-                        </p><!-- /.input group -->
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -140,20 +133,6 @@
                         <label class="control-label">
                             Registration Close Date/Time
                         </label>
-                        <p class="input-group">
-                            <input type="datetime" class="form-control"
-                                   uib-datepicker-popup="M!/d!/yyyy"
-                                   ng-model="vm.selectedEvent.registrationCloseDate"
-                                   is-open="registrationCloseDate.opened"
-                                   ng-required="true"
-                                   close-text="Close" />
-                            <uib-timepicker type="time" ng-model="vm.venueOpenDate.registrationCloseDate" hour-step="1" minute-step="1" show-meridian="true"></uib-timepicker>
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="registrationCloseDate.opened = !registrationCloseDate.opened"><i class="fa fa-calendar"></i></button>
-                            </span>
-                            <span>
-                            </span>
-                        </p><!-- /.input group -->
                     </div>
                 </div>
             </fieldset>

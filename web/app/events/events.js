@@ -24,6 +24,8 @@
             { title: 'Template', template: 'app/events/views/template.html', active: false }
         ];
 
+        vm.dateFormat = "MM/DD/YYYY hh:mm";
+
         activate();
 
         function activate() {
@@ -46,18 +48,24 @@
 
         vm.changeEvent = function () {
             if (!vm.selectedEvent) return;
-            vm.currentDate = new Date();
             service.getById(vm.selectedEvent.id)
                 .then(function (data) {
                     angular.extend(vm.selectedEvent, data);
-                    vm.selectedEvent.startDate = moment(vm.selectedEvent.startDate).toDate();
-                    vm.selectedEvent.endDate = moment(vm.selectedEvent.endDate).toDate();
-                    vm.selectedEvent.venueOpenDate = moment(vm.selectedEvent.venueOpenDate).toDate();
-                    vm.selectedEvent.registrationCloseDate = moment(vm.selectedEvent.registrationCloseDate).toDate();
-
                     vm.guests = [].concat(vm.selectedEvent.guests);
                     logger.log('Selected Event', vm.selectedEvent);
                 });
+        }
+
+        vm.startDateChange = function () {
+            logger.log('startDate', vm.selectedEvent.startDate);
+        }
+
+        vm.onTimeSet = function (newDate, startDate) {
+            //newDate = moment(newDate).format();
+            //newDate = moment.utc(newDate).format('l LT');
+            logger.log('newDate', newDate);
+            startDate = newDate;
+            logger.log('startDate', startDate);
         }
 
         vm.showCreateEvent = function () {
@@ -70,19 +78,6 @@
                 vm.events.unshift(vm.selectedEvent);
                 logger.success('Successfully created ' + data.name);
             });
-
-            //vm.newEvent.template = {
-            //    name: vm.newEvent.name
-            //};
-            //service.create(vm.newEvent)
-            //    .then(function (data) {
-            //        vm.selectedEvent = data;
-            //        vm.events.push(vm.selectedEvent);
-            //        logger.success('Created new event: ' + data.name);
-            //    }).finally(function () {
-            //        vm.newEvent = {};
-            //        complete();
-            //    });
         }
 
         vm.deleteEvent = function (id) {
@@ -112,14 +107,19 @@
 
         vm.save = function () {
             vm.isBusy = true;
-            vm.selectedEvent.startDate = moment.utc(vm.selectedEvent.startDate);
-            vm.selectedEvent.endDate = moment.utc(vm.selectedEvent.endDate);
-            vm.selectedEvent.venueOpenDate = moment.utc(vm.selectedEvent.venueOpenDate);
-            vm.selectedEvent.registrationCloseDate = moment.utc(vm.selectedEvent.registrationCloseDate);
+            //vm.selectedEvent.startDate = moment.toISOString(vm.selectedEvent.startDate.toString());
+            //logger.log('before save', vm.selectedEvent);
+            //vm.selectedEvent.startDate = moment.utc(vm.selectedEvent.startDate).format();
+            //logger.log('after conversion', vm.selectedEvent);
 
+            //debugger;
             return service.update(vm.selectedEvent)
                 .then(function (data) {
                     logger.success('Saved Event: ' + data.name);
+                    //angular.extend(vm.selectedEvent, data);
+
+                    //vm.selectedEvent.startDate = moment.utc(vm.selectedEvent.startDate).format('l LT');
+                    logger.log('after save', vm.selectedEvent);
                 })
                 .finally(function () {
                     complete();

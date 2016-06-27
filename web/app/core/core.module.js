@@ -22,7 +22,8 @@
             'rzModule',
             'switcher',
             'gfl.textAvatar',
-            'textAngular'
+            'textAngular',
+            'ui.bootstrap.datetimepicker'
         ])
         .constant('toastr', toastr)
         .constant('moment', moment);;

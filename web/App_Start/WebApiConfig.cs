@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,18 @@ namespace web
             jsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            jsonFormatter.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+
+            //var jsonSettings = config.Formatters.JsonFormatter.SerializerSettings;
+            //jsonSettings.DateFormatString = "MM-dd-yyyyTHH:mm";
+            //jsonSettings.DateFormatString = "yyyy-MM-dd hh:mm";
+            //jsonSettings.DateFormatString = "yyyy-MM-ddTHH:mm";
+            //jsonSettings.DateFormatString = "MM/dd/yyyyTHH:mm:ss";
+
+            // Create Json.Net formatter serializing DateTime using the ISO 8601 format
+            //JsonSerializerSettings serializerSettings = new JsonSerializerSettings();
+            //serializerSettings.Converters.Add(new IsoDateTimeConverter());
+            //GlobalConfiguration.Configuration.Formatters[0] = new JsonNetFormatter(serializerSettings);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
