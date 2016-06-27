@@ -1,6 +1,9 @@
-﻿<div class="row">
-    <div class="col-md-12">
+﻿
 
+<div class="box no-border">
+    <div class="box-header"></div><!--./box-header-->
+
+    <div class="box-body">
         <form name="templateForm" novalidate="">
             <div class="box box-default box-solid">
 
@@ -17,7 +20,7 @@
                             <div class="box box-info">
                                 <div class="box-header">
                                     <h3 class="box-title">
-                                        Image <small>Image to appear as heading</small>
+                                        Header Image <small>Image to appear in heading</small>
                                     </h3>
                                     <!-- tools box -->
                                     <div class="pull-right box-tools">
@@ -39,9 +42,9 @@
                                         <div>
                                             Drop images here or click to upload
                                         </div>
-                                        <img alt="Event Image" ng-show="vm.file" ngf-thumbnail="vm.file" class="widget-user-image" />
+                                        <img alt="Event Image" ng-show="vm.file" ngf-thumbnail="vm.file" class="widget-user-image" style="width:100%" />
 
-                                        <img ng-show="vm.selectedEvent.template.image && !vm.file" ng-hide="vm.file" ng-src="data:{{vm.selectedEvent.template.mimeType}};base64,{{vm.selectedEvent.template.image}}">
+                                        <img ng-show="vm.selectedEvent.template.image && !vm.file" ng-hide="vm.file" ng-src="data:{{vm.selectedEvent.template.mimeType}};base64,{{vm.selectedEvent.template.image}}" style="width:100%">
                                     </div>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
@@ -131,6 +134,7 @@
                     </div>
                 </div><!--/box-body-->
             </div><!--/box-->
-        </form>
-    </div><!--/.col-md-12-->
-</div><!--/.row-->
+        </form> 
+    </div><!--./box-body-->
+</div><!--./box-->
+

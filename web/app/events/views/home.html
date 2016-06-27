@@ -5,26 +5,26 @@
 </style>
 <script type="text/javascript" src="https://rawgit.com/betsol/angular-input-date/master/src/angular-input-date.js"></script>
 
-<div class="box box-primary">
+<div class="box no-border">
 
     <div class="box-body">
         <form novalidate="" name="details-form">
 
             <div class="row">
-                <div class="col-md-6">
-                    <div class="alert alert-warning" role="alert" ng-show="vm.selectedEvent.isExpired">
-                        <i class="fa fa-exclamation-triangle"></i>  Expired
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <button class="btn pull-right"
+                <div class="col-md-12">
+                    <button class="btn"
                             ng-disabled="vm.selectedEvent.isExpired"
-                            ng-show="vm.selectedEvent"
-                            ng-class="{'btn-success' : vm.selectedEvent.isCancelled, 'btn-danger' : !vm.selectedEvent.isCancelled }"
+                            ng-hide="vm.selectedEvent.isExpired"
+                            ng-class="{'btn-success' : vm.selectedEvent.isCancelled, 'btn-warn' : !vm.selectedEvent.isCancelled }"
                             ng-click="vm.toggleCancel()">
+                        <i class="fa fa-exclamation-triangle"></i>
                         {{vm.selectedEvent.isCancelled ? 'Restore Event' : 'Cancel Event'}}
                     </button>
+                    <div class="alert alert-warning" role="alert" ng-show="vm.selectedEvent.isExpired">
+                        <i class="fa fa-exclamation-triangle"></i> Expired
+                    </div>
                 </div>
+
             </div>
 
             <div class="row">
@@ -222,7 +222,9 @@
         <i class="fa fa-refresh fa-spin"></i>
     </div>
     <div class="box-footer">
-        <button class="btn btn-danger" ng-click="vm.deleteEvent(vm.selectedEvent.id)">Delete</button>
-        <button class="btn btn-primary pull-right" ng-click="vm.save()">Save</button>
+        <button class="btn btn-danger" ng-click="vm.deleteEvent(vm.selectedEvent.id)">
+            <i class="fa fa-trash"></i> Delete
+        </button>
+        <button class="btn btn-primary pull-right" ng-click="vm.save()"><i class="fa fa-save"></i> Save</button>
     </div><!-- /.box-footer-->
 </div><!-- /.box -->
