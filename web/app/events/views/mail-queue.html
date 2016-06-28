@@ -39,7 +39,7 @@
                 <tr ng-repeat="g in vm.selectedEvent.guests | filter:{ ticketIssued: 'false' } | filter:{ hasResponded: 'true' }  | filter:{ isWaiting: 'false' }">
                     <td>
                         <button class="btn btn-primary" ng-click="vm.issueTicket(g)">
-                            Issue
+                            Mail Ticket
                         </button>
                     </td>
                     <td>{{g.name}}</td>

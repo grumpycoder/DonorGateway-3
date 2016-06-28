@@ -225,8 +225,8 @@
     <Content Include="app\events\events.js" />
     <Content Include="app\events\views\guest-upload.html" />
     <Content Include="app\events\views\template.html" />
-    <Content Include="app\events\views\ticket-list.html" />
-    <Content Include="app\events\views\wait-list.html" />
+    <Content Include="app\events\views\mail-queue.html" />
+    <Content Include="app\events\views\wait-queue.html" />
     <Content Include="app\events\views\home.html" />
     <Content Include="app\events\views\guest-list.html" />
     <Content Include="app\filters\app.filters.js" />

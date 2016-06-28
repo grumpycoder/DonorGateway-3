@@ -20,6 +20,11 @@ namespace web.Services
             Messages.Add(message);
         }
 
+        public OperationResult(bool success, string message, TimeSpan totalTime) : this(success, message)
+        {
+            TotalTime = totalTime; 
+        }
+
         public bool Success { get; set; }
         public int Result { get; set; }
         public List<string> Messages { get; set; }

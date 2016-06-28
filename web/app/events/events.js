@@ -21,9 +21,9 @@
         vm.events = [];
         vm.tabs = [
             { title: 'Details', template: 'app/events/views/home.html', active: true },
-            { title: 'Guest List', template: 'app/events/views/guest-list.html', active: true },
-            { title: 'Waiting List', template: 'app/events/views/wait-list.html', active: false },
-            { title: 'Ticket Queue', template: 'app/events/views/ticket-list.html', active: false },
+            { title: 'Guests', template: 'app/events/views/guest-list.html', active: true },
+            { title: 'Waiting Queue', template: 'app/events/views/wait-queue.html', active: false },
+            { title: 'Mail Queue', template: 'app/events/views/mail-queue.html', active: false },
             { title: 'Template', template: 'app/events/views/template.html', active: false }
         ];
 
@@ -143,6 +143,8 @@
         vm.showGuestUpload = function() {
             logger.log('show upload');
             $modal.open({
+                keyboard: false,
+                backdrop: 'static', 
                 templateUrl: '/app/events/views/guest-upload.html',
                 controller: ['logger', '$uibModalInstance', 'fileService', 'selectedEvent', UploadGuestController],
                 controllerAs: 'vm',
@@ -175,6 +177,7 @@
     function UploadGuestController(logger, $modal, service, event) {
         var vm = this;
         vm.event = event;
+        vm.isBusy = true;
 
         logger.log('event', event);
         vm.cancel = function () {
@@ -182,11 +185,13 @@
         }
 
         vm.save = function () {
-            logger.log('file', vm.file);
+            vm.isBusy = true;
             service.guest(vm.event.id, vm.file)
                 .then(function (data) {
                     logger.log(data);
                     $modal.close(data);
+                }).finally(function() {
+                    vm.isBusy = false;
                 });
         }
     }

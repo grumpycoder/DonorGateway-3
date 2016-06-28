@@ -1,6 +1,7 @@
 ﻿using DonorGateway.Data;
 using DonorGateway.Domain;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -28,8 +29,7 @@ namespace web.Controllers
         public IHttpActionResult Guest(int id)
         {
             var httpRequest = HttpContext.Current.Request;
-
-            var result = new OperationResult();
+            var startTime = DateTime.Now;
             try
             {
                 var postedFile = httpRequest.Files[0];
@@ -47,6 +47,7 @@ namespace web.Controllers
                     SkipEmptyRecords = true
                 };
                 var csv = new CsvReader(new StreamReader(filePath, Encoding.Default, true), configuration);
+                
                 csv.Configuration.RegisterClassMap<GuestMap>();
                 var list = csv.GetRecords<Guest>().ToList();
                 foreach (var guest in list)
@@ -57,13 +58,17 @@ namespace web.Controllers
                 {
                     EFBatchOperation.For(context, context.Guests).InsertAll(list);
                 }
+                var message = $"Processed {list.Count} records";
+                var result = new OperationResult(true, message, DateTime.Now.Subtract(startTime));
+                
                 csv.Dispose();
-                return Ok(list);
+                return Ok(result);
 
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                var message = $"Error occurred processing records. {ex.Message}";
+                return BadRequest(message);
             }
 
         }
