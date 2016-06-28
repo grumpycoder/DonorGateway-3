@@ -128,6 +128,18 @@
     <Compile Include="Migrations\201606201724004_event-template3.Designer.cs">
       <DependentUpon>201606201724004_event-template3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606281517498_response-date.cs" />
+    <Compile Include="Migrations\201606281517498_response-date.Designer.cs">
+      <DependentUpon>201606281517498_response-date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606281546093_guest-eventid.cs" />
+    <Compile Include="Migrations\201606281546093_guest-eventid.Designer.cs">
+      <DependentUpon>201606281546093_guest-eventid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606281600128_guest-findernumber.cs" />
+    <Compile Include="Migrations\201606281600128_guest-findernumber.Designer.cs">
+      <DependentUpon>201606281600128_guest-findernumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -195,6 +207,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606201724004_event-template3.resx">
       <DependentUpon>201606201724004_event-template3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606281517498_response-date.resx">
+      <DependentUpon>201606281517498_response-date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606281546093_guest-eventid.resx">
+      <DependentUpon>201606281546093_guest-eventid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606281600128_guest-findernumber.resx">
+      <DependentUpon>201606281600128_guest-findernumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

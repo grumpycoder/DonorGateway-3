@@ -54,6 +54,7 @@
                     angular.extend(vm.selectedEvent, data);
                     vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
                     vm.guests = [].concat(vm.selectedEvent.guests);
+                    logger.log('guests', vm.selectedEvent.guests);
                 });
         }
 
@@ -149,8 +150,7 @@
                     selectedEvent: vm.selectedEvent
                 }
             }).result.then(function (data) {
-                vm.selectedEvent = data;
-                vm.events.unshift(vm.selectedEvent);
+                vm.selectedEvent.guests = vm.selectedEvent.guests.concat(data);
                 logger.success('Successfully created ' + data.name);
             });
         }
@@ -186,7 +186,7 @@
             service.guest(vm.event.id, vm.file)
                 .then(function (data) {
                     logger.log(data);
-                    //$modal.close(data);
+                    $modal.close(data);
                 });
         }
     }
