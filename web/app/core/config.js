@@ -33,7 +33,8 @@
         Mailer: 'mailer',
         Reason: 'reason',
         Event: 'event',
-        Guest: 'guest'
+        Guest: 'guest',
+        File: 'file'
     };
 
     var config = {

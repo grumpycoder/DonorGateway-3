@@ -1,0 +1,30 @@
+﻿
+<form name="form" novalidate>
+    <div class="modal-header">
+        <div class="modal-title">
+            {{vm.event.name}} Guest List Upload
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <input type="file" ng-model="vm.file">
+            <p class="help-block">Choose your data file and click "Load File". Click Additional Notes below for file format information.</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="vm.save()" 
+                >
+            Create
+        </button>
+        <button class="btn btn-default pull-left" ng-click="vm.cancel()">
+            Cancel
+        </button>
+    </div>
+    <!--<div class="col-md-12">
+
+        <div class="col-md-12">
+            Nested Form:
+            <pre>{{ form | json }}</pre>
+        </div>
+    </div>-->
+</form>

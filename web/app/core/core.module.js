@@ -23,7 +23,8 @@
             'switcher',
             'gfl.textAvatar',
             'textAngular',
-            'ui.bootstrap.datetimepicker'
+            'ui.bootstrap.datetimepicker', 
+            'ng-file-input'
         ])
         .constant('toastr', toastr)
         .constant('moment', moment);;

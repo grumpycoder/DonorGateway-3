@@ -24,6 +24,7 @@
 /// <reference path="../app/services/campaign.service.js" />
 /// <reference path="../app/services/constituent.service.js" />
 /// <reference path="../app/services/event.service.js" />
+/// <reference path="../app/services/file.service.js" />
 /// <reference path="../app/services/guest.service.js" />
 /// <reference path="../app/services/mailer.service.js" />
 /// <reference path="../app/services/reason.service.js" />

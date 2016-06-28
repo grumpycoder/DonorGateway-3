@@ -174,6 +174,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\GuestController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Services\GuestProcessor.cs" />
+    <Compile Include="Services\IProcessor.cs" />
+    <Compile Include="Services\OperationResult.cs" />
     <Compile Include="Controllers\ReasonController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\MailerController.cs" />
@@ -212,6 +216,7 @@
     <Content Include="app\directives\toggleCheckbox.directive.js" />
     <Content Include="app\events\event.module.js" />
     <Content Include="app\events\events.js" />
+    <Content Include="app\events\views\guest-upload.html" />
     <Content Include="app\events\views\template.html" />
     <Content Include="app\events\views\ticket-list.html" />
     <Content Include="app\events\views\wait-list.html" />
@@ -224,6 +229,7 @@
     <Content Include="app\modules.min.js" />
     <Content Include="app\nav\nav.js" />
     <Content Include="app\nav\nav.module.js" />
+    <Content Include="app\services\file.service.js" />
     <Content Include="app\services\guest.service.js" />
     <Content Include="app\services\event.service.js" />
     <Content Include="app\services\campaign.service.js" />
