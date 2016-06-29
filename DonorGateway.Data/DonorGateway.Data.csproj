@@ -140,6 +140,10 @@
     <Compile Include="Migrations\201606281600128_guest-findernumber.Designer.cs">
       <DependentUpon>201606281600128_guest-findernumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606291400404_ticket-mailed-date.cs" />
+    <Compile Include="Migrations\201606291400404_ticket-mailed-date.Designer.cs">
+      <DependentUpon>201606291400404_ticket-mailed-date.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -216,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606281600128_guest-findernumber.resx">
       <DependentUpon>201606281600128_guest-findernumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606291400404_ticket-mailed-date.resx">
+      <DependentUpon>201606291400404_ticket-mailed-date.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

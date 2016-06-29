@@ -54,7 +54,6 @@
                     angular.extend(vm.selectedEvent, data);
                     vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
                     vm.guests = [].concat(vm.selectedEvent.guests);
-                    logger.log('guests', vm.selectedEvent.guests);
                 });
         }
 
@@ -152,8 +151,13 @@
                     selectedEvent: vm.selectedEvent
                 }
             }).result.then(function (data) {
-                vm.selectedEvent.guests = vm.selectedEvent.guests.concat(data);
-                logger.success('Successfully created ' + data.name);
+                vm.changeEvent();
+                if (data.success) {
+                    logger.success(data.message);
+                } else {
+                    logger.danger(data.message);
+                }
+
             });
         }
 
@@ -178,14 +182,12 @@
         var vm = this;
         vm.event = event;
 
-        logger.log('event', event);
         vm.cancel = function () {
             vm.file = undefined;
             $modal.dismiss();
         }
 
         vm.fileSelected = function ($file, $event) {
-            logger.log('file changed', vm.file);
             vm.result = null;
         };
 
@@ -198,16 +200,14 @@
 
             service.guest(vm.event.id, vm.file)
                     .then(function (data) {
-                        logger.log(data);
                         vm.result.success = true;
-                        vm.result = data;
-                        //$modal.close(data);
+                        vm.result.message = data;
                     }).catch(function (error) {
-                        logger.log('error', error);
                         vm.result = error.data.message;
                     }).finally(function () {
                         vm.file = undefined;
                         vm.isBusy = false;
+                        $modal.close(vm.result);
                     });
         }
     }

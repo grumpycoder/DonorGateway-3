@@ -17,10 +17,11 @@ namespace DonorGateway.Domain
         public string State { get; set; }
         public string Zipcode { get; set; }
         public DateTime? ResponseDate { get; set; }
+        public DateTime? TicketMailDate { get; set; }
 
         public bool? IsAttending { get; set; } = false;
         public bool? IsWaiting { get; set; } = false;
-        public bool? TicketIssued { get; set; } = false;
+        public bool? TicketMailed { get; set; } = false;
         public bool? HasResponded { get; set; } = false;
         public int? GuestCount { get; set; }
         public int? EventId { get; set; }

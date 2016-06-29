@@ -36,12 +36,7 @@
                         <dd>{{vm.file.lastModifiedDate | date: 'MM/dd/yyyy HH:mm'}}</dd>
                     </dl>
                 </div>
-                <div ng-show="vm.result">
-                    <div class="alert"
-                         ng-class="{'alert-success' : vm.result.success, 'alert-danger' : !vm.result.success}">
-                        <span>{{vm.result}}</span>
-                    </div>
-                </div>
+               
             </div><div class="overlay" ng-show="vm.isBusy">
                 <i class="fa fa-refresh fa-spin"></i>
             </div>
