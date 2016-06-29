@@ -150,14 +150,13 @@
                 resolve: {
                     selectedEvent: vm.selectedEvent
                 }
-            }).result.then(function (data) {
-                vm.changeEvent();
-                if (data.success) {
-                    logger.success(data.message);
+            }).result.then(function (result) {
+                if (result.success) {
+                    logger.success(result.message);
                 } else {
-                    logger.danger(data.message);
+                    logger.error(result.message);
                 }
-
+                vm.changeEvent();
             });
         }
 
@@ -200,10 +199,11 @@
 
             service.guest(vm.event.id, vm.file)
                     .then(function (data) {
+                        //logger.log('success', data);
                         vm.result.success = true;
                         vm.result.message = data;
                     }).catch(function (error) {
-                        vm.result = error.data.message;
+                        vm.result.message = error.data.message;
                     }).finally(function () {
                         vm.file = undefined;
                         vm.isBusy = false;
