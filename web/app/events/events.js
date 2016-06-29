@@ -140,11 +140,11 @@
             });
         }
 
-        vm.showGuestUpload = function() {
+        vm.showGuestUpload = function () {
             logger.log('show upload');
             $modal.open({
                 keyboard: false,
-                backdrop: 'static', 
+                backdrop: 'static',
                 templateUrl: '/app/events/views/guest-upload.html',
                 controller: ['logger', '$uibModalInstance', 'fileService', 'selectedEvent', UploadGuestController],
                 controllerAs: 'vm',
@@ -177,22 +177,38 @@
     function UploadGuestController(logger, $modal, service, event) {
         var vm = this;
         vm.event = event;
-        vm.isBusy = true;
 
         logger.log('event', event);
         vm.cancel = function () {
+            vm.file = undefined;
             $modal.dismiss();
         }
 
+        vm.fileSelected = function ($file, $event) {
+            logger.log('file changed', vm.file);
+            vm.result = null;
+        };
+
+
         vm.save = function () {
             vm.isBusy = true;
+            vm.result = {
+                success: false
+            }
+
             service.guest(vm.event.id, vm.file)
-                .then(function (data) {
-                    logger.log(data);
-                    $modal.close(data);
-                }).finally(function() {
-                    vm.isBusy = false;
-                });
+                    .then(function (data) {
+                        logger.log(data);
+                        vm.result.success = true;
+                        vm.result = data;
+                        //$modal.close(data);
+                    }).catch(function (error) {
+                        logger.log('error', error);
+                        vm.result = error.data.message;
+                    }).finally(function () {
+                        vm.file = undefined;
+                        vm.isBusy = false;
+                    });
         }
     }
 

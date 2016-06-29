@@ -62,7 +62,7 @@ namespace web.Controllers
                 var result = new OperationResult(true, message, DateTime.Now.Subtract(startTime));
                 
                 csv.Dispose();
-                return Ok(result);
+                return Ok(message);
 
             }
             catch (Exception ex)
