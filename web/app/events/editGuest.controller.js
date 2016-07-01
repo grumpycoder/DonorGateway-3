@@ -14,7 +14,7 @@
         var vm = this;
         vm.title = 'Edit Guest';
 
-        vm.guest = guest;
+        vm.guest = angular.copy(guest);
 
         logger.log('guest', guest);
 
@@ -23,10 +23,11 @@
         }
 
         vm.save = function () {
-            service.update(guest)
+            service.update(vm.guest)
                 .then(function (data) {
-                    vm.guest = data;
-                    $modal.close(data);
+                    angular.extend(vm.guest, data);
+                    logger.log('guest', vm.guest);
+                    $modal.close(vm.guest);
                 }).finally(function () {
                 });
         }

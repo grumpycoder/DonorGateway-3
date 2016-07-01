@@ -53,8 +53,10 @@
                 .then(function (data) {
                     logger.log('added guest', data);
                     logger.info('Added Guest to Queue: ' + data.name);
+                    guest = data; 
                 }).finally(function () {
-                    complete();
+                    //complete();
+                    vm.isBusy = false;
                 });
         }
 
@@ -96,7 +98,7 @@
                 }
             }).result.then(function (result) {
                 logger.log('result', result);
-                guest = result; 
+                angular.extend(guest, result); 
             });
         }
 
@@ -107,22 +109,25 @@
                 pageSize: pageSizeDefault,
                 orderBy: 'id',
                 orderDirection: 'asc',
-                isWaiting: isWaiting
+                isWaiting: isWaiting,
+                isAttending: true,
+                isMailed: null
             }
             vm.searchGuests(tableStateRef);
         }
 
         vm.filterMailQueue = function () {
             var isAttending = vm.searchModel.isAttending = !vm.searchModel.isAttending === true ? true : null;
-            var isMailed = vm.searchModel.isMailed = !vm.searchModel.isMailed === false ? false : null;
-
+            var isMailed = vm.searchModel.isMailed = !vm.searchModel.isMailed === true ? false : null;
+            var isWaiting = vm.searchModel.isWaiting = !vm.searchModel.isWaiting === true ? false : null;
             vm.searchModel = {
                 page: 1,
                 pageSize: pageSizeDefault,
                 orderBy: 'id',
                 orderDirection: 'asc',
                 isAttending: isAttending,
-                isMailed: isMailed
+                isMailed: false,
+                isWaiting: isWaiting
             }
             vm.searchGuests(tableStateRef);
         }
@@ -130,13 +135,13 @@
         vm.mailTicket = function (guest) {
             vm.isBusy = true;
             guest.isMailed = true;
-
+            vm.isWaiting = false; 
             guestService.update(guest)
                 .then(function (data) {
                     angular.extend(guest, data);
                     logger.success('Issued ticket to: ' + guest.name);
                 }).finally(function () {
-                    complete();
+                    vm.isBusy = false;
                 });
         }
 

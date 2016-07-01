@@ -51,7 +51,7 @@
             </thead>
             <tbody>
 
-                <tr ng-repeat="g in vm.selectedEvent.guests">
+                <tr ng-repeat="g in vm.selectedEvent.guests" ng-dblclick="vm.editGuest(g)">
                     <td>{{g.name}}</td>
                     <td>
                         <address>
@@ -67,12 +67,17 @@
                     <td class="text-center">{{g.isMailed | checkmark}}</td>
                     <td>{{g.guestCount}}</td>
                     <td>{{g.email}}</td>
-                    <td>{{g.phone}}</td>
-                    <td>{{g.accountId}}</td>
-                    <td>{{g.finderNumber}}</td>
+                    <!--<td>{{g.phone}}</td>-->
+                    <!--<td>{{g.accountId}}</td>
+                    <td>{{g.finderNumber}}</td>-->
+                    <td>{{g.isAttending}}</td>
+                    <td>{{g.isMailed}}</td>
+                    <td>{{g.isWaiting}}  - {{g.isAttending && g.isMailed && g.isWaiting}}</td>
                     <td style="width: 150px;">
+                        <button class="btn" ng-show="g.isWaiting" ng-click="vm.addToMailQueue(g)"> Queue</button>
+                        <button class="btn" ng-show="g.isAttending && !g.isMailed && !g.isWaiting" ng-click="vm.mailTicket(g)"> Mail</button>
 
-                        <div class="btn-group">
+                        <!--<div class="btn-group">
                             <button type="button" class="btn btn-danger" ng-click="vm.editGuest(g)">Edit</button>
                             <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="caret"></span>
@@ -83,7 +88,7 @@
                                 <li><a class="btn" ng-disabled="!g.isWaiting" ng-click="vm.addToMailQueue(g)">Add to Mail Queue</a></li>
                                 <li><a class="btn" ng-disabled="!g.isAttending && !g.isMailed" ng-click="vm.mailTicket(g)">Mail Ticket Now</a></li>
                             </ul>
-                        </div>
+                        </div>-->
 
                         <!--<div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -103,6 +108,7 @@
                     <td colspan="12" class="text-center">
                         <uib-pagination total-items="vm.searchModel.filteredCount"
                                         ng-model="vm.searchModel.page"
+                                        ng-show="vm.searchModel.totalPages > 1"
                                         max-size="5"
                                         items-per-page="vm.searchModel.pageSize"
                                         class="pagination-sm"
