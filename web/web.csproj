@@ -222,8 +222,10 @@
     <Content Include="app\directives\date-input.directive.js" />
     <Content Include="app\directives\smart-table.directive.js" />
     <Content Include="app\directives\toggleCheckbox.directive.js" />
+    <Content Include="app\events\editGuest.controller.js" />
     <Content Include="app\events\event.module.js" />
     <Content Include="app\events\events.js" />
+    <Content Include="app\events\views\edit-guest.html" />
     <Content Include="app\events\views\guest-upload.html" />
     <Content Include="app\events\views\template.html" />
     <Content Include="app\events\views\mail-queue.html" />

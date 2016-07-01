@@ -74,7 +74,7 @@
 
                             <div class="col-md-12">
                                 <uib-tabset>
-                                    <uib-tab ng-repeat="tab in vm.tabs" a active="tab.active">
+                                    <uib-tab ng-repeat="tab in vm.tabs" active="{{tab.active}}">
                                         <uib-tab-heading>
                                             <i class="fa" ng-class="tab.icon"></i> {{tab.title}}
                                         </uib-tab-heading>
