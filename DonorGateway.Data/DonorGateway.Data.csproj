@@ -56,93 +56,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\201606100235289_init.cs" />
-    <Compile Include="Migrations\201606100235289_init.Designer.cs">
-      <DependentUpon>201606100235289_init.cs</DependentUpon>
+    <Compile Include="Migrations\201606302034252_init.cs" />
+    <Compile Include="Migrations\201606302034252_init.Designer.cs">
+      <DependentUpon>201606302034252_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606100256453_domain-entities.cs" />
-    <Compile Include="Migrations\201606100256453_domain-entities.Designer.cs">
-      <DependentUpon>201606100256453_domain-entities.cs</DependentUpon>
+    <Compile Include="Migrations\201606302038293_event-refacotr.cs" />
+    <Compile Include="Migrations\201606302038293_event-refacotr.Designer.cs">
+      <DependentUpon>201606302038293_event-refacotr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606112008439_template-event-name.cs" />
-    <Compile Include="Migrations\201606112008439_template-event-name.Designer.cs">
-      <DependentUpon>201606112008439_template-event-name.cs</DependentUpon>
+    <Compile Include="Migrations\201607011132064_template-remove-headerimage.cs" />
+    <Compile Include="Migrations\201607011132064_template-remove-headerimage.Designer.cs">
+      <DependentUpon>201607011132064_template-remove-headerimage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606112010553_template-remove-event-name.cs" />
-    <Compile Include="Migrations\201606112010553_template-remove-event-name.Designer.cs">
-      <DependentUpon>201606112010553_template-remove-event-name.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606112016140_template-photo.cs" />
-    <Compile Include="Migrations\201606112016140_template-photo.Designer.cs">
-      <DependentUpon>201606112016140_template-photo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606112026441_template-image.cs" />
-    <Compile Include="Migrations\201606112026441_template-image.Designer.cs">
-      <DependentUpon>201606112026441_template-image.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606131427118_Mailer-Reason.cs" />
-    <Compile Include="Migrations\201606131427118_Mailer-Reason.Designer.cs">
-      <DependentUpon>201606131427118_Mailer-Reason.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606131429269_SuppressionReason.cs" />
-    <Compile Include="Migrations\201606131429269_SuppressionReason.Designer.cs">
-      <DependentUpon>201606131429269_SuppressionReason.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606132035201_Event-Guest.cs" />
-    <Compile Include="Migrations\201606132035201_Event-Guest.Designer.cs">
-      <DependentUpon>201606132035201_Event-Guest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606142337258_guest-waiting.cs" />
-    <Compile Include="Migrations\201606142337258_guest-waiting.Designer.cs">
-      <DependentUpon>201606142337258_guest-waiting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606142349237_guest-waiting-update.cs" />
-    <Compile Include="Migrations\201606142349237_guest-waiting-update.Designer.cs">
-      <DependentUpon>201606142349237_guest-waiting-update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606142353177_guest-ticketissue.cs" />
-    <Compile Include="Migrations\201606142353177_guest-ticketissue.Designer.cs">
-      <DependentUpon>201606142353177_guest-ticketissue.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606152122564_smalldatetime-change.cs" />
-    <Compile Include="Migrations\201606152122564_smalldatetime-change.Designer.cs">
-      <DependentUpon>201606152122564_smalldatetime-change.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606161643531_cancel-expired-fields.cs" />
-    <Compile Include="Migrations\201606161643531_cancel-expired-fields.Designer.cs">
-      <DependentUpon>201606161643531_cancel-expired-fields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606172025264_guest-response.cs" />
-    <Compile Include="Migrations\201606172025264_guest-response.Designer.cs">
-      <DependentUpon>201606172025264_guest-response.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606201711534_event-template.cs" />
-    <Compile Include="Migrations\201606201711534_event-template.Designer.cs">
-      <DependentUpon>201606201711534_event-template.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606201721145_event-template2.cs" />
-    <Compile Include="Migrations\201606201721145_event-template2.Designer.cs">
-      <DependentUpon>201606201721145_event-template2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606201724004_event-template3.cs" />
-    <Compile Include="Migrations\201606201724004_event-template3.Designer.cs">
-      <DependentUpon>201606201724004_event-template3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606281517498_response-date.cs" />
-    <Compile Include="Migrations\201606281517498_response-date.Designer.cs">
-      <DependentUpon>201606281517498_response-date.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606281546093_guest-eventid.cs" />
-    <Compile Include="Migrations\201606281546093_guest-eventid.Designer.cs">
-      <DependentUpon>201606281546093_guest-eventid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606281600128_guest-findernumber.cs" />
-    <Compile Include="Migrations\201606281600128_guest-findernumber.Designer.cs">
-      <DependentUpon>201606281600128_guest-findernumber.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606291400404_ticket-mailed-date.cs" />
-    <Compile Include="Migrations\201606291400404_ticket-mailed-date.Designer.cs">
-      <DependentUpon>201606291400404_ticket-mailed-date.cs</DependentUpon>
+    <Compile Include="Migrations\201607011336015_guest-leadcouncil-bool.cs" />
+    <Compile Include="Migrations\201607011336015_guest-leadcouncil-bool.Designer.cs">
+      <DependentUpon>201607011336015_guest-leadcouncil-bool.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -158,71 +86,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606100235289_init.resx">
-      <DependentUpon>201606100235289_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606302034252_init.resx">
+      <DependentUpon>201606302034252_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606100256453_domain-entities.resx">
-      <DependentUpon>201606100256453_domain-entities.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606302038293_event-refacotr.resx">
+      <DependentUpon>201606302038293_event-refacotr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606112008439_template-event-name.resx">
-      <DependentUpon>201606112008439_template-event-name.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607011132064_template-remove-headerimage.resx">
+      <DependentUpon>201607011132064_template-remove-headerimage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606112010553_template-remove-event-name.resx">
-      <DependentUpon>201606112010553_template-remove-event-name.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606112016140_template-photo.resx">
-      <DependentUpon>201606112016140_template-photo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606112026441_template-image.resx">
-      <DependentUpon>201606112026441_template-image.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606131427118_Mailer-Reason.resx">
-      <DependentUpon>201606131427118_Mailer-Reason.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606131429269_SuppressionReason.resx">
-      <DependentUpon>201606131429269_SuppressionReason.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606132035201_Event-Guest.resx">
-      <DependentUpon>201606132035201_Event-Guest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606142337258_guest-waiting.resx">
-      <DependentUpon>201606142337258_guest-waiting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606142349237_guest-waiting-update.resx">
-      <DependentUpon>201606142349237_guest-waiting-update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606142353177_guest-ticketissue.resx">
-      <DependentUpon>201606142353177_guest-ticketissue.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606152122564_smalldatetime-change.resx">
-      <DependentUpon>201606152122564_smalldatetime-change.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606161643531_cancel-expired-fields.resx">
-      <DependentUpon>201606161643531_cancel-expired-fields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606172025264_guest-response.resx">
-      <DependentUpon>201606172025264_guest-response.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606201711534_event-template.resx">
-      <DependentUpon>201606201711534_event-template.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606201721145_event-template2.resx">
-      <DependentUpon>201606201721145_event-template2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606201724004_event-template3.resx">
-      <DependentUpon>201606201724004_event-template3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606281517498_response-date.resx">
-      <DependentUpon>201606281517498_response-date.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606281546093_guest-eventid.resx">
-      <DependentUpon>201606281546093_guest-eventid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606281600128_guest-findernumber.resx">
-      <DependentUpon>201606281600128_guest-findernumber.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606291400404_ticket-mailed-date.resx">
-      <DependentUpon>201606291400404_ticket-mailed-date.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607011336015_guest-leadcouncil-bool.resx">
+      <DependentUpon>201607011336015_guest-leadcouncil-bool.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

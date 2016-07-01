@@ -42,7 +42,7 @@
                                         <div>
                                             Drop images here or click to upload
                                         </div>
-                                        <img alt="Event Image" ng-show="vm.file" ngf-thumbnail="vm.file" class="widget-user-image" style="width:100%" />
+                                        <img alt="Event Image" ng-show="vm.file" ngf-thumbnail="vm.file"  style="width:100%" />
 
                                         <img ng-show="vm.selectedEvent.template.image && !vm.file" ng-hide="vm.file" ng-src="data:{{vm.selectedEvent.template.mimeType}};base64,{{vm.selectedEvent.template.image}}" style="width:100%">
                                     </div>
@@ -85,6 +85,7 @@
                                 <div class="box-body pad">
                                     <text-angular name="bodyText" ng-model="vm.selectedEvent.template.bodyText" markdownedit></text-angular>
                                 </div><!-- /.box-body -->
+                               
                             </div><!-- /.box -->
                         </div>
                         <div class="col-md-12">

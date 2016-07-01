@@ -16,56 +16,53 @@
             remove: remove,
             get: get,
             getById: getById,
+            getGuests: getGuests, 
             update: update,
             query: query
-            //            remove: remove,
-            //            save: save,
-            //            search: search,
         }
 
         return service;
 
         function create(event) {
             return $http.post(url, event)
-                .then(function (response) {
-                    return response.data;
-                });
+                .then(_success).catch(error);
         }
 
         function remove(id) {
-            return $http.delete(url + '/' + id).then(_success);
+            return $http.delete(url + '/' + id).then(_success).catch(error);
         };
 
         function get() {
             return $http.get(url)
-                .then(function (response) {
-                    return response.data;
-                });
+                .then(_success).catch(error);
         }
 
         function getById(id) {
             return $http.get(url + '/' + id)
-                .then(function (response) {
-                    return response.data;
-                });
+                .then(_success).catch(error);
+        }
+
+        function getGuests(id, vm) {
+            return $http.post(url + '/' + id + '/guests', vm)
+                .then(_success).catch(error);
         }
 
         function query(name) {
             return $http.get(url + '/' + name)
-                .then(function (response) {
-                    return response.data;
-                });
+                .then(_success).catch(error);
         }
 
         function update(event) {
             return $http.put(url, event)
-                .then(function (response) {
-                    return response.data;
-                });
+                .then(_success).catch(error);
         }
 
         function _success(response) {
             return response.data;
         };
+
+        function error(error) {
+            return error.data.message; 
+        }
     }
 })();

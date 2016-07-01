@@ -12,19 +12,29 @@
 
     function mainController(logger, $modal, service, guestService, templateService) {
         var vm = this;
+        var tableStateRef;
+        var pageSizeDefault = 10;
+
         vm.title = 'Event Manager';
         vm.description = "Manage Donor Events";
-
         vm.currentDate = new Date();
 
         vm.dateFormat = "MM/DD/YYYY hh:mm";
         vm.events = [];
+
+        vm.searchModel = {
+            page: 1,
+            pageSize: pageSizeDefault,
+            orderBy: 'id',
+            orderDirection: 'asc'
+        };
+
         vm.tabs = [
-            { title: 'Details', template: 'app/events/views/home.html', active: true },
-            { title: 'Guests', template: 'app/events/views/guest-list.html', active: true },
-            { title: 'Waiting Queue', template: 'app/events/views/wait-queue.html', active: false },
-            { title: 'Mail Queue', template: 'app/events/views/mail-queue.html', active: false },
-            { title: 'Template', template: 'app/events/views/template.html', active: false }
+            { title: 'Details', template: 'app/events/views/home.html', active: true, icon: 'fa-info-circle' },
+            { title: 'Guests', template: 'app/events/views/guest-list.html', active: true, icon: 'fa-users' },
+            //{ title: 'Mail Queue', template: 'app/events/views/mail-queue.html', active: false, icon: '' },
+            //{ title: 'Waiting Queue', template: 'app/events/views/wait-queue.html', active: false, icon: '' },
+            { title: 'Template', template: 'app/events/views/template.html', active: false, icon: 'fa-file-text' }
         ];
 
         activate();
@@ -32,9 +42,10 @@
         function activate() {
             logger.log(controllerId + ' activated');
             getEvents();
+
         }
 
-        vm.addToTicketQueue = function (guest) {
+        vm.addToMailQueue = function (guest) {
             vm.isBusy = true;
             guest.isWaiting = false;
             guest.isAttending = true;
@@ -48,25 +59,18 @@
         }
 
         vm.changeEvent = function () {
+            vm.isBusy = true;
             if (!vm.selectedEvent) return;
             service.getById(vm.selectedEvent.id)
                 .then(function (data) {
                     angular.extend(vm.selectedEvent, data);
                     vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
-                    vm.guests = [].concat(vm.selectedEvent.guests);
+                    vm.guests = vm.selectedEvent.guests;
+                }).finally(function () {
+                    vm.isBusy = false;
+                    vm.searchGuests(tableStateRef);
                 });
-        }
 
-        vm.showCreateEvent = function () {
-            $modal.open({
-                templateUrl: '/app/events/views/create-event.html',
-                controller: ['logger', '$uibModalInstance', 'eventService', CreateEventController],
-                controllerAs: 'vm'
-            }).result.then(function (data) {
-                vm.selectedEvent = data;
-                vm.events.unshift(vm.selectedEvent);
-                logger.success('Successfully created ' + data.name);
-            });
         }
 
         vm.deleteEvent = function (id) {
@@ -81,9 +85,40 @@
                 });
         }
 
-        vm.issueTicket = function (guest) {
+        vm.editGuest = function(guest) {
+            logger.log('edit', guest);
+        }
+
+        vm.filterWaitingQueue = function () {
+            var isWaiting = vm.searchModel.isWaiting = !vm.searchModel.isWaiting === true ? true : null;
+            vm.searchModel = {
+                page: 1,
+                pageSize: pageSizeDefault,
+                orderBy: 'id',
+                orderDirection: 'asc',
+                isWaiting: isWaiting
+            }
+            vm.searchGuests(tableStateRef);
+        }
+
+        vm.filterMailQueue = function () {
+            var isAttending = vm.searchModel.isAttending = !vm.searchModel.isAttending === true ? true : null;
+            var isMailed = vm.searchModel.isMailed = !vm.searchModel.isMailed === false ? false : null;
+
+            vm.searchModel = {
+                page: 1,
+                pageSize: pageSizeDefault,
+                orderBy: 'id',
+                orderDirection: 'asc',
+                isAttending: isAttending,
+                isMailed: isMailed
+            }
+            vm.searchGuests(tableStateRef);
+        }
+
+        vm.mailTicket = function (guest) {
             vm.isBusy = true;
-            guest.ticketIssued = true;
+            guest.isMailed = true;
 
             guestService.update(guest)
                 .then(function (data) {
@@ -93,6 +128,43 @@
                     complete();
                 });
         }
+
+        vm.searchGuests = function (tableState) {
+            tableStateRef = tableState;
+            if (!vm.selectedEvent) return;
+
+            if (typeof (tableState.sort.predicate) != "undefined") {
+                vm.searchModel.orderBy = tableState.sort.predicate;
+                vm.searchModel.orderDirection = tableState.sort.reverse ? 'desc' : 'asc';
+            }
+            if (typeof (tableState.search.predicateObject) != "undefined") {
+                vm.searchModel.name = tableState.search.predicateObject.name;
+                vm.searchModel.address = tableState.search.predicateObject.address;
+                vm.searchModel.city = tableState.search.predicateObject.city;
+                vm.searchModel.state = tableState.search.predicateObject.state;
+                vm.searchModel.zipcode = tableState.search.predicateObject.zipcode;
+                vm.searchModel.guestCount = tableState.search.predicateObject.guestCount;
+                vm.searchModel.phone = tableState.search.predicateObject.phone;
+                vm.searchModel.email = tableState.search.predicateObject.email;
+                vm.searchModel.accountId = tableState.search.predicateObject.accountId;
+                vm.searchModel.finderNumber = tableState.search.predicateObject.finderNumber;
+                vm.searchModel.isMailed = tableState.search.predicateObject.isMailed;
+            }
+
+            vm.isBusy = true;
+            return service.getGuests(vm.selectedEvent.id, vm.searchModel)
+                .then(function (data) {
+                    vm.selectedEvent.guests = data.items;
+                    vm.searchModel = data;
+                    logger.log('search', vm.searchModel);
+                    vm.isBusy = false;
+                });
+
+        }
+
+        vm.paged = function paged() {
+            vm.searchGuests(tableStateRef);
+        };
 
         vm.save = function () {
             vm.isBusy = true;
@@ -109,12 +181,21 @@
 
         vm.fileSelected = function ($files, $file, $event, $rejectedFiles) {
             var reader = new FileReader();
+            reader.onloadstart = function () {
+
+                vm.isBusy = true;
+            };
+            reader.onloadend = function () {
+                vm.isBusy = false;
+
+            }
             reader.onload = function (e) {
                 var dataURL = reader.result;
                 vm.selectedEvent.template.image = dataURL.split(',')[1];
                 vm.selectedEvent.template.mimeType = $file.type;
             };
             reader.readAsDataURL($file);
+
         };
 
         vm.saveTemplate = function () {
@@ -136,6 +217,18 @@
                 } else {
                     logger.info('Restored event');
                 }
+            });
+        }
+
+        vm.showCreateEvent = function () {
+            $modal.open({
+                templateUrl: '/app/events/views/create-event.html',
+                controller: ['logger', '$uibModalInstance', 'eventService', CreateEventController],
+                controllerAs: 'vm'
+            }).result.then(function (data) {
+                vm.selectedEvent = data;
+                vm.events.unshift(vm.selectedEvent);
+                logger.success('Successfully created ' + data.name);
             });
         }
 
@@ -164,9 +257,6 @@
             service.get()
                 .then(function (data) {
                     vm.events = data;
-                    //TODO: Remove this. Debugging only
-                    vm.selectedEvent = vm.events[0];
-                    vm.changeEvent();
                 }).finally(function () {
                     complete();
                 });
@@ -174,6 +264,8 @@
 
         function complete() {
             vm.isBusy = false;
+            vm.selectedEvent = vm.events[0];
+            vm.changeEvent();
         }
     };
 
@@ -199,7 +291,6 @@
 
             service.guest(vm.event.id, vm.file)
                     .then(function (data) {
-                        //logger.log('success', data);
                         vm.result.success = true;
                         vm.result.message = data;
                     }).catch(function (error) {
@@ -218,7 +309,8 @@
         vm.dateFormat = "MM/DD/YYYY hh:mm";
 
         vm.event = {
-            startDate: new Date()
+            startDate: new Date(),
+            template: {}
         };
 
         vm.cancel = function () {
@@ -226,6 +318,7 @@
         }
 
         vm.save = function () {
+            vm.event.template.name = vm.event.name;
             service.create(vm.event)
                 .then(function (data) {
                     $modal.close(data);

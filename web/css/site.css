@@ -69,53 +69,21 @@ th[st-sort] {
             top: 20px;
         }
 
-/*table {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    height: 800px;
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    /*width: 200px;
+    height: 65px;*/
+    text-align: center;
+    padding: 20px;
+    /*padding-top: 25px;
+    margin: 10px;*/
 }
 
-    table * {
-        box-sizing: inherit;
-        -moz-box-sizing: inherit;
-    }
-
-thead {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+.dragover {
+    border: 5px dashed blue;
 }
 
-tbody {
-    overflow-y: scroll;
-    display: inline-block;
+.form-control {
+    border-radius: 2px;
 }
-
-    thead > tr, tbody > tr, tfoot > tr {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-    }
-
-thead, tfoot {
-    flex-shrink: 0;
-}
-
-th, tbody td {
-    width: 20%;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
-}
-
-tfoot {
-    display: inline-block;
-}
-
-    tfoot td {
-        width: 100%;
-        display: inline-block;
-    }*/

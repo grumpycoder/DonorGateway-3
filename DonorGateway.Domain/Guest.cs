@@ -4,9 +4,17 @@ namespace DonorGateway.Domain
 {
     public class Guest : BaseEntity
     {
-        public string AccountId { get; set; }
+        public string LookupId { get; set; }
         public string FinderNumber { get; set; }
-        public string GuestType { get; set; }
+        public string ConstituentType { get; set; }
+        public string SourceCode { get; set; }
+
+        public string MemberYear { get; set; }
+        public bool? LeadershipCouncil { get; set; }
+        public string InsideSal { get; set; }
+        public string OutsideSal { get; set; }
+        public string EmailSal { get; set; }
+        
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
@@ -16,16 +24,20 @@ namespace DonorGateway.Domain
         public string City { get; set; }
         public string State { get; set; }
         public string Zipcode { get; set; }
-        public DateTime? ResponseDate { get; set; }
-        public DateTime? TicketMailDate { get; set; }
-
+        public string Country { get; set; }
+        
+        public int? GuestCount { get; set; }
         public bool? IsAttending { get; set; } = false;
         public bool? IsWaiting { get; set; } = false;
-        public bool? TicketMailed { get; set; } = false;
-        public bool? HasResponded { get; set; } = false;
-        public int? GuestCount { get; set; }
+        public bool? IsMailed { get; set; } = false;
+
+        public DateTime? ResponseDate { get; set; }
+        public DateTime? MailedDate { get; set; }
+        public DateTime? WaitingDate { get; set; }
+
+        public string MailedBy { get; set; }
+        
         public int? EventId { get; set; }
 
-        public virtual Event Event { get; set; }
     }
 }

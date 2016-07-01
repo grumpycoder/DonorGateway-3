@@ -31,7 +31,7 @@
 
                         <div class="row">
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <select ng-model="vm.selectedEvent"
                                             ng-options="event.name for event in vm.events"
@@ -42,7 +42,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                                 <button class="btn btn-primary pull-right" ng-click="vm.showCreateEvent()">
                                     <i class="fa fa-plus"></i>
                                     New Event
@@ -74,7 +74,11 @@
 
                             <div class="col-md-12">
                                 <uib-tabset>
-                                    <uib-tab ng-repeat="tab in vm.tabs" heading="{{ tab.title }}" a active="tab.active">
+                                    <uib-tab ng-repeat="tab in vm.tabs" a active="tab.active">
+                                        <uib-tab-heading>
+                                            <i class="fa" ng-class="tab.icon"></i> {{tab.title}}
+                                        </uib-tab-heading>
+
                                         <div ng-include="tab.template"></div>
                                     </uib-tab>
                                 </uib-tabset>

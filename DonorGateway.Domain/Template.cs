@@ -3,7 +3,6 @@
     public class Template : BaseEntity
     {
         public string Name { get; set; }
-        public byte[] HeaderImage { get; set; }
         public string HeaderText { get; set; }
         public string BodyText { get; set; }
         public string FooterText { get; set; }
