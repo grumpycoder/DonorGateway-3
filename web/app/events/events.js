@@ -15,11 +15,14 @@
         var tableStateRef;
         var pageSizeDefault = 10;
 
+        vm.showWaitList = false;
+        vm.showMailQueue = false;
+
         vm.title = 'Event Manager';
         vm.description = "Manage Donor Events";
         vm.currentDate = new Date();
 
-        vm.dateFormat = "MM/DD/YYYY hh:mm";
+        vm.dateFormat = "MM/DD/YYYY h:mm a";
         vm.events = [];
 
         vm.searchModel = {
@@ -53,7 +56,7 @@
                 .then(function (data) {
                     logger.log('added guest', data);
                     logger.info('Added Guest to Queue: ' + data.name);
-                    guest = data; 
+                    guest = data;
                 }).finally(function () {
                     //complete();
                     vm.isBusy = false;
@@ -68,6 +71,7 @@
                     angular.extend(vm.selectedEvent, data);
                     vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
                     vm.guests = vm.selectedEvent.guests;
+                    logger.log('event', vm.selectedEvent);
                 }).finally(function () {
                     vm.isBusy = false;
                     vm.searchGuests(tableStateRef);
@@ -87,8 +91,8 @@
                 });
         }
 
-        vm.editGuest = function (guest) {
-            logger.log('edit', guest);
+        vm.registerGuest = function (guest) {
+
             $modal.open({
                 templateUrl: '/app/events/views/edit-guest.html',
                 controller: 'EditGuestController',
@@ -98,11 +102,13 @@
                 }
             }).result.then(function (result) {
                 logger.log('result', result);
-                angular.extend(guest, result); 
+                angular.extend(guest, result);
             });
         }
 
         vm.filterWaitingQueue = function () {
+            vm.showWaitList = !vm.showWaitList;
+            vm.showMailQueue = false;
             var isWaiting = vm.searchModel.isWaiting = !vm.searchModel.isWaiting === true ? true : null;
             vm.searchModel = {
                 page: 1,
@@ -117,8 +123,9 @@
         }
 
         vm.filterMailQueue = function () {
+            vm.showMailQueue = !vm.showMailQueue;
+            vm.showWaitList = false;
             var isAttending = vm.searchModel.isAttending = !vm.searchModel.isAttending === true ? true : null;
-            var isMailed = vm.searchModel.isMailed = !vm.searchModel.isMailed === true ? false : null;
             var isWaiting = vm.searchModel.isWaiting = !vm.searchModel.isWaiting === true ? false : null;
             vm.searchModel = {
                 page: 1,
@@ -135,7 +142,7 @@
         vm.mailTicket = function (guest) {
             vm.isBusy = true;
             guest.isMailed = true;
-            vm.isWaiting = false; 
+            vm.isWaiting = false;
             guestService.update(guest)
                 .then(function (data) {
                     angular.extend(guest, data);
