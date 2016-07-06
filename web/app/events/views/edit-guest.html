@@ -1,7 +1,7 @@
 ﻿<form name="editGuestForm" novalidate>
 
     <div class="modal-header">
-        <h3 class="modal-title">Edit {{vm.guest.name}}</h3>
+        <h3 class="modal-title">{{vm.guest.name}}</h3>
     </div>
     <div class="modal-body">
 
@@ -13,7 +13,8 @@
                         <label class="control-label">Tickets Requested</label>
                         <input type="number" name="guestCount" class="form-control" ng-model="vm.guest.guestCount"
                                max="{{vm.event.ticketAllowance}}"
-                               min="0" />
+                               min="0"
+                               ng-change="vm.changeAttending()" />
                         <div ng-messages="editGuestForm.guestCount.$error" ng-messages-multiple class="error-messages" ng-show="editGuestForm.guestCount.$dirty">
                             <div ng-message="max">Max of {{vm.event.ticketAllowance}} per guest allowed</div>
                         </div>
@@ -25,13 +26,19 @@
                         <div class="clearfix" style="width: 100%;">
 
                             <input toggle-checkbox type="checkbox"
+                                   ng-change="vm.changeAttending()"
                                    data-toggle="toggle"
                                    data-on="YES" data-off="NO"
                                    ng-model="vm.guest.isAttending"
                                    data-onstyle="success"
-                                   data-offstyle="danger" style="width: 125px !important;height: 34px;">
+                                   data-offstyle="danger" style="width: 125px !important; height: 34px;">
                         </div>
 
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm12" ng-show="vm.isFull">
+                    <div class="alert alert-info">
+                        No space left. Guest will be added to waiting list
                     </div>
                 </div>
             </div>
@@ -118,7 +125,7 @@
 
         </fieldset><!-- /.fieldset -->
 
-     
+
 
     </div>
     <div class="modal-footer">
