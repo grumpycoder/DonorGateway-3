@@ -12,6 +12,7 @@
 /// <reference path="../app/directives/date-input.directive.js" />
 /// <reference path="../app/directives/smart-table.directive.js" />
 /// <reference path="../app/directives/togglecheckbox.directive.js" />
+/// <reference path="../app/events/createevent.controller.js" />
 /// <reference path="../app/events/editguest.controller.js" />
 /// <reference path="../app/events/event.module.js" />
 /// <reference path="../app/events/events.js" />

@@ -267,7 +267,7 @@
         vm.showCreateEvent = function () {
             $modal.open({
                 templateUrl: '/app/events/views/create-event.html',
-                controller: ['logger', '$uibModalInstance', 'eventService', CreateEventController],
+                controller: 'CreateEventController',
                 controllerAs: 'vm'
             }).result.then(function (data) {
                 vm.selectedEvent = data;
@@ -348,27 +348,5 @@
                     });
         }
     }
-
-    function CreateEventController(logger, $modal, service) {
-        var vm = this;
-
-        vm.dateFormat = "MM/DD/YYYY hh:mm";
-
-        vm.event = {
-            startDate: new Date(),
-            template: {}
-        };
-
-        vm.cancel = function () {
-            $modal.dismiss();
-        }
-
-        vm.save = function () {
-            vm.event.template.name = vm.event.name;
-            service.create(vm.event)
-                .then(function (data) {
-                    $modal.close(data);
-                });
-        }
-    }
+  
 })();
