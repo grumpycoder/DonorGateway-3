@@ -38,8 +38,35 @@ namespace web.Controllers
         [HttpGet, Route("{id:int}")]
         public IHttpActionResult Get(int id)
         {
-            var vm = context.Events.AsQueryable().FirstOrDefault(x => x.Id == id);
-            return Ok(vm);
+            var e = context.Events.Include(x => x.Guests).AsQueryable().FirstOrDefault(x => x.Id == id);
+            if (e == null) return NotFound();
+
+            var model = new EventViewModel
+            {
+                Id = e.Id,
+                Name = e.Name,
+                Speaker = e.Speaker,
+                Venue = e.Venue,
+                Street = e.Street,
+                City = e.City,
+                State = e.State,
+                Zipcode = e.Zipcode,
+                Capacity = e.Capacity,
+                StartDate = e.StartDate,
+                EndDate = e.EndDate,
+                VenueOpenDate = e.VenueOpenDate,
+                RegistrationCloseDate = e.RegistrationCloseDate,
+                TicketsAllowance = e.TicketAllowance,
+                IsCancelled = e.IsCancelled,
+                Template = e.Template
+            };
+
+            model.RegisteredGuestCount = e.Guests.Count(x => x.IsAttending == true);
+            model.WaitingGuestCount = e.Guests.Count(x => x.IsWaiting == true);
+            model.TicketMailedCount = e.Guests.Count(x => x.IsMailed == true);
+
+
+            return Ok(model);
         }
 
         [HttpPost, Route("{id:int}/guests")]
@@ -53,7 +80,7 @@ namespace web.Controllers
             var isAttending = vm.IsAttending ?? false;
 
             var pred = PredicateBuilder.True<Guest>();
-            pred = pred.And(p => p.EventId == id); 
+            pred = pred.And(p => p.EventId == id);
             if (!string.IsNullOrWhiteSpace(vm.Address)) pred = pred.And(p => p.Street.Contains(vm.Address));
             if (!string.IsNullOrWhiteSpace(vm.FinderNumber)) pred = pred.And(p => p.FinderNumber.StartsWith(vm.FinderNumber));
             if (!string.IsNullOrWhiteSpace(vm.Name)) pred = pred.And(p => p.Name.Contains(vm.Name));
@@ -63,9 +90,9 @@ namespace web.Controllers
             if (!string.IsNullOrWhiteSpace(vm.Phone)) pred = pred.And(p => p.Phone.Contains(vm.Phone));
             if (!string.IsNullOrWhiteSpace(vm.Email)) pred = pred.And(p => p.Email.StartsWith(vm.Email));
             if (!string.IsNullOrWhiteSpace(vm.LookupId)) pred = pred.And(p => p.LookupId.StartsWith(vm.LookupId));
-            if(vm.IsMailed != null) pred = pred.And(p => p.IsMailed == ticketMailed);
-            if(vm.IsWaiting != null) pred = pred.And(p => p.IsWaiting == isWaiting);
-            if(vm.IsAttending != null) pred = pred.And(p => p.IsAttending == isAttending);
+            if (vm.IsMailed != null) pred = pred.And(p => p.IsMailed == ticketMailed);
+            if (vm.IsWaiting != null) pred = pred.And(p => p.IsWaiting == isWaiting);
+            if (vm.IsAttending != null) pred = pred.And(p => p.IsAttending == isAttending);
             //pred = pred.And(p => p.IsWaiting == isWaiting);
             //pred = pred.And(p => p.HasResponded == hasResponded);
 
@@ -107,14 +134,14 @@ namespace web.Controllers
         public IHttpActionResult Delete(int id)
         {
             var vm = context.Events.Find(id);
-            var message = "Deleted Event"; 
+            var message = "Deleted Event";
 
             if (vm != null)
             {
                 try
                 {
-                context.Events.Remove(vm);
-                context.SaveChanges();
+                    context.Events.Remove(vm);
+                    context.SaveChanges();
                 }
                 catch (Exception ex)
                 {

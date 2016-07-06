@@ -76,6 +76,14 @@
     <Compile Include="Migrations\201607061905427_guest-event-update.Designer.cs">
       <DependentUpon>201607061905427_guest-event-update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607062105551_event-ticketcount.cs" />
+    <Compile Include="Migrations\201607062105551_event-ticketcount.Designer.cs">
+      <DependentUpon>201607062105551_event-ticketcount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607062108290_remove-event-ticketcount.cs" />
+    <Compile Include="Migrations\201607062108290_remove-event-ticketcount.Designer.cs">
+      <DependentUpon>201607062108290_remove-event-ticketcount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -104,6 +112,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607061905427_guest-event-update.resx">
       <DependentUpon>201607061905427_guest-event-update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607062105551_event-ticketcount.resx">
+      <DependentUpon>201607062105551_event-ticketcount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607062108290_remove-event-ticketcount.resx">
+      <DependentUpon>201607062108290_remove-event-ticketcount.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

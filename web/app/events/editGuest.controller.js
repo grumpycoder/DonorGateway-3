@@ -8,15 +8,17 @@
 
     angular.module('app.events').controller(controllerId, mainController);
 
-    mainController.$inject = ['logger', '$uibModalInstance', 'guestService', 'templateService', 'guest'];
+    mainController.$inject = ['logger', '$uibModalInstance', 'guestService', 'templateService', 'guest', 'event'];
 
-    function mainController(logger, $modal, service, templateService, guest) {
+    function mainController(logger, $modal, service, templateService, guest, event) {
         var vm = this;
         vm.title = 'Edit Guest';
+        vm.event = event;
 
         vm.guest = angular.copy(guest);
 
         logger.log('guest', guest);
+        logger.log('event', vm.event);
 
         vm.cancel = function () {
             $modal.dismiss();

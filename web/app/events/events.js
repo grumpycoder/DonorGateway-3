@@ -53,8 +53,6 @@
         function activate() {
             logger.log(controllerId + ' activated');
             getEvents().then(function () {
-                //TODO: REMOVE THIS 
-                vm.selectedEvent = vm.events[0];
             });
 
         }
@@ -75,7 +73,6 @@
         }
 
         vm.changeEvent = function () {
-            vm.isBusy = true;
 
             //RESET VALUES
             if (!vm.selectedEvent) return;
@@ -89,6 +86,7 @@
             vm.showMailQueue = false;
             vm.tabs[0].active = true;
 
+            vm.isBusy = true;
             service.getById(vm.selectedEvent.id)
                 .then(function (data) {
                     angular.extend(vm.selectedEvent, data);
@@ -122,7 +120,8 @@
                 controller: 'EditGuestController',
                 controllerAs: 'vm',
                 resolve: {
-                    guest: guest
+                    guest: guest, 
+                    event: vm.selectedEvent
                 }
             }).result.then(function (result) {
                 logger.log('result', result);

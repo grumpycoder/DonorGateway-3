@@ -64,9 +64,9 @@
                             <label class="control-label">
                                 Tickets Allowed
                             </label>
-                            <input type="text" class="form-control" ng-model="vm.selectedEvent.ticketAllowance" />
+                            <input type="text" class="form-control" ng-model="vm.selectedEvent.ticketAllowance"/>
                         </div>
-
+                       
                     </fieldset><!-- /.fieldset -->
                 </div><!-- /.col-md-4 -->
 
@@ -211,7 +211,36 @@
 
             </div>
 
-            <!--<div class="row">
+        <div class="row">
+            <div class="col-md-4">
+                <fieldset>
+                    <legend>Information</legend>
+
+                    <div class="form-group">
+                        <label class="control-label">
+                            Tickets Mailed
+                        </label>
+                        <input type="text" class="form-control" readonly ng-model="vm.selectedEvent.ticketMailedCount" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">
+                            Guests Registered
+                        </label>
+                        <input type="text" class="form-control" readonly ng-model="vm.selectedEvent.registeredGuestCount" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">
+                            Guests Waiting
+                        </label>
+                        <input type="text" class="form-control" readonly ng-model="vm.selectedEvent.waitingGuestCount" />
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <!--<div class="row">
                 <div>
                     <pre>{{detailsForm | json}}</pre>
                 </div>

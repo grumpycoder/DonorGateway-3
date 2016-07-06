@@ -1,5 +1,6 @@
 ﻿using DonorGateway.Domain;
 using System;
+using System.Collections.Generic;
 
 namespace web.ViewModels
 {
@@ -19,8 +20,15 @@ namespace web.ViewModels
         public DateTime? VenueOpenDate { get; set; }
         public DateTime? RegistrationCloseDate { get; set; }
         public int? TicketsAllowance { get; set; }
+        public bool? IsCancelled { get; set; }
         public int RegisteredGuestCount { get; set; }
         public int WaitingGuestCount { get; set; }
+        public int TicketMailedCount { get; set; }
+
         public Template Template { get; set; }
+
+        public ICollection<Guest> Guests { get; set; }
+
+
     }
 }

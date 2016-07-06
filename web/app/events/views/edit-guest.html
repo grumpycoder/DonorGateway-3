@@ -1,7 +1,7 @@
-﻿<form name="form" novalidate>
+﻿<form name="editGuestForm" novalidate>
 
     <div class="modal-header">
-        <h3 class="modal-title">Edit::{{vm.guest.name}}</h3>
+        <h3 class="modal-title">Edit {{vm.guest.name}}</h3>
     </div>
     <div class="modal-body">
 
@@ -11,21 +11,25 @@
                 <div class="col-md-4 col-sm-4 col-xs-4">
                     <div class="form-group">
                         <label class="control-label">Tickets Requested</label>
-                        <input type="text" class="form-control" ng-model="vm.guest.guestCount" />
+                        <input type="number" name="guestCount" class="form-control" ng-model="vm.guest.guestCount"
+                               max="{{vm.event.ticketAllowance}}"
+                               min="0" />
+                        <div ng-messages="editGuestForm.guestCount.$error" ng-messages-multiple class="error-messages" ng-show="editGuestForm.guestCount.$dirty">
+                            <div ng-message="max">Max of {{vm.event.ticketAllowance}} per guest allowed</div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-8">
                     <div class="form-group">
                         <label class="control-label">Attending?</label>
-                        <!--<input type="text" class="form-control" ng-model="vm.guest.isAttending" />-->
                         <div class="clearfix" style="width: 100%;">
-                                
-                        <input toggle-checkbox type="checkbox"
-                               data-toggle="toggle"
-                               data-on="YES" data-off="NO"
-                               ng-model="vm.guest.isAttending"
-                               data-onstyle="success"
-                               data-offstyle="danger" style="width: 125px !important;height: 34px;">
+
+                            <input toggle-checkbox type="checkbox"
+                                   data-toggle="toggle"
+                                   data-on="YES" data-off="NO"
+                                   ng-model="vm.guest.isAttending"
+                                   data-onstyle="success"
+                                   data-offstyle="danger" style="width: 125px !important;height: 34px;">
                         </div>
 
                     </div>
@@ -114,9 +118,11 @@
 
         </fieldset><!-- /.fieldset -->
 
+     
+
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="vm.save()">Save</button>
+        <button class="btn btn-primary" type="button" ng-disabled="editGuestForm.$pristine" ng-click="vm.save()">Save</button>
         <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
     </div>
 
