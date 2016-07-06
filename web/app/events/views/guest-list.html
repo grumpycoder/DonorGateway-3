@@ -63,7 +63,11 @@
                     <td>{{g.city}}</td>
                     <td>{{g.state}}</td>
                     <td>{{g.zipcode}}</td>
-                    <td class="text-center">{{g.isMailed | checkmark}}</td>
+                    <td>
+                        <span class="center-block text-center">
+                            {{g.isMailed | checkmark}}
+                        </span>
+                    </td>
                     <td>{{g.guestCount}}</td>
                     <td>{{g.email}}</td>
                     <td>{{g.phone}}</td>
@@ -73,29 +77,7 @@
                         <button class="btn btn-block" ng-show="g.isWaiting" ng-click="vm.addToMailQueue(g)"><i class="fa fa-list"></i> Queue</button>
                         <button class="btn btn-block" ng-show="g.isAttending && !g.isMailed && !g.isWaiting" ng-click="vm.mailTicket(g)"><i class="icon ion-android-mail"></i> Mail</button>
                         <button class="btn btn-block" ng-show="!g.isAttending" ng-click="vm.registerGuest(g)"><i class="fa fa-key"></i> Register</button>
-
-                        <!--<div class="btn-group">
-                            <button type="button" class="btn btn-danger" ng-click="vm.editGuest(g)">Edit</button>
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Edit</a></li>
-                                <li><a class="btn" ng-disabled="!g.isWaiting" ng-click="vm.addToMailQueue(g)">Add to Mail Queue</a></li>
-                                <li><a class="btn" ng-disabled="!g.isAttending && !g.isMailed" ng-click="vm.mailTicket(g)">Mail Ticket Now</a></li>
-                            </ul>
-                        </div>-->
-                        <!--<div class="btn-group">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Action <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Edit</a></li>
-                                <li><a href="#">Add to Mail Queue</a></li>
-                                <li><a href="#">Send Ticket</a></li>
-                            </ul>
-                        </div>-->
+                        <span ng-show="g.isMailed"><i class="fa fa-check-circle fa-2x text-green center-block text-center"></i></span>
                     </td>
                 </tr>
             </tbody>
