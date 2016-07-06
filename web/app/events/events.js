@@ -146,7 +146,7 @@
         vm.mailTicket = function (guest) {
             vm.isBusy = true;
             guest.isMailed = true;
-            guest.mailTicketDate = new Date();
+            guest.mailedDate = new Date();
             vm.isWaiting = false;
             guestService.update(guest)
                 .then(function (data) {

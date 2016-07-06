@@ -17,9 +17,6 @@
 
         vm.guest = angular.copy(guest);
 
-        logger.log('guest', guest);
-        logger.log('event', vm.event);
-
         vm.cancel = function () {
             $modal.dismiss();
         }
