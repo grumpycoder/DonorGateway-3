@@ -76,7 +76,19 @@
 
         vm.changeEvent = function () {
             vm.isBusy = true;
+
+            //RESET VALUES
             if (!vm.selectedEvent) return;
+            vm.searchModel = {
+                page: 1,
+                pageSize: pageSizeDefault,
+                orderBy: 'id',
+                orderDirection: 'asc'
+            };
+            vm.showWaitList = false;
+            vm.showMailQueue = false;
+            vm.tabs[0].active = true;
+
             service.getById(vm.selectedEvent.id)
                 .then(function (data) {
                     angular.extend(vm.selectedEvent, data);
@@ -119,35 +131,16 @@
         }
 
         vm.filterWaitingQueue = function () {
-            vm.showWaitList = !vm.showWaitList;
-            vm.showMailQueue = false;
-            var isWaiting = vm.searchModel.isWaiting = !vm.searchModel.isWaiting === true ? true : null;
-            vm.searchModel = {
-                page: 1,
-                pageSize: pageSizeDefault,
-                orderBy: 'id',
-                orderDirection: 'asc',
-                isWaiting: isWaiting,
-                isAttending: true,
-                isMailed: null
-            }
+            vm.showWaitQueue = !vm.showWaitQueue;
+            vm.showMailQueue = null;
+            vm.searchModel.page = 1; 
             vm.searchGuests(tableStateRef);
         }
 
         vm.filterMailQueue = function () {
             vm.showMailQueue = !vm.showMailQueue;
-            vm.showWaitList = false;
-            var isAttending = vm.searchModel.isAttending = !vm.searchModel.isAttending === true ? true : null;
-            var isWaiting = vm.searchModel.isWaiting = !vm.searchModel.isWaiting === true ? false : null;
-            vm.searchModel = {
-                page: 1,
-                pageSize: pageSizeDefault,
-                orderBy: 'id',
-                orderDirection: 'asc',
-                isAttending: isAttending,
-                isMailed: false,
-                isWaiting: isWaiting
-            }
+            vm.showWaitQueue = null;
+            vm.searchModel.page = 1;
             vm.searchGuests(tableStateRef);
         }
 
@@ -184,6 +177,21 @@
                 vm.searchModel.accountId = tableState.search.predicateObject.accountId;
                 vm.searchModel.finderNumber = tableState.search.predicateObject.finderNumber;
                 vm.searchModel.isMailed = tableState.search.predicateObject.isMailed;
+            }
+
+            vm.searchModel.isAttending = null;
+            vm.searchModel.isWaiting = null;
+            vm.searchModel.isMailed = null;
+
+            if (vm.showWaitQueue) {
+                vm.searchModel.isAttending = true;
+                vm.searchModel.isWaiting = true;
+            }
+
+            if (vm.showMailQueue) {
+                vm.searchModel.isAttending = true;
+                vm.searchModel.isWaiting = false;
+                vm.searchModel.isMailed = false; 
             }
 
             vm.isBusy = true;
