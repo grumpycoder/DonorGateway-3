@@ -64,7 +64,8 @@ namespace web.Controllers
             model.RegisteredGuestCount = e.Guests.Count(x => x.IsAttending == true);
             model.WaitingGuestCount = e.Guests.Count(x => x.IsWaiting == true);
             model.TicketMailedCount = e.Guests.Count(x => x.IsMailed == true);
-
+            model.TicketMailedQueueCount =
+                e.Guests.Count(x => x.IsAttending == true && x.IsWaiting == false && x.IsMailed == false);
 
             return Ok(model);
         }

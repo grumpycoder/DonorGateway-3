@@ -24,6 +24,7 @@ namespace web.ViewModels
         public int RegisteredGuestCount { get; set; }
         public int WaitingGuestCount { get; set; }
         public int TicketMailedCount { get; set; }
+        public int TicketMailedQueueCount { get; set; }
 
         public Template Template { get; set; }
 
