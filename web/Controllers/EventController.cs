@@ -107,16 +107,25 @@ namespace web.Controllers
         public IHttpActionResult Delete(int id)
         {
             var vm = context.Events.Find(id);
+            var message = "Deleted Event"; 
+
             if (vm != null)
             {
+                try
+                {
                 context.Events.Remove(vm);
                 context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    message = ex.Message;
+                }
             }
             else
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(message);
         }
 
         public IHttpActionResult Post(Event vm)

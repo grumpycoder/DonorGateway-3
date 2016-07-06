@@ -10,7 +10,7 @@
                     require: '?ngModel',
                     link: function (scope, element, attrs, ngModel, ctrl) {
                         ngModel.$parsers.push(function (viewValue) {
-                            return dateFilter(viewValue, 'MM/dd/yyyy HH:mm');
+                            return dateFilter(viewValue, 'MM/dd/yyyy h:mm a');
                         });
                     }
                 }

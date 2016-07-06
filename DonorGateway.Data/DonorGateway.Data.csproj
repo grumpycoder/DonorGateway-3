@@ -72,6 +72,10 @@
     <Compile Include="Migrations\201607011336015_guest-leadcouncil-bool.Designer.cs">
       <DependentUpon>201607011336015_guest-leadcouncil-bool.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607061905427_guest-event-update.cs" />
+    <Compile Include="Migrations\201607061905427_guest-event-update.Designer.cs">
+      <DependentUpon>201607061905427_guest-event-update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -97,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607011336015_guest-leadcouncil-bool.resx">
       <DependentUpon>201607011336015_guest-leadcouncil-bool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607061905427_guest-event-update.resx">
+      <DependentUpon>201607061905427_guest-event-update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

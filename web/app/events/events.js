@@ -22,6 +22,14 @@
         vm.description = "Manage Donor Events";
         vm.currentDate = new Date();
 
+        vm.dateOptions = {
+            dateDisabled: false,
+            formatYear: 'yy',
+            maxDate: new Date(2020, 5, 22),
+            minDate: new Date(),
+            startingDay: 1
+        };
+
         vm.dateFormat = "MM/DD/YYYY h:mm a";
         vm.events = [];
 
@@ -44,7 +52,10 @@
 
         function activate() {
             logger.log(controllerId + ' activated');
-            getEvents();
+            getEvents().then(function () {
+                //TODO: REMOVE THIS 
+                vm.selectedEvent = vm.events[0];
+            });
 
         }
 
@@ -87,7 +98,8 @@
                     vm.selectedEvent = null;
                     logger.success('Deleted event');
                 }).finally(function () {
-                    complete();
+                    vm.isBusy = false;
+                    getEvents();
                 });
         }
 
@@ -189,16 +201,17 @@
             vm.searchGuests(tableStateRef);
         };
 
-        vm.save = function () {
+        vm.saveEvent = function (form) {
             vm.isBusy = true;
             return service.update(vm.selectedEvent)
                 .then(function (data) {
                     logger.success('Saved Event: ' + data.name);
+                    angular.extend(vm.selectedEvent, data);
                     vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
-                    logger.log('after save', vm.selectedEvent);
                 })
                 .finally(function () {
-                    complete();
+                    form.$setPristine();
+                    vm.isBusy = false;
                 });
         }
 
@@ -232,9 +245,9 @@
                 });
         }
 
-        vm.toggleCancel = function () {
+        vm.toggleCancel = function (form) {
             vm.selectedEvent.isCancelled = !vm.selectedEvent.isCancelled;
-            vm.save().then(function () {
+            vm.saveEvent(form).then(function () {
                 if (vm.selectedEvent.isCancelled) {
                     logger.warning('Cancelled event');
                 } else {
@@ -277,18 +290,20 @@
         }
 
         function getEvents() {
-            service.get()
+            vm.isBusy = true; 
+            return service.get()
                 .then(function (data) {
                     vm.events = data;
                 }).finally(function () {
-                    complete();
+                    vm.isBusy = false; 
                 });
         }
 
+        //TODO: REMOVE
         function complete() {
-            vm.isBusy = false;
-            vm.selectedEvent = vm.events[0];
-            vm.changeEvent();
+            //vm.isBusy = false;
+            //vm.selectedEvent = vm.events[0];
+            //vm.changeEvent();
         }
     };
 

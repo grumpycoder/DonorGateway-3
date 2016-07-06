@@ -5,18 +5,18 @@
 </style>
 <script type="text/javascript" src="https://rawgit.com/betsol/angular-input-date/master/src/angular-input-date.js"></script>
 
-<div class="box no-border">
 
-    <div class="box-body">
-        <form novalidate="" name="details-form">
+<form novalidate name="detailsForm">
+    <div class="box no-border">
 
+        <div class="box-body">
             <div class="row">
                 <div class="col-md-12">
                     <button class="btn"
                             ng-disabled="vm.selectedEvent.isExpired"
                             ng-hide="vm.selectedEvent.isExpired"
                             ng-class="{'btn-success' : vm.selectedEvent.isCancelled, 'btn-warn' : !vm.selectedEvent.isCancelled }"
-                            ng-click="vm.toggleCancel()">
+                            ng-click="vm.toggleCancel(detailsForm)">
                         <i class="fa fa-exclamation-triangle"></i>
                         {{vm.selectedEvent.isCancelled ? 'Restore Event' : 'Cancel Event'}}
                     </button>
@@ -62,9 +62,9 @@
 
                         <div class="form-group">
                             <label class="control-label">
-                                Tickets Allowance
+                                Tickets Allowed
                             </label>
-                            <input type="text" class="form-control" ng-model="vm.selectedEvent.ticketsAllowance" />
+                            <input type="text" class="form-control" ng-model="vm.selectedEvent.ticketAllowance" />
                         </div>
 
                     </fieldset><!-- /.fieldset -->
@@ -123,13 +123,11 @@
                             </label>
 
                             <div class="dropdown">
-                                <a class="dropdown-toggle start-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                                    <div class="input-append">
-                                        <input class="form-control" type="text"
-                                               ng-model="vm.selectedEvent.startDate"
-                                               date-input="{{vm.dateFormat}}">
-                                        <span class="add-on">
-                                            <i class="icon-calendar"></i>
+                                <a href="" class="dropdown-toggle start-toggle-select" role="button" data-toggle="dropdown" data-target="#">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" ng-model="vm.selectedEvent.startDate" date-input="{{vm.dateFormat}}" />
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
                                         </span>
                                     </div>
                                 </a>
@@ -146,13 +144,11 @@
                                 Event End Date/Time
                             </label>
                             <div class="dropdown">
-                                <a class="dropdown-toggle end-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                                    <div class="input-append">
-                                        <input class="form-control" type="text"
-                                               ng-model="vm.selectedEvent.endDate"
-                                               date-input="{{vm.dateFormat}}">
-                                        <span class="add-on">
-                                            <i class="icon-calendar"></i>
+                                <a href="" class="dropdown-toggle end-toggle-select" role="button" data-toggle="dropdown" data-target="#">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" ng-model="vm.selectedEvent.endDate" date-input="{{vm.dateFormat}}"/>
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
                                         </span>
                                     </div>
                                 </a>
@@ -168,20 +164,20 @@
                             <label class="control-label">
                                 Venue Doors Open Date/Time
                             </label>
+
                             <div class="dropdown">
-                                <a class="dropdown-toggle venue-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                                    <div class="input-append">
-                                        <input class="form-control" type="text"
-                                               ng-model="vm.selectedEvent.venueOpenDate"
-                                               date-input="{{vm.dateFormat}}">
-                                        <span class="add-on">
-                                            <i class="icon-calendar"></i>
+                                <a href="" class="dropdown-toggle venue-toggle-select" role="button" data-toggle="dropdown" data-target="#">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" ng-model="vm.selectedEvent.venueOpenDate" date-input="{{vm.dateFormat}}" datepicker-config="vm.dateOptions" />
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
                                         </span>
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                     <datetimepicker data-ng-model="vm.selectedEvent.venueOpenDate"
-                                                    date-format
+                                                    
+                                                    ui-date="{ dateFormat: 'MM/DD/YYYY h:mm a' }"
                                                     data-datetimepicker-config="{ dropdownSelector: '.venue-toggle-select' }"></datetimepicker>
                                 </ul>
                             </div>
@@ -191,14 +187,14 @@
                             <label class="control-label">
                                 Registration Close Date/Time
                             </label>
+
                             <div class="dropdown">
-                                <a class="dropdown-toggle regclose-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                                    <div class="input-append">
-                                        <input class="form-control" type="text"
-                                               ng-model="vm.selectedEvent.registrationCloseDate"
-                                               date-input="{{vm.dateFormat}}">
-                                        <span class="add-on">
-                                            <i class="icon-calendar"></i>
+                                <a href="" class="dropdown-toggle regclose-toggle-select" role="button" data-toggle="dropdown" data-target="#">
+
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" ng-model="vm.selectedEvent.registrationCloseDate" date-input="{{vm.dateFormat}}"/>
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
                                         </span>
                                     </div>
                                 </a>
@@ -215,14 +211,21 @@
 
             </div>
 
-        </form><!-- /.form -->
+            <!--<div class="row">
+                <div>
+                    <pre>{{detailsForm | json}}</pre>
+                </div>
+            </div>-->
+        </div><!-- /.box-body -->
 
-    </div><!-- /.box-body -->
-   
-    <div class="box-footer">
-        <button class="btn btn-danger" ng-click="vm.deleteEvent(vm.selectedEvent.id)">
-            <i class="fa fa-trash"></i> Delete
-        </button>
-        <button class="btn btn-primary pull-right" ng-click="vm.save()"><i class="fa fa-save"></i> Save</button>
-    </div><!-- /.box-footer-->
-</div><!-- /.box -->
+        <div class="box-footer">
+            <div class="pull-right">
+
+                <button class="btn btn-danger" ng-click="vm.deleteEvent(vm.selectedEvent.id)">
+                    <i class="fa fa-trash"></i> Delete
+                </button>
+                <button class="btn btn-primary" ng-click="vm.saveEvent(detailsForm)" ng-disabled="detailsForm.$pristine"><i class="fa fa-save"></i> Save</button>
+            </div>
+        </div><!-- /.box-footer-->
+    </div><!-- /.box -->
+</form><!-- /.form -->

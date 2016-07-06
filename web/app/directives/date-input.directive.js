@@ -8,7 +8,7 @@
             restrict: 'A',
             link: function (scope, elm, attrs, ctrl) {
                 var moment = $window.moment;
-                var dateFormat = attrs.moMediumDate;
+                var dateFormat = attrs.dateInput;
                 attrs.$observe('dateInput', function (newValue) {
                     if (dateFormat == newValue || !ctrl.$modelValue) return;
                     dateFormat = newValue;
