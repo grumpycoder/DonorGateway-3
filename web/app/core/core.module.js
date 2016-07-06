@@ -23,7 +23,8 @@
             'switcher',
             'gfl.textAvatar',
             'textAngular',
-            'ui.bootstrap.datetimepicker'
+            'ui.bootstrap.datetimepicker', 
+            'angular-confirm'
             //'ng-file-input'
         ])
         .constant('toastr', toastr)
