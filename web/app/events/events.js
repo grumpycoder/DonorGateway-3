@@ -53,8 +53,8 @@
         function activate() {
             logger.log(controllerId + ' activated');
             getEvents().then(function () {
+                logger.log('loaded events')
             });
-
         }
 
         vm.addToMailQueue = function (guest) {
@@ -74,8 +74,8 @@
 
         vm.changeEvent = function () {
 
-            //RESET VALUES
             if (!vm.selectedEvent) return;
+            //RESET VALUES
             vm.searchModel = {
                 page: 1,
                 pageSize: pageSizeDefault,
@@ -120,7 +120,7 @@
                 controller: 'EditGuestController',
                 controllerAs: 'vm',
                 resolve: {
-                    guest: guest, 
+                    guest: guest,
                     event: vm.selectedEvent
                 }
             }).result.then(function (result) {
@@ -132,7 +132,7 @@
         vm.filterWaitingQueue = function () {
             vm.showWaitQueue = !vm.showWaitQueue;
             vm.showMailQueue = null;
-            vm.searchModel.page = 1; 
+            vm.searchModel.page = 1;
             vm.searchGuests(tableStateRef);
         }
 
@@ -146,6 +146,7 @@
         vm.mailTicket = function (guest) {
             vm.isBusy = true;
             guest.isMailed = true;
+            guest.mailTicketDate = new Date();
             vm.isWaiting = false;
             guestService.update(guest)
                 .then(function (data) {
@@ -158,7 +159,7 @@
 
         vm.searchGuests = function (tableState) {
             tableStateRef = tableState;
-            if (!vm.selectedEvent) return;
+            if (!vm.selectedEvent) return false;
 
             if (typeof (tableState.sort.predicate) != "undefined") {
                 vm.searchModel.orderBy = tableState.sort.predicate;
@@ -190,7 +191,7 @@
             if (vm.showMailQueue) {
                 vm.searchModel.isAttending = true;
                 vm.searchModel.isWaiting = false;
-                vm.searchModel.isMailed = false; 
+                vm.searchModel.isMailed = false;
             }
 
             vm.isBusy = true;
@@ -297,12 +298,12 @@
         }
 
         function getEvents() {
-            vm.isBusy = true; 
+            vm.isBusy = true;
             return service.get()
                 .then(function (data) {
                     vm.events = data;
                 }).finally(function () {
-                    vm.isBusy = false; 
+                    vm.isBusy = false;
                 });
         }
 

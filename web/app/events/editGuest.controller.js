@@ -25,6 +25,8 @@
         }
 
         vm.save = function () {
+            //Check if first initialization of attending flag compared to original model
+            if (vm.guest.isAttending && !guest.isAttending) vm.guest.responseDate = new Date();
             service.update(vm.guest)
                 .then(function (data) {
                     angular.extend(vm.guest, data);
