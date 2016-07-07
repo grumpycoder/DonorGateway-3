@@ -31,7 +31,10 @@
         Template: 'template',
         Campaign: 'campaign',
         Mailer: 'mailer',
-        Reason: 'reason'
+        Reason: 'reason',
+        Event: 'event',
+        Guest: 'guest',
+        File: 'file'
     };
 
     var config = {

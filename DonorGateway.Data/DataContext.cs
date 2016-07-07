@@ -23,7 +23,7 @@ namespace DonorGateway.Data
             base.OnModelCreating(builder);
 
             builder.Properties<string>().Configure(c => c.HasColumnType("varchar"));
-            builder.Properties<DateTime>().Configure(c => c.HasColumnType("datetime2"));
+            builder.Properties<DateTime>().Configure(c => c.HasColumnType("smalldatetime"));
 
             builder.Entity<ApplicationUser>().ToTable("Users", "Security");
             builder.Entity<IdentityUserRole>().ToTable("UserRoles", "Security");
@@ -33,6 +33,11 @@ namespace DonorGateway.Data
 
             builder.Entity<Constituent>().HasMany(t => t.TaxItems);
             builder.Entity<TaxItem>().Property(p => p.DonationDate).HasColumnType("date");
+            //builder.Entity<Event>().HasMany(t => t.Guests);
+
+            builder.Entity<Event>().HasMany(x => x.Guests).WithRequired(x => x.Event).WillCascadeOnDelete(true);
+            
+
         }
 
         public DbSet<Constituent> Constituents { get; set; }
@@ -42,5 +47,7 @@ namespace DonorGateway.Data
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<Mailer> Mailers { get; set; }
         public DbSet<SuppressReason> SuppressReasons { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Guest> Guests { get; set; }
     }
 }

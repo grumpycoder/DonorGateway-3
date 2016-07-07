@@ -7,7 +7,7 @@
             //angular modules
             'ngMessages',
             'angularLocalStorage',
-            'ui.router',
+            'ngRoute',
             'ngAnimate',
 
             //custom modules
@@ -22,8 +22,12 @@
             'rzModule',
             'switcher',
             'gfl.textAvatar',
-            'textAngular'
+            'textAngular',
+            'ui.bootstrap.datetimepicker', 
+            'angular-confirm'
+            //'ng-file-input'
         ])
         .constant('toastr', toastr)
-        .constant('moment', moment);;
+        .constant('moment', moment);
+
 })();

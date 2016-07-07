@@ -3,17 +3,18 @@
 
 (function () {
     angular.module('app',
-        [
-            //application modules
-            'app.core',
-            'app.service',
-            'app.filter',
+    [
+        //application modules
+        'app.core',
+        'app.service',
+        'app.filter',
 
-            //feature areas
-            'app.nav',
-            'app.users',
-            'app.tax',
-            'app.template',
-            'app.mailers'
-        ]);
+        //feature areas
+        'app.nav',
+        'app.users',
+        'app.tax',
+        'app.template',
+        'app.mailers',
+        'app.events'
+    ]);
 })();

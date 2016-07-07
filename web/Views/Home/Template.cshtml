@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Template";
 }
-
+<base href="/Template">
 <div ng-controller="TemplateController as vm" ng-cloak>
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -74,9 +74,9 @@
                                             <div>
                                                 Drop images here or click to upload
                                             </div>
-                                            <img alt="User Avatar" ng-show="vm.file" ngf-thumbnail="vm.file" class="widget-user-image" height="160" width="160" />
+                                            <img alt="User Avatar" ng-show="vm.file" ngf-thumbnail="vm.file" class="widget-user-image" />
 
-                                            <img ng-show="vm.selectedTemplate.image && !vm.file" class="widget-user-image" ng-hide="vm.file" ng-src="data:{{vm.selectedTemplate.mimeType}};base64,{{vm.selectedTemplate.image}}">
+                                            <img ng-show="vm.selectedTemplate.image && !vm.file" ng-hide="vm.file" ng-src="data:{{vm.selectedTemplate.mimeType}};base64,{{vm.selectedTemplate.image}}">
                                         </div>
                                     </div><!-- /.box-body -->
                                 </div><!-- /.box -->

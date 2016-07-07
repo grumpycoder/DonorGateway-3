@@ -2,12 +2,11 @@
 <!DOCTYPE html>
 <html ng-app="app" ng-cloak>
 <head>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - CRMC Administration</title>
 
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link href="~/css/vendor.min.css" rel="stylesheet" />
     <link href="~/css/site.min.css" rel="stylesheet" />
@@ -38,6 +37,7 @@
                             <li>@Html.IconActionLink("fa fa-dollar", "Tax", "TaxManager", "Home")</li>
                             <li>@Html.IconActionLink("fa fa-envelope", "MarkIt", "MailerManager", "Home")</li>
                             <li>@Html.IconActionLink("fa fa-cog", "Templates", "Template", "Home")</li>
+                            <li>@Html.IconActionLink("fa fa-calendar", "Events", "Events", "Home")</li>
                             <li>@Html.IconActionLink("fa fa-group", "Users", "Users", "Home")</li>
                         </ul>
                         @*<form class="navbar-form navbar-left" role="search">
@@ -96,7 +96,7 @@
 
         <!-- Full Width Column -->
         <div class="content-wrapper">
-            <div class="container">
+            <div class="container-fluid">
                 @RenderBody()
             </div>
             <!-- /.container -->
