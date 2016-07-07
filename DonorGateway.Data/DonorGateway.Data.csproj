@@ -84,6 +84,10 @@
     <Compile Include="Migrations\201607062108290_remove-event-ticketcount.Designer.cs">
       <DependentUpon>201607062108290_remove-event-ticketcount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607071402118_event-capacity.cs" />
+    <Compile Include="Migrations\201607071402118_event-capacity.Designer.cs">
+      <DependentUpon>201607071402118_event-capacity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -118,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607062108290_remove-event-ticketcount.resx">
       <DependentUpon>201607062108290_remove-event-ticketcount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607071402118_event-capacity.resx">
+      <DependentUpon>201607071402118_event-capacity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

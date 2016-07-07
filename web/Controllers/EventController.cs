@@ -58,15 +58,15 @@ namespace web.Controllers
                 RegistrationCloseDate = e.RegistrationCloseDate,
                 TicketsAllowance = e.TicketAllowance,
                 IsCancelled = e.IsCancelled,
-                Template = e.Template
+                Template = e.Template,
+                RegisteredGuestCount = e.Guests.Count(x => x.IsAttending == true),
+                WaitingGuestCount = e.Guests.Count(x => x.IsWaiting == true),
+                TicketMailedCount = e.Guests.Count(x => x.IsMailed == true),
+                TicketMailedQueueCount =
+                    e.Guests.Count(x => x.IsAttending == true && x.IsWaiting == false && x.IsMailed == false)
             };
 
-            model.RegisteredGuestCount = e.Guests.Count(x => x.IsAttending == true);
-            model.WaitingGuestCount = e.Guests.Count(x => x.IsWaiting == true);
-            model.TicketMailedCount = e.Guests.Count(x => x.IsMailed == true);
-            model.TicketMailedQueueCount =
-                e.Guests.Count(x => x.IsAttending == true && x.IsWaiting == false && x.IsMailed == false);
-
+            model.TicketRemainingCount = e.Capacity - (model.RegisteredGuestCount - model.WaitingGuestCount); 
             return Ok(model);
         }
 

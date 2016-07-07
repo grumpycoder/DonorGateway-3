@@ -17,7 +17,7 @@ namespace DonorGateway.Domain
         public string City { get; set; }
         public string State { get; set; }
         public string Zipcode { get; set; }
-        public int? Capacity { get; set; }
+        public int Capacity { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public DateTime? VenueOpenDate { get; set; }

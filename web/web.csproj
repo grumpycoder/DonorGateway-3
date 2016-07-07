@@ -226,6 +226,7 @@
     <Content Include="app\events\editGuest.controller.js" />
     <Content Include="app\events\event.module.js" />
     <Content Include="app\events\events.js" />
+    <Content Include="app\events\uploadGuest.controller.js" />
     <Content Include="app\events\views\edit-guest.html" />
     <Content Include="app\events\views\guest-upload.html" />
     <Content Include="app\events\views\template.html" />

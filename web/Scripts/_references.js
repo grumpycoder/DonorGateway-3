@@ -16,6 +16,7 @@
 /// <reference path="../app/events/editguest.controller.js" />
 /// <reference path="../app/events/event.module.js" />
 /// <reference path="../app/events/events.js" />
+/// <reference path="../app/events/uploadguest.controller.js" />
 /// <reference path="../app/filters/app.filters.js" />
 /// <reference path="../app/filters/filter.module.js" />
 /// <reference path="../app/mailers/mailers.js" />

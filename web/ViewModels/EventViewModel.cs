@@ -14,7 +14,7 @@ namespace web.ViewModels
         public string City { get; set; }
         public string State { get; set; }
         public string Zipcode { get; set; }
-        public int? Capacity { get; set; }
+        public int Capacity { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public DateTime? VenueOpenDate { get; set; }
@@ -25,11 +25,10 @@ namespace web.ViewModels
         public int WaitingGuestCount { get; set; }
         public int TicketMailedCount { get; set; }
         public int TicketMailedQueueCount { get; set; }
+        public int TicketRemainingCount { get; set; }
 
         public Template Template { get; set; }
 
         public ICollection<Guest> Guests { get; set; }
-
-
     }
 }

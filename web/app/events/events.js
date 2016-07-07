@@ -124,8 +124,15 @@
                     event: vm.selectedEvent
                 }
             }).result.then(function (result) {
-                logger.log('result', result);
                 angular.extend(guest, result);
+                logger.log('math', vm.selectedEvent.ticketRemainingCount - guest.guestCount);
+
+                if (vm.selectedEvent.ticketRemainingCount - guest.guestCount >= 0) {
+                    vm.selectedEvent.ticketRemainingCount = vm.selectedEvent.ticketRemainingCount - guest.guestCount;
+                    vm.selectedEvent.ticketMailedQueueCount += 1;
+                }
+                vm.selectedEvent.registeredGuestCount += guest.guestCount;
+                if (guest.isWaiting) vm.selectedEvent.waitingGuestCount += guest.guestCount;
             });
         }
 
@@ -277,15 +284,15 @@
         }
 
         vm.showGuestUpload = function () {
-            logger.log('show upload');
             $modal.open({
                 keyboard: false,
                 backdrop: 'static',
                 templateUrl: '/app/events/views/guest-upload.html',
-                controller: ['logger', '$uibModalInstance', 'fileService', 'selectedEvent', UploadGuestController],
+                //controller: ['logger', '$uibModalInstance', 'fileService', 'selectedEvent', UploadGuestController],
+                controller: 'UploadGuestController',
                 controllerAs: 'vm',
                 resolve: {
-                    selectedEvent: vm.selectedEvent
+                    event: vm.selectedEvent
                 }
             }).result.then(function (result) {
                 if (result.success) {
@@ -315,38 +322,4 @@
         }
     };
 
-    function UploadGuestController(logger, $modal, service, event) {
-        var vm = this;
-        vm.event = event;
-
-        vm.cancel = function () {
-            vm.file = undefined;
-            $modal.dismiss();
-        }
-
-        vm.fileSelected = function ($file, $event) {
-            vm.result = null;
-        };
-
-
-        vm.save = function () {
-            vm.isBusy = true;
-            vm.result = {
-                success: false
-            }
-
-            service.guest(vm.event.id, vm.file)
-                    .then(function (data) {
-                        vm.result.success = true;
-                        vm.result.message = data;
-                    }).catch(function (error) {
-                        vm.result.message = error.data.message;
-                    }).finally(function () {
-                        vm.file = undefined;
-                        vm.isBusy = false;
-                        $modal.close(vm.result);
-                    });
-        }
-    }
-  
 })();
