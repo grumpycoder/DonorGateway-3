@@ -91,7 +91,7 @@
                 .then(function (data) {
                     angular.extend(vm.selectedEvent, data);
                     vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
-                    vm.guests = vm.selectedEvent.guests;
+                    //vm.guests = vm.selectedEvent.guests;
                     logger.log('event', vm.selectedEvent);
                 }).finally(function () {
                     vm.isBusy = false;
@@ -125,7 +125,6 @@
                 }
             }).result.then(function (result) {
                 angular.extend(guest, result);
-                logger.log('math', vm.selectedEvent.ticketRemainingCount - guest.guestCount);
 
                 if (vm.selectedEvent.ticketRemainingCount - guest.guestCount >= 0) {
                     vm.selectedEvent.ticketRemainingCount = vm.selectedEvent.ticketRemainingCount - guest.guestCount;
@@ -220,9 +219,13 @@
             vm.isBusy = true;
             return service.update(vm.selectedEvent)
                 .then(function (data) {
-                    logger.success('Saved Event: ' + data.name);
+                    var guests = vm.selectedEvent.guests; 
                     angular.extend(vm.selectedEvent, data);
+
+                    vm.selectedEvent.guests = guests;
                     vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
+
+                    logger.success('Saved Event: ' + data.name);
                 })
                 .finally(function () {
                     form.$setPristine();
@@ -313,13 +316,7 @@
                     vm.isBusy = false;
                 });
         }
-
-        //TODO: REMOVE
-        function complete() {
-            //vm.isBusy = false;
-            //vm.selectedEvent = vm.events[0];
-            //vm.changeEvent();
-        }
+     
     };
 
 })();

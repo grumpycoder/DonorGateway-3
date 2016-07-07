@@ -162,6 +162,33 @@ namespace web.Controllers
             context.SaveChanges();
             context.Events.Add(vm);
             context.SaveChanges();
+
+            var model = new EventViewModel
+            {
+                Id = vm.Id,
+                Name = vm.Name,
+                Speaker = vm.Speaker,
+                Venue = vm.Venue,
+                Street = vm.Street,
+                City = vm.City,
+                State = vm.State,
+                Zipcode = vm.Zipcode,
+                Capacity = vm.Capacity,
+                StartDate = vm.StartDate,
+                EndDate = vm.EndDate,
+                VenueOpenDate = vm.VenueOpenDate,
+                RegistrationCloseDate = vm.RegistrationCloseDate,
+                TicketsAllowance = vm.TicketAllowance,
+                IsCancelled = vm.IsCancelled,
+                Template = vm.Template,
+                RegisteredGuestCount = vm.Guests.Count(x => x.IsAttending == true),
+                WaitingGuestCount = vm.Guests.Count(x => x.IsWaiting == true),
+                TicketMailedCount = vm.Guests.Count(x => x.IsMailed == true),
+                TicketMailedQueueCount =
+                  vm.Guests.Count(x => x.IsAttending == true && x.IsWaiting == false && x.IsMailed == false)
+            };
+            model.TicketRemainingCount = vm.Capacity - (model.RegisteredGuestCount - model.WaitingGuestCount);
+
             return Ok(vm);
         }
 
@@ -169,7 +196,34 @@ namespace web.Controllers
         {
             context.Events.AddOrUpdate(vm);
             context.SaveChanges();
-            return Ok(vm);
+            var e = context.Events.Include(x => x.Guests).AsQueryable().FirstOrDefault(x => x.Id == vm.Id);
+            if (e == null) return NotFound();
+            var model = new EventViewModel
+            {
+                Id = e.Id,
+                Name = e.Name,
+                Speaker = e.Speaker,
+                Venue = e.Venue,
+                Street = e.Street,
+                City = e.City,
+                State = e.State,
+                Zipcode = e.Zipcode,
+                Capacity = e.Capacity,
+                StartDate = e.StartDate,
+                EndDate = e.EndDate,
+                VenueOpenDate = e.VenueOpenDate,
+                RegistrationCloseDate = e.RegistrationCloseDate,
+                TicketsAllowance = e.TicketAllowance,
+                IsCancelled = e.IsCancelled,
+                Template = e.Template,
+                RegisteredGuestCount = e.Guests.Count(x => x.IsAttending == true),
+                WaitingGuestCount = e.Guests.Count(x => x.IsWaiting == true),
+                TicketMailedCount = e.Guests.Count(x => x.IsMailed == true),
+                TicketMailedQueueCount =
+                   e.Guests.Count(x => x.IsAttending == true && x.IsWaiting == false && x.IsMailed == false)
+            };
+            model.TicketRemainingCount = e.Capacity - (model.RegisteredGuestCount - model.WaitingGuestCount);
+            return Ok(model);
         }
     }
 }
