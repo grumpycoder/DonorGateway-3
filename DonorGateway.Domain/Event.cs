@@ -28,5 +28,10 @@ namespace DonorGateway.Domain
 
         public ICollection<Guest> Guests { get; set; }
         public virtual Template Template { get; set; }
+
+
+        //ADDED FOR IMPORT/EXPORT FIELDS
+        public string EventCode { get; set; }
+        public string EventName { get; set; }
     }
 }

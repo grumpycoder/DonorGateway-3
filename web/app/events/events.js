@@ -53,7 +53,7 @@
         function activate() {
             logger.log(controllerId + ' activated');
             getEvents().then(function () {
-                logger.log('loaded events')
+                logger.log('loaded events');
             });
         }
 
@@ -91,8 +91,6 @@
                 .then(function (data) {
                     angular.extend(vm.selectedEvent, data);
                     vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
-                    //vm.guests = vm.selectedEvent.guests;
-                    logger.log('event', vm.selectedEvent);
                 }).finally(function () {
                     vm.isBusy = false;
                     vm.searchGuests(tableStateRef);
@@ -111,6 +109,11 @@
                     vm.isBusy = false;
                     getEvents();
                 });
+        }
+
+        vm.exportGuests = function () {
+            logger.log('export');
+
         }
 
         vm.registerGuest = function (guest) {
@@ -205,7 +208,6 @@
                 .then(function (data) {
                     vm.selectedEvent.guests = data.items;
                     vm.searchModel = data;
-                    logger.log('search', vm.searchModel);
                     vm.isBusy = false;
                 });
 
@@ -219,7 +221,7 @@
             vm.isBusy = true;
             return service.update(vm.selectedEvent)
                 .then(function (data) {
-                    var guests = vm.selectedEvent.guests; 
+                    var guests = vm.selectedEvent.guests;
                     angular.extend(vm.selectedEvent, data);
 
                     vm.selectedEvent.guests = guests;
@@ -316,7 +318,7 @@
                     vm.isBusy = false;
                 });
         }
-     
+
     };
 
 })();
