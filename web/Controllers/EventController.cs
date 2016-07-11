@@ -4,9 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
+using CsvHelper;
 using web.Helpers;
 using web.ViewModels;
 
@@ -66,7 +69,7 @@ namespace web.Controllers
                     e.Guests.Count(x => x.IsAttending == true && x.IsWaiting == false && x.IsMailed == false)
             };
 
-            model.TicketRemainingCount = e.Capacity - (model.RegisteredGuestCount - model.WaitingGuestCount); 
+            model.TicketRemainingCount = e.Capacity - (model.RegisteredGuestCount - model.WaitingGuestCount);
             return Ok(model);
         }
 
@@ -82,7 +85,7 @@ namespace web.Controllers
 
             var pred = PredicateBuilder.True<Guest>();
             pred = pred.And(p => p.EventId == id);
-            if (!string.IsNullOrWhiteSpace(vm.Address)) pred = pred.And(p => p.Street.Contains(vm.Address));
+            if (!string.IsNullOrWhiteSpace(vm.Address)) pred = pred.And(p => p.Address.Contains(vm.Address));
             if (!string.IsNullOrWhiteSpace(vm.FinderNumber)) pred = pred.And(p => p.FinderNumber.StartsWith(vm.FinderNumber));
             if (!string.IsNullOrWhiteSpace(vm.Name)) pred = pred.And(p => p.Name.Contains(vm.Name));
             if (!string.IsNullOrWhiteSpace(vm.City)) pred = pred.And(p => p.City.StartsWith(vm.City));
@@ -129,6 +132,46 @@ namespace web.Controllers
             //return Ok(list);
         }
 
+        [HttpPost, Route("{id:int}/guests/export")]
+        public IHttpActionResult Export(int id, GuestSearchViewModel vm)
+        {
+            var ticketMailed = vm.IsMailed ?? false;
+            var isWaiting = vm.IsWaiting ?? false;
+            var isAttending = vm.IsAttending ?? false;
+
+            var pred = PredicateBuilder.True<Guest>();
+            pred = pred.And(p => p.EventId == id);
+            if (!string.IsNullOrWhiteSpace(vm.Address)) pred = pred.And(p => p.Address.Contains(vm.Address));
+            if (!string.IsNullOrWhiteSpace(vm.FinderNumber)) pred = pred.And(p => p.FinderNumber.StartsWith(vm.FinderNumber));
+            if (!string.IsNullOrWhiteSpace(vm.Name)) pred = pred.And(p => p.Name.Contains(vm.Name));
+            if (!string.IsNullOrWhiteSpace(vm.City)) pred = pred.And(p => p.City.StartsWith(vm.City));
+            if (!string.IsNullOrWhiteSpace(vm.State)) pred = pred.And(p => p.State.Equals(vm.State));
+            if (!string.IsNullOrWhiteSpace(vm.ZipCode)) pred = pred.And(p => p.Zipcode.StartsWith(vm.ZipCode));
+            if (!string.IsNullOrWhiteSpace(vm.Phone)) pred = pred.And(p => p.Phone.Contains(vm.Phone));
+            if (!string.IsNullOrWhiteSpace(vm.Email)) pred = pred.And(p => p.Email.StartsWith(vm.Email));
+            if (!string.IsNullOrWhiteSpace(vm.LookupId)) pred = pred.And(p => p.LookupId.StartsWith(vm.LookupId));
+            if (vm.IsMailed != null) pred = pred.And(p => p.IsMailed == ticketMailed);
+            if (vm.IsWaiting != null) pred = pred.And(p => p.IsWaiting == isWaiting);
+            if (vm.IsAttending != null) pred = pred.And(p => p.IsAttending == isAttending);
+
+            List<Guest> list = context.Guests.AsQueryable()
+                    .Where(pred)
+                    .OrderBy(x => x.Id)
+                    .ToList();
+
+            var path = HttpContext.Current.Server.MapPath(@"~\app_data\guestlist.csv");
+            var csv = new CsvWriter(new StreamWriter(File.Create(path)));
+            csv.Configuration.RegisterClassMap<GuestMap>();
+            csv.WriteHeader<Guest>();
+            csv.WriteRecords(list);
+
+            //foreach (var guest in list)
+            //{
+            //    csv.WriteRecord(guest);
+            //}
+            csv.Dispose();
+            return Ok(list);
+        }
 
 
         [HttpDelete, Route("{id}")]

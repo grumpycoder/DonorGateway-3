@@ -182,6 +182,7 @@
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="ViewModels\GuestMap.cs" />
     <Compile Include="ViewModels\GuestSearchViewModel.cs" />
     <Compile Include="Services\GuestProcessor.cs" />
     <Compile Include="Services\IProcessor.cs" />

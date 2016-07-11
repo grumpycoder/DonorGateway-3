@@ -88,6 +88,18 @@
     <Compile Include="Migrations\201607071402118_event-capacity.Designer.cs">
       <DependentUpon>201607071402118_event-capacity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607112034016_guest-event-add-fields-refactor.cs" />
+    <Compile Include="Migrations\201607112034016_guest-event-add-fields-refactor.Designer.cs">
+      <DependentUpon>201607112034016_guest-event-add-fields-refactor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607112035251_guest-expectedDate-rename.cs" />
+    <Compile Include="Migrations\201607112035251_guest-expectedDate-rename.Designer.cs">
+      <DependentUpon>201607112035251_guest-expectedDate-rename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607112119223_guest-refactor.cs" />
+    <Compile Include="Migrations\201607112119223_guest-refactor.Designer.cs">
+      <DependentUpon>201607112119223_guest-refactor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -125,6 +137,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607071402118_event-capacity.resx">
       <DependentUpon>201607071402118_event-capacity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607112034016_guest-event-add-fields-refactor.resx">
+      <DependentUpon>201607112034016_guest-event-add-fields-refactor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607112035251_guest-expectedDate-rename.resx">
+      <DependentUpon>201607112035251_guest-expectedDate-rename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607112119223_guest-refactor.resx">
+      <DependentUpon>201607112119223_guest-refactor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
