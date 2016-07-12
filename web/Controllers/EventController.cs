@@ -9,6 +9,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using CsvHelper;
 using web.Helpers;
 using web.ViewModels;
@@ -43,7 +45,7 @@ namespace web.Controllers
         {
             var e = context.Events.Include(x => x.Guests).AsQueryable().FirstOrDefault(x => x.Id == id);
             if (e == null) return NotFound();
-
+            //TODO: Automapper Here
             var model = new EventViewModel
             {
                 Id = e.Id,
@@ -97,26 +99,14 @@ namespace web.Controllers
             if (vm.IsMailed != null) pred = pred.And(p => p.IsMailed == ticketMailed);
             if (vm.IsWaiting != null) pred = pred.And(p => p.IsWaiting == isWaiting);
             if (vm.IsAttending != null) pred = pred.And(p => p.IsAttending == isAttending);
-            //pred = pred.And(p => p.IsWaiting == isWaiting);
-            //pred = pred.And(p => p.HasResponded == hasResponded);
 
-            List<Guest> list;
-            if (vm.AllRecords)
-            {
-                list = context.Guests.AsQueryable()
-                    .Where(pred)
-                    .OrderBy(x => x.Id)
-                    .ToList();
-            }
-            else
-            {
-                list = context.Guests.AsQueryable()
-                             .Order(vm.OrderBy, vm.OrderDirection == "desc" ? SortDirection.Descending : SortDirection.Ascending)
-                             .Where(pred)
-                             .Skip(skipRows)
-                             .Take(pageSize)
-                             .ToList();
-            }
+            var list = context.Guests.AsQueryable()
+                .Order(vm.OrderBy, vm.OrderDirection == "desc" ? SortDirection.Descending : SortDirection.Ascending)
+                .Where(pred)
+                .Skip(skipRows)
+                .Take(pageSize)
+                .ToList();
+
             var totalCount = context.Guests.Count();
             var filterCount = context.Guests.Where(pred).Count();
             var totalPages = (int)Math.Ceiling((decimal)filterCount / pageSize);
@@ -127,9 +117,7 @@ namespace web.Controllers
 
             vm.Items = list;
             return Ok(vm);
-
-            ////var list = context.Guests.Where(x => x.EventId == id).OrderBy(x => x.Id).Skip(0).Take(10);
-            //return Ok(list);
+            
         }
 
         [HttpPost, Route("{id:int}/guests/export")]
@@ -154,22 +142,17 @@ namespace web.Controllers
             if (vm.IsWaiting != null) pred = pred.And(p => p.IsWaiting == isWaiting);
             if (vm.IsAttending != null) pred = pred.And(p => p.IsAttending == isAttending);
 
-            List<Guest> list = context.Guests.AsQueryable()
+            var list = context.Guests.AsQueryable()
                     .Where(pred)
-                    .OrderBy(x => x.Id)
-                    .ToList();
+                    .ProjectTo<GuestExportViewModel>();
 
             var path = HttpContext.Current.Server.MapPath(@"~\app_data\guestlist.csv");
-            var csv = new CsvWriter(new StreamWriter(File.Create(path)));
-            csv.Configuration.RegisterClassMap<GuestMap>();
-            csv.WriteHeader<Guest>();
-            csv.WriteRecords(list);
-
-            //foreach (var guest in list)
-            //{
-            //    csv.WriteRecord(guest);
-            //}
-            csv.Dispose();
+            using (var csv = new CsvWriter(new StreamWriter(File.Create(path))))
+            {
+                csv.Configuration.RegisterClassMap<GuestMap>();
+                csv.WriteHeader<GuestExportViewModel>();
+                csv.WriteRecords(list);
+            }
             return Ok(list);
         }
 
