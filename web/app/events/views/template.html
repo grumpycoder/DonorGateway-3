@@ -1,141 +1,75 @@
 ﻿
 
-<div class="box no-border">
-    <div class="box-header"></div><!--./box-header-->
+<form name="templateForm" novalidate="">
+    <div class="box no-border">
 
-    <div class="box-body">
-        <form name="templateForm" novalidate="">
-            <div class="box box-default box-solid">
+        <div class="box-body">
 
-                <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Template Name</label>
-                                <input type="text" class="form-control" ng-model="vm.selectedEvent.template.name" />
+                    <uib-tabset active="activeJustified">
+                        <uib-tab index="0" heading="Image">
+                            <div class="center-block">
+
+                                <div ngf-drop ngf-select
+                                     class="drop-box"
+                                     ng-model="vm.file"
+                                     ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
+                                     ngf-change="vm.fileSelected($files, $file)"
+                                     accept="image/**"
+                                     ngf-pattern="'image/**'">
+
+                                    <div>
+                                        Drop image here or click to upload
+                                    </div>
+                                    <img ng-show="vm.selectedEvent.template.image" ng-src="data:{{vm.selectedEvent.template.mimeType}};base64,{{vm.selectedEvent.template.image}}" 
+                                         class="img-responsive center-block">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="box box-info">
-                                <div class="box-header">
-                                    <h3 class="box-title">
-                                        Header Image <small>Image to appear in heading</small>
-                                    </h3>
-                                    <!-- tools box -->
-                                    <div class="pull-right box-tools">
-                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <!-- /. tools -->
-                                </div><!-- /.box-header -->
-                                <div class="box-body pad">
-                                    <div ngf-drop ngf-select
-                                         class="drop-box"
-                                         ng-model="vm.file"
-                                         ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
-                                         ngf-change="vm.fileSelected($files, $file, $event, $rejectedFiles)"
-                                         accept="image/**"
-                                         ngf-pattern="'image/**'">
 
-                                        <div>
-                                            Drop images here or click to upload
-                                        </div>
-                                        <img alt="Event Image" ng-show="vm.file" ngf-thumbnail="vm.file"  style="width:100%" />
+                        </uib-tab>
+                        <uib-tab index="1" heading="Header">
+                            <text-angular name="headerText" ng-model="vm.selectedEvent.template.headerText"></text-angular>
+                        </uib-tab>
+                        <uib-tab index="2" heading="Body">
+                            <text-angular name="bodyText" ng-model="vm.selectedEvent.template.bodyText" markdownedit></text-angular>
+                        </uib-tab>
+                        <uib-tab index="3" heading="Footer">
+                            <text-angular name="footerText" ng-model="vm.selectedEvent.template.footerText" markdownedit></text-angular>
+                        </uib-tab>
+                        <uib-tab index="4" heading="FAQ">
+                            <text-angular name="faqText" ng-model="vm.selectedEvent.template.faqText" markdownedit></text-angular>
+                        </uib-tab>
 
-                                        <img ng-show="vm.selectedEvent.template.image && !vm.file" ng-hide="vm.file" ng-src="data:{{vm.selectedEvent.template.mimeType}};base64,{{vm.selectedEvent.template.image}}" style="width:100%">
-                                    </div>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div>
-                        <div class="col-md-12">
-                            <div class="box box-info">
-                                <div class="box-header">
-                                    <h3 class="box-title">
-                                        Header <small>Text to appear as heading</small>
-                                    </h3>
-                                    <!-- tools box -->
-                                    <div class="pull-right box-tools">
-                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <!-- /. tools -->
-                                </div><!-- /.box-header -->
-                                <div class="box-body pad">
-                                    <text-angular name="headerText" ng-model="vm.selectedEvent.template.headerText"></text-angular>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div>
-                        <div class="col-md-12">
-                            <div class="box box-warning collapsed-box">
-                                <div class="box-header">
-                                    <h3 class="box-title">
-                                        Body <small>Text to appear as body</small>
-                                    </h3>
-                                    <!-- tools box -->
-                                    <div class="pull-right box-tools">
-                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <!-- /. tools -->
-                                </div><!-- /.box-header -->
-                                <div class="box-body pad">
-                                    <text-angular name="bodyText" ng-model="vm.selectedEvent.template.bodyText" markdownedit></text-angular>
-                                </div><!-- /.box-body -->
-                               
-                            </div><!-- /.box -->
-                        </div>
-                        <div class="col-md-12">
-                            <div class="box box-danger collapsed-box">
-                                <div class="box-header">
-                                    <h3 class="box-title">
-                                        FAQ <small>Text to appear as FAQ</small>
-                                    </h3>
-                                    <!-- tools box -->
-                                    <div class="pull-right box-tools">
-                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <!-- /. tools -->
-                                </div><!-- /.box-header -->
-                                <div class="box-body pad">
-                                    <text-angular name="faqText" ng-model="vm.selectedEvent.template.faqText" markdownedit></text-angular>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div>
-                        <div class="col-md-12">
-                            <div class="box box-success collapsed-box">
-                                <div class="box-header">
-                                    <h3 class="box-title">
-                                        Footer <small>Text to appear as footer</small>
-                                    </h3>
-                                    <!-- tools box -->
-                                    <div class="pull-right box-tools">
-                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <!-- /. tools -->
-                                </div><!-- /.box-header -->
-                                <div class="box-body pad">
-                                    <text-angular name="footerText" ng-model="vm.selectedEvent.template.footerText" markdownedit></text-angular>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div>
-                    </div>
-                    <div class="box-footer">
-                        <button class="btn btn-success btn-flat" ng-disabled="templateForm.$pristine" ng-click="vm.saveTemplate(); templateForm.$setPristine();">Save</button>
-                    </div><!--/box-footer-->
-                    <div class="overlay" ng-show="vm.isBusy">
-                        <i class="fa fa-refresh fa-spin"></i>
-                    </div>
-                </div><!--/box-body-->
-            </div><!--/box-->
-        </form> 
-    </div><!--./box-body-->
-</div><!--./box-->
+                        <uib-tab index="5" heading="YES Response">
+                            <text-angular name="yesText" ng-model="vm.selectedEvent.template.yesText" markdownedit></text-angular>
+                        </uib-tab>
+                        <uib-tab index="6" heading="NO Response">
+                            <text-angular name="noText" ng-model="vm.selectedEvent.template.noText" markdownedit></text-angular>
+                        </uib-tab>
+
+                        <uib-tab index="7" heading="Wait List">
+                            <text-angular name="waitText" ng-model="vm.selectedEvent.template.waitText" markdownedit></text-angular>
+                        </uib-tab>
+                        <uib-tab index="8" heading="Cancel Response">
+                            <text-angular name="cancelText" ng-model="vm.selectedEvent.template.cancelText" markdownedit></text-angular>
+                        </uib-tab>
+                        <uib-tab index="9" heading="Expire Response">
+                            <text-angular name="expireText" ng-model="vm.selectedEvent.template.expireText" markdownedit></text-angular>
+                        </uib-tab>
+
+                    </uib-tabset>
+
+                </div>
+            </div>
+
+        </div><!--./box-body-->
+        <div class="box-footer">
+            <button class="btn btn-success btn-lg pull-right" ng-disabled="templateForm.$pristine" ng-click="vm.saveTemplate(); templateForm.$setPristine();">Save</button>
+        </div><!--/box-footer-->
+    </div><!--./box-->
+</form>
+
+
 

@@ -259,19 +259,17 @@
                 });
         }
 
-        vm.fileSelected = function ($files, $file, $event, $rejectedFiles) {
+        vm.fileSelected = function ($files, $file) {
             var reader = new FileReader();
             reader.onloadstart = function () {
-
                 vm.isBusy = true;
             };
             reader.onloadend = function () {
                 vm.isBusy = false;
-
             }
             reader.onload = function (e) {
-                var dataURL = reader.result;
-                vm.selectedEvent.template.image = dataURL.split(',')[1];
+                var dataUrl = reader.result;
+                vm.selectedEvent.template.image = dataUrl.split(',')[1];
                 vm.selectedEvent.template.mimeType = $file.type;
             };
             reader.readAsDataURL($file);
@@ -279,13 +277,14 @@
         };
 
         vm.saveTemplate = function () {
+            logger.log('template', vm.selectedEvent.template);
             vm.isBusy = true;
             templateService.update(vm.selectedEvent.template)
                 .then(function (data) {
                     vm.selectedEvent.template = angular.extend(vm.selectedEvent.template, data);
                     logger.success('Saved template: ' + data.name);
                 }).finally(function () {
-                    complete();
+                    vm.isBusy = false;
                 });
         }
 
