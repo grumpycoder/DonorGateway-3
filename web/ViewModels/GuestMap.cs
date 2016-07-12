@@ -1,9 +1,10 @@
 using CsvHelper.Configuration;
 using DonorGateway.Domain;
+using web.Controllers;
 
 namespace web.ViewModels
 {
-    public sealed class GuestMap : CsvClassMap<Guest>
+    public sealed class GuestMap : CsvClassMap<GuestExportViewModel>
     {
         public GuestMap()
         {
@@ -49,6 +50,9 @@ namespace web.ViewModels
             Map(m => m.Category).Name("Category");
             Map(m => m.SubCategory).Name("SubCategory");
             Map(m => m.Owner).Name("Owner");
+
+            Map(m => m.EventName).Name("EventName");
+            Map(m => m.EventCode).Name("EventCode");
 
 
 
