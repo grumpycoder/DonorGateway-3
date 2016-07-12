@@ -6,6 +6,9 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
@@ -117,7 +120,7 @@ namespace web.Controllers
 
             vm.Items = list;
             return Ok(vm);
-            
+
         }
 
         [HttpPost, Route("{id:int}/guests/export")]
@@ -147,13 +150,28 @@ namespace web.Controllers
                     .ProjectTo<GuestExportViewModel>();
 
             var path = HttpContext.Current.Server.MapPath(@"~\app_data\guestlist.csv");
+
             using (var csv = new CsvWriter(new StreamWriter(File.Create(path))))
             {
                 csv.Configuration.RegisterClassMap<GuestMap>();
                 csv.WriteHeader<GuestExportViewModel>();
                 csv.WriteRecords(list);
             }
-            return Ok(list);
+            var filename = $"guest-list-{DateTime.Now.ToString("u")}.csv"; 
+
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+            var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+            response.Content = new StreamContent(stream);
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = filename
+            };
+            response.Content.Headers.Add("x-filename", filename); 
+            
+
+
+            return ResponseMessage(response);
         }
 
 

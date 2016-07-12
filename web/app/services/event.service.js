@@ -13,6 +13,7 @@
 
         var service = {
             create: create,
+            downloadGuests: downloadGuests, 
             remove: remove,
             get: get,
             getById: getById,
@@ -27,6 +28,14 @@
             return $http.post(url, event)
                 .then(_success).catch(error);
         }
+
+        function downloadGuests(id, vm) {
+            return $http.post(url + '/' + id + '/guests/export', vm)
+                .then(function(data) {
+                    return data;
+                }).catch(error);
+        }
+
 
         function remove(id) {
             return $http.delete(url + '/' + id).then(_success).catch(error);

@@ -112,8 +112,32 @@
         }
 
         vm.exportGuests = function () {
-            logger.log('export');
+            vm.isBusy = true;
+            service.downloadGuests(vm.selectedEvent.id, vm.searchModel)
+                .then(function (data) {
+                    var contentType = data.headers()['content-type'];
+                    var filename = data.headers()['x-filename'];
 
+                    var linkElement = document.createElement('a');
+                    try {
+                        var blob = new Blob([data.data], { type: contentType });
+                        var url = window.URL.createObjectURL(blob);
+
+                        linkElement.setAttribute('href', url);
+                        linkElement.setAttribute("download", filename);
+
+                        var clickEvent = new MouseEvent("click", {
+                            "view": window,
+                            "bubbles": true,
+                            "cancelable": false
+                        });
+                        linkElement.dispatchEvent(clickEvent);
+                    } catch (ex) {
+                        logger.log(ex);
+                    }
+                }).finally(function () {
+                    vm.isBusy = false;
+                });
         }
 
         vm.registerGuest = function (guest) {
@@ -190,11 +214,11 @@
 
             vm.searchModel.isAttending = null;
             vm.searchModel.isWaiting = null;
-            vm.searchModel.isMailed = null;
 
             if (vm.showWaitQueue) {
                 vm.searchModel.isAttending = true;
                 vm.searchModel.isWaiting = true;
+                vm.searchModel.isMailed = null;
             }
 
             if (vm.showMailQueue) {

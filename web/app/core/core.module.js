@@ -24,7 +24,7 @@
             'gfl.textAvatar',
             'textAngular',
             'ui.bootstrap.datetimepicker', 
-            'angular-confirm'
+            'angular-confirm' 
             //'ng-file-input'
         ])
         .constant('toastr', toastr)

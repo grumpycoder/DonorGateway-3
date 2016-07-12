@@ -27,7 +27,8 @@
     "smart-table-sticky-header": "st-sticky-header#^1.0.1",
     "angular-bootstrap-datetimepicker": "^1.0.1",
     "Ionicons": "ionicons#^2.0.1",
-    "angular-confirm-modal": "^1.2.5"
+    "angular-confirm-modal": "^1.2.5",
+    "ng-csv": "^0.3.6"
   },
   "overrides": {
     "angular-bootstrap-datetimepicker": {
