@@ -33,7 +33,11 @@ namespace rsvp.web.Controllers
                 Zipcode = @event?.Zipcode,
                 Template = @event?.Template,
                 TemplateId = @event?.TemplateId,
-                EventId = @event.Id
+                EventId = @event.Id,
+                StartDate = @event.StartDate,
+                EndDate = @event.EndDate,
+                Speaker = @event.Speaker,
+                IsCancelled = @event.IsCancelled ?? false
             };
             return View(model);
         }
@@ -69,6 +73,8 @@ namespace rsvp.web.Controllers
                 PromoCode = guest?.FinderNumber,
                 EventName = guest?.Event.Name
             };
+
+            viewModel.Validate();
             return View(viewModel);
         }
 

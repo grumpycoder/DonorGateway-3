@@ -21,5 +21,9 @@ namespace rsvp.web.ViewModels
         public DateTime? ResponseDate { get; set; }
         public int? EventId { get; set; }
         public string EventName { get; set; }
+
+        public void Validate()
+        {
+        }
     }
 }
