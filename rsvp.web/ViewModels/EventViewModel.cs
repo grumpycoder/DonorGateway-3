@@ -17,5 +17,7 @@ namespace rsvp.web.ViewModels
 
         public int? TemplateId { get; set; }
         public int EventId { get; set; }
+
+
     }
 }

@@ -137,6 +137,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="ViewModels\FinishViewModel.cs" />
+    <Compile Include="ViewModels\GuestRegisterViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -194,7 +196,7 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Event\Register.cshtml" />
-    <Content Include="Views\Event\RegisterComplete.cshtml" />
+    <Content Include="Views\Event\Finish.cshtml" />
     <Content Include="Views\Event\EventNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>

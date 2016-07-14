@@ -1,16 +1,16 @@
-﻿@model DonorGateway.Domain.Guest
+﻿@model rsvp.web.ViewModels.GuestRegisterViewModel
 @{
     ViewBag.Title = "Register";
 }
 
 <h2>Register</h2>
 
-@using (Html.BeginForm("RegisterConfirm", "Event"))
+@using (Html.BeginForm("Confirm", "Event"))
 {
     @Html.HiddenFor(m => m.Id)
     @Html.HiddenFor(m => m.EventId)
-    @Html.HiddenFor(m => m.FinderNumber)
-    @Html.HiddenFor(m => m.LookupId)
+    @Html.HiddenFor(m => m.PromoCode)
+    @Html.HiddenFor(m => m.EventName)
 
     <div class="form-group">
         <label class="control-label">Attending?</label>
