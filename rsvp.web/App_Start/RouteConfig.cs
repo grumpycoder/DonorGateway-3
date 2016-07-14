@@ -13,9 +13,10 @@ namespace rsvp.web
               name: "EventAction",
               url: "{id}",
               defaults: new { controller = "Event", action = "Index", id = UrlParameter.Optional }
-          );
+            );
 
-            routes.MapRoute("HomeActions", "{action}/{id}", new { controller = "Event" });
+
+            //routes.MapRoute("HomeActions", "{action}/{id}", new { controller = "Event" });
 
             routes.MapRoute(
                 name: "Default",

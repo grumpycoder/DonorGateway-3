@@ -15,6 +15,7 @@ namespace rsvp.web.ViewModels
 
         public string PromoCode { get; set; }
 
-
+        public int? TemplateId { get; set; }
+        public int EventId { get; set; }
     }
 }
