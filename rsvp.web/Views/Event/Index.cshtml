@@ -1,0 +1,71 @@
+﻿@model rsvp.web.ViewModels.EventViewModel
+@{
+    ViewBag.Title = "Event RSVP | Southern Poverty Law Center";
+}
+
+<div class="container">
+
+    @{
+        var imgSrc = $"data:{@Model.Template.MimeType};base64,{@System.Convert.ToBase64String(@Model.Template.Image)}";
+    }
+    @*<img src="http://placehold.it/665x200" class="img-responsive center-block">*@
+    <img src="@imgSrc" class="img-responsive center-block">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>
+                @Model.Name
+            </h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            
+            @Html.Raw(@Model.Template.HeaderText)
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            @Html.Raw(@Model.Template.BodyText)
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">Enter the reservation code from your invitation below, then click the Submit button.</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <form>
+                <div class="form-group">
+
+                    <label class="control-label">
+                        Reservation Code
+                    </label>
+                    <input type="text" class="form-control"/>
+                    <button class="btn btn-primary">Submit</button>
+
+                </div>
+                <p>Example: 55566677788</p>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Raw(@Model.Template.FAQText)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Raw(@Model.Template.FooterText)
+        </div>
+    </div>
+</div>
+
