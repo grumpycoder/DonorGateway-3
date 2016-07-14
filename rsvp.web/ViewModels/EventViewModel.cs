@@ -13,5 +13,8 @@ namespace rsvp.web.ViewModels
         public string State { get; set; }
         public string Zipcode { get; set; }
 
+        public string PromoCode { get; set; }
+
+
     }
 }

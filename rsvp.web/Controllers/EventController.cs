@@ -33,5 +33,12 @@ namespace rsvp.web.Controllers
             return View(vm);
         }
 
+        [HttpPost]
+        public ActionResult Register(EventViewModel model)
+        {
+
+            return View(model);
+        }
+
     }
 }

@@ -21,7 +21,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            
+
             @Html.Raw(@Model.Template.HeaderText)
 
         </div>
@@ -42,18 +42,18 @@
     <div class="row">
         <div class="col-md-12">
 
-            <form>
-                <div class="form-group">
+            @Html.BeginForm("Event", "Register", FormMethod.Post){
+            <div class="form-group">
 
-                    <label class="control-label">
-                        Reservation Code
-                    </label>
-                    <input type="text" class="form-control"/>
-                    <button class="btn btn-primary">Submit</button>
+                <label class="control-label">
+                    Reservation Code
+                </label>
+                @Html.TextBoxFor(x => x.PromoCode, new { @class="form-control" })
+                <button class="btn btn-primary">Submit</button>
 
-                </div>
-                <p>Example: 55566677788</p>
-            </form>
+            </div>
+            <p>Example: 55566677788</p>
+            
         </div>
     </div>
 
