@@ -48,7 +48,7 @@ namespace rsvp.web.Controllers
             var guest = db.Guests.FirstOrDefault(g => g.FinderNumber == model.PromoCode);
 
             if (guest == null) ModelState.AddModelError("PromoCode", "Invalid Code");
-
+            if (guest?.IsAttending ?? false) ModelState.AddModelError("Attendance", "Already registered for event");
             if (!ModelState.IsValid)
             {
                 model.Template = db.Templates.FirstOrDefault(x => x.Id == model.TemplateId);
@@ -75,7 +75,6 @@ namespace rsvp.web.Controllers
                 EventName = guest?.Event?.Name
             };
 
-            viewModel.Validate();
             return View(viewModel);
         }
 
