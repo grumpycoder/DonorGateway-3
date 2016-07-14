@@ -16,24 +16,26 @@ namespace rsvp.web.Controllers
             context = new DataContext();
         }
 
-        [System.Web.Mvc.Route("{id}")]
+        [Route("{id}")]
         public ActionResult Index(string id)
         {
             var @event = context.Events.FirstOrDefault(x => x.Name == id);
 
-            var vm = new EventViewModel()
+            if (@event == null) RedirectToAction("EventNotFound");
+
+            var model = new EventViewModel()
             {
-                Name = @event.Name,
-                Venue = @event.Venue,
-                Street = @event.Street,
-                City = @event.City,
-                State = @event.State,
-                Zipcode = @event.Zipcode,
-                Template = @event.Template,
-                TemplateId = @event.TemplateId,
+                Name = @event?.Name,
+                Venue = @event?.Venue,
+                Street = @event?.Street,
+                City = @event?.City,
+                State = @event?.State,
+                Zipcode = @event?.Zipcode,
+                Template = @event?.Template,
+                TemplateId = @event?.TemplateId,
                 EventId = @event.Id
             };
-            return View(vm);
+            return View(model);
         }
 
         [HttpPost]
@@ -68,5 +70,9 @@ namespace rsvp.web.Controllers
             return View(guest);
         }
 
+        public ActionResult EventNotFound()
+        {
+            return View();
+        }
     }
 }
