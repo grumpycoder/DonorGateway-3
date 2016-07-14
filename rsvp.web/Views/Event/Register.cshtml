@@ -12,6 +12,10 @@
     @Html.HiddenFor(m => m.PromoCode)
     @Html.HiddenFor(m => m.EventName)
 
+    <div class="row">
+            @Html.ValidationSummary()
+    </div>
+
     <div class="form-group">
         <label class="control-label">Attending?</label>
         @Html.EditorFor(m => m.IsAttending, new { htmlAttributes = new { @class = "form-control" } })

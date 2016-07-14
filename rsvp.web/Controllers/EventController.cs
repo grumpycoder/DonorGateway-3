@@ -47,9 +47,10 @@ namespace rsvp.web.Controllers
         {
             var guest = db.Guests.FirstOrDefault(g => g.FinderNumber == model.PromoCode);
 
-            if (guest == null || !ModelState.IsValid)
+            if (guest == null) ModelState.AddModelError("PromoCode", "Invalid Code");
+
+            if (!ModelState.IsValid)
             {
-                if (guest == null) ModelState.AddModelError("PromoCode", "Invalid Code");
                 model.Template = db.Templates.FirstOrDefault(x => x.Id == model.TemplateId);
                 return View("Index", model);
             }
@@ -68,10 +69,10 @@ namespace rsvp.web.Controllers
                 Zipcode = guest?.Zipcode,
                 Comment = guest?.Comment,
                 TicketCount = guest?.TicketCount,
-                IsAttending = guest?.IsAttending,
+                IsAttending = guest?.IsAttending ?? false,
                 EventId = guest?.EventId,
                 PromoCode = guest?.FinderNumber,
-                EventName = guest?.Event.Name
+                EventName = guest?.Event?.Name
             };
 
             viewModel.Validate();
@@ -81,6 +82,11 @@ namespace rsvp.web.Controllers
         [HttpPost]
         public ActionResult Confirm(GuestRegisterViewModel guestRegister)
         {
+            var @event = db.Events.Find(guestRegister.EventId);
+
+            if (guestRegister.TicketCount > @event.TicketAllowance) ModelState.AddModelError("Ticket Allowance", "Request for too many tickets");
+            if (guestRegister.TicketCount == 0 && guestRegister.IsAttending) ModelState.AddModelError("Ticket Count", "No tickets requested");
+
             if (!ModelState.IsValid)
             {
                 return View("Register", guestRegister);
@@ -106,7 +112,6 @@ namespace rsvp.web.Controllers
             db.Guests.AddOrUpdate(g);
             db.SaveChanges();
 
-            var @event = db.Events.Find(guestRegister.EventId);
 
             var finishViewModel = new FinishViewModel()
             {
