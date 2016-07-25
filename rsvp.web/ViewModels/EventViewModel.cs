@@ -18,6 +18,8 @@ namespace rsvp.web.ViewModels
         public DateTime? EndDate { get; set; }
         public DateTime? VenueOpenDate { get; set; }
 
+        public int? TicketAllowance { get; set; }
+
         public string PromoCode { get; set; }
 
         public bool IsCancelled { get; set; }

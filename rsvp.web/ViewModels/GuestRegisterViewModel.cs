@@ -21,6 +21,7 @@ namespace rsvp.web.ViewModels
         public string Zipcode { get; set; }
         public string Comment { get; set; }
         public int? TicketCount { get; set; }
+        public int? TicketAllowance { get; set; }
         public bool IsAttending { get; set; } = false;
         public DateTime? ResponseDate { get; set; }
         public int? EventId { get; set; }

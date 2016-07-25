@@ -6,6 +6,8 @@
 {
     @Html.HiddenFor(m => m.TemplateId)
     @Html.HiddenFor(m => m.EventId)
+    @Html.HiddenFor(m => m.TicketAllowance)
+
 
     <div class="container">
 
@@ -56,7 +58,7 @@
 
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-md-12">Enter the reservation code from your invitation below, then click the Submit button.</div>
             </div>
@@ -64,20 +66,45 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    @Html.ValidationSummary()
-                    <div class="form-group">
 
-                        <label class="control-label">
-                            Reservation Code
-                        </label>
-                        @Html.TextBoxFor(x => x.PromoCode, new { @class = "form-control" })
-                        <button class="btn btn-primary">Submit</button>
-                    </div>
-                    <p>Example: 55566677788</p>
+                    @*<div class="form-group">
+
+                            <label class="control-label">
+                                Reservation Code
+                            </label>
+                            <div class="col-md-6">
+
+                                @Html.TextBoxFor(x => x.PromoCode, new {@class = "form-control"})
+                            </div>
+                            <div class="col-md-3">
+
+                                <button class="form-submit">Submit</button>
+                            </div>
+                        </div>*@
+
 
 
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    @Html.ValidationSummary()
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="input-group input-group-lg">
+                        @Html.TextBoxFor(x => x.PromoCode, new { @class = "form-control" })
+                        <span class="input-group-btn">
+                            <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-12 col-md-12">
+
+                    <p>Example: 55566677788</p>
+                </div>
+            </div>
+
 
             <div class="row">
                 <div class="col-md-12">
@@ -88,4 +115,4 @@
         }
 
     </div>
-}
+            }

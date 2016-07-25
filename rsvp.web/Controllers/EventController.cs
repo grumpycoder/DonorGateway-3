@@ -37,7 +37,8 @@ namespace rsvp.web.Controllers
                 StartDate = @event.StartDate,
                 EndDate = @event.EndDate,
                 Speaker = @event.Speaker,
-                IsCancelled = @event.IsCancelled ?? false
+                IsCancelled = @event.IsCancelled ?? false,
+                TicketAllowance = @event.TicketAllowance ?? 0
             };
             return View(model);
         }
@@ -69,6 +70,7 @@ namespace rsvp.web.Controllers
                 Zipcode = guest?.Zipcode,
                 Comment = guest?.Comment,
                 TicketCount = guest?.TicketCount,
+                TicketAllowance = model.TicketAllowance,
                 IsAttending = guest?.IsAttending ?? false,
                 EventId = guest?.EventId,
                 PromoCode = guest?.FinderNumber,

@@ -1,4 +1,5 @@
-﻿@model rsvp.web.ViewModels.GuestRegisterViewModel
+﻿@using System.Web.UI.WebControls
+@model rsvp.web.ViewModels.GuestRegisterViewModel
 @{
     ViewBag.Title = "Register";
 }
@@ -13,19 +14,29 @@
     @Html.HiddenFor(m => m.EventName)
 
     <div class="row">
-            @Html.ValidationSummary()
+        @Html.ValidationSummary()
     </div>
 
     <div class="form-group">
         <label class="control-label">Attending?</label>
-        @Html.EditorFor(m => m.IsAttending, new { htmlAttributes = new { @class = "form-control" } })
+
+        <div class="btn-group" data-toggle="buttons">
+
+            <label class="btn btn-primary">
+                @Html.RadioButtonFor(m => m.IsAttending, true) Yes, I wIll attend
+            </label>
+
+            <label class="btn btn-primary">
+                @Html.RadioButtonFor(m => m.IsAttending, true) No, I am not able to attend
+            </label>
+
+        </div>
 
     </div>
-
     <div class="form-group">
         <label class="control-label">Number Tickets</label>
-        @Html.EditorFor(m => m.TicketCount, new { htmlAttributes = new { @class = "form-control" } })
-
+        @Html.DropDownListFor(m => m.TicketCount, Enumerable.Range(0, Model.TicketAllowance + 1 ?? 0).Select(i => new SelectListItem() {Value = i.ToString(), Text = i.ToString()}), "Choose Number Tickets", htmlAttributes: new { @class = "form-control" })
+        @*@Html.EditorFor(m => m.TicketCount, new { htmlAttributes = new { @class = "form-control" } })*@
     </div>
 
     <div class="form-group">
@@ -34,47 +45,61 @@
     </div>
 
     <div class="form-group">
-        <label class="control-label">Address</label>
-        @Html.EditorFor(m => m.Address, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <label class="control-label">Address</label>
+                @Html.EditorFor(m => m.Address, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <label class="control-label">Address</label>
+                @Html.EditorFor(m => m.Address2, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="row">
+
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <label class="control-label">City</label>
+                @Html.EditorFor(m => m.City, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+
+            <div class="col-sm-4 col-md-4  col-lg-4">
+                <label class="control-label">State</label>
+                @Html.EditorFor(m => m.State, new { htmlAttributes = new { @class = "form-control", placeHolder = "State" } })
+            </div>
+
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <label class="control-label">Zipcode</label>
+                @Html.EditorFor(m => m.Zipcode, new { htmlAttributes = new { @class = "form-control", placeholder = "ZIP Code" } })
+            </div>
+        </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label">Address</label>
-        @Html.EditorFor(m => m.Address2, new { htmlAttributes = new { @class = "form-control" } })
-    </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <label class="control-label">Phone</label>
+                @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "form-control" } })
 
-    <div class="form-group">
-        <label class="control-label">City</label>
-        @Html.EditorFor(m => m.City, new { htmlAttributes = new { @class = "form-control" } })
-    </div>
+            </div>
+            <div class="col-md-6 col-lg-6  col-sm-6">
+                <label class="control-label">Email Address</label>
+                @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
 
-    <div class="form-group">
-        <label class="control-label">State</label>
-        @Html.EditorFor(m => m.State, new { htmlAttributes = new { @class = "form-control" } })
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">ZIP Code</label>
-        @Html.EditorFor(m => m.Zipcode, new { htmlAttributes = new { @class = "form-control" } })
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">Phone</label>
-        @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "form-control" } })
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">Email Address</label>
-        @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
     </div>
 
     <div class="form-group">
         <label class="control-label">Comments</label>
-        @Html.EditorFor(m => m.Comment, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.TextAreaFor(m => m.Comment, new { htmlAttributes = new { @class = "form-control" } })
     </div>
 
     <div class="form-group">
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-lg btn-primary">Submit</button>
     </div>
 
 }
