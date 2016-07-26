@@ -17,6 +17,7 @@ namespace rsvp.web.ViewModels
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public DateTime? VenueOpenDate { get; set; }
+        public int Capacity { get; set; }
 
         public int? TicketAllowance { get; set; }
 
@@ -29,6 +30,11 @@ namespace rsvp.web.ViewModels
         public int? TemplateId { get; set; }
         public int EventId { get; set; }
 
-
+        public int RegisteredGuestCount { get; set; }
+        public int WaitingGuestCount { get; set; }
+        public int TicketMailedCount { get; set; }
+        public int TicketMailedQueueCount { get; set; }
+        public int TicketRemainingCount { get; set; }
     }
 }
+

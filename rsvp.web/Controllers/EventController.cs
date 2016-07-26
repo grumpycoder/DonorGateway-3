@@ -1,6 +1,7 @@
 ﻿using DonorGateway.Data;
 using rsvp.web.ViewModels;
 using System;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web.Mvc;
@@ -70,8 +71,8 @@ namespace rsvp.web.Controllers
                 Zipcode = guest?.Zipcode,
                 Comment = guest?.Comment,
                 TicketCount = guest?.TicketCount,
+                IsAttending = null,
                 TicketAllowance = model.TicketAllowance,
-                IsAttending = guest?.IsAttending ?? false,
                 EventId = guest?.EventId,
                 PromoCode = guest?.FinderNumber,
                 EventName = guest?.Event?.Name
@@ -83,40 +84,65 @@ namespace rsvp.web.Controllers
         [HttpPost]
         public ActionResult Confirm(GuestRegisterViewModel guestRegister)
         {
-            var @event = db.Events.Find(guestRegister.EventId);
-
-            if (guestRegister.TicketCount > @event.TicketAllowance) ModelState.AddModelError("Ticket Allowance", "Request for too many tickets");
-            if (guestRegister.TicketCount == 0 && guestRegister.IsAttending) ModelState.AddModelError("Ticket Count", "No tickets requested");
-
             if (!ModelState.IsValid)
             {
                 return View("Register", guestRegister);
             }
 
-            var g = db.Guests.Find(guestRegister.Id);
+            var guest = db.Guests.Find(guestRegister.Id);
 
-            g.Name = guestRegister.Name;
-            g.Name = guestRegister?.Name;
-            g.Email = guestRegister?.Email;
-            g.Phone = guestRegister?.Phone;
-            g.Address = guestRegister?.Address;
-            g.Address2 = guestRegister?.Address2;
-            g.Address3 = guestRegister?.Address3;
-            g.City = guestRegister?.City;
-            g.State = guestRegister?.State;
-            g.Zipcode = guestRegister?.Zipcode;
-            g.Comment = guestRegister?.Comment;
-            g.TicketCount = guestRegister?.TicketCount;
-            g.IsAttending = guestRegister?.IsAttending;
-            g.ResponseDate = DateTime.Now;
+            guest.Name = guestRegister.Name;
+            guest.Name = guestRegister?.Name;
+            guest.Email = guestRegister?.Email;
+            guest.Phone = guestRegister?.Phone;
+            guest.Address = guestRegister?.Address;
+            guest.Address2 = guestRegister?.Address2;
+            guest.Address3 = guestRegister?.Address3;
+            guest.City = guestRegister?.City;
+            guest.State = guestRegister?.State;
+            guest.Zipcode = guestRegister?.Zipcode;
+            guest.Comment = guestRegister?.Comment;
+            guest.TicketCount = guestRegister?.TicketCount;
+            guest.IsAttending = guestRegister?.IsAttending;
+            guest.ResponseDate = DateTime.Now;
 
-            db.Guests.AddOrUpdate(g);
+
+
+            var @event = db.Events.Include(g => g.Guests).FirstOrDefault(e => e.Id == guestRegister.EventId);
+
+            var eventViewModel = new EventViewModel()
+            {
+                Name = @event?.Name,
+                Venue = @event?.Venue,
+                Street = @event?.Street,
+                City = @event?.City,
+                State = @event?.State,
+                Zipcode = @event?.Zipcode,
+                Template = @event?.Template,
+                TemplateId = @event?.TemplateId,
+                EventId = @event.Id,
+                StartDate = @event.StartDate,
+                EndDate = @event.EndDate,
+                Speaker = @event.Speaker,
+                Capacity = @event.Capacity,
+                IsCancelled = @event.IsCancelled ?? false,
+                TicketAllowance = @event.TicketAllowance ?? 0,
+                RegisteredGuestCount = @event.Guests.Count(x => x.IsAttending == true),
+                WaitingGuestCount = @event.Guests.Count(x => x.IsWaiting == true),
+
+            };
+
+            if ((eventViewModel.RegisteredGuestCount + guest.TicketCount) > eventViewModel.Capacity)
+            {
+                guest.IsWaiting = true;
+                guest.WaitingDate = DateTime.Now;
+            }
+
+            db.Guests.AddOrUpdate(guest);
             db.SaveChanges();
-
-
             var finishViewModel = new FinishViewModel()
             {
-                Guest = g,
+                Guest = guest,
                 Event = @event
             };
             return View("Finish", finishViewModel);

@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using FluentValidation.Mvc;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -12,6 +13,7 @@ namespace rsvp.web
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            FluentValidationModelValidatorProvider.Configure();
         }
     }
 }
