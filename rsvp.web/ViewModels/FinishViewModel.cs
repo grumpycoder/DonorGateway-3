@@ -1,10 +1,8 @@
-﻿using DonorGateway.Domain;
-
-namespace rsvp.web.ViewModels
+﻿namespace rsvp.web.ViewModels
 {
     public class FinishViewModel
     {
-        public Guest Guest { get; set; }
-        public Event Event { get; set; }
+        public RegisterFormViewModel Guest { get; set; }
+        public EventViewModel Event { get; set; }
     }
 }

@@ -1,65 +1,56 @@
 using FluentValidation;
 using FluentValidation.Attributes;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace rsvp.web.ViewModels
 {
-    [Validator(typeof(GuestRegisterViewModelValidator))]
-    public class GuestRegisterViewModel
+    [Validator(typeof(RegisterFormViewModelValidator))]
+    public class RegisterFormViewModel
     {
-        public int Id { get; set; }
+        public int GuestId { get; set; }
 
         public string PromoCode { get; set; }
 
-        //[Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }
 
-        //[Required(ErrorMessage = "Email is required.")]
         public string Email { get; set; }
 
-        //        [Required(ErrorMessage = "Phone is required.")]
         public string Phone { get; set; }
 
-        //        [Required(ErrorMessage = "Address is required.")]
         public string Address { get; set; }
 
         public string Address2 { get; set; }
 
         public string Address3 { get; set; }
 
-        //        [Required(ErrorMessage = "City is required.")]
         public string City { get; set; }
 
-        //        [Required(ErrorMessage = "State is required.")]
         public string State { get; set; }
 
-        //        [Required(ErrorMessage = "Zipcode is required.")]
         public string Zipcode { get; set; }
 
         public string Comment { get; set; }
 
         public int? TicketCount { get; set; }
 
-        public int? TicketAllowance { get; set; }
+        public int? EventTicketAllowance { get; set; }
 
-        //[Required(ErrorMessage = "Please select Yes or No if you are attending")]
         public bool? IsAttending { get; set; }
+        public bool? IsWaiting { get; set; }
 
         public DateTime? ResponseDate { get; set; }
+        public DateTime? WaitingDate { get; set; }
 
         public int? EventId { get; set; }
 
         public string EventName { get; set; }
 
-        public void Validate()
-        {
-        }
+        public bool IsRegistered => ResponseDate != null;
     }
 
-    public class GuestRegisterViewModelValidator : AbstractValidator<GuestRegisterViewModel>
+    public class RegisterFormViewModelValidator : AbstractValidator<RegisterFormViewModel>
     {
-        public GuestRegisterViewModelValidator()
+        public RegisterFormViewModelValidator()
         {
             RuleFor(x => x.Name).NotNull().WithMessage("Name is required.");
             RuleFor(x => x.Address).NotNull().WithMessage("Address is required.");

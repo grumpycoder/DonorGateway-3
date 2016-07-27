@@ -1,5 +1,4 @@
-﻿@using System.Web.UI.WebControls
-@model rsvp.web.ViewModels.GuestRegisterViewModel
+﻿@model rsvp.web.ViewModels.RegisterFormViewModel
 @{
     ViewBag.Title = "Register";
 }
@@ -8,11 +7,11 @@
 
 @using (Html.BeginForm("Confirm", "Event"))
 {
-    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.GuestId)
     @Html.HiddenFor(m => m.EventId)
     @Html.HiddenFor(m => m.PromoCode)
-    @Html.HiddenFor(m => m.EventName)
-    @Html.HiddenFor(m => m.TicketAllowance)
+    @Html.HiddenFor(m => m.EventTicketAllowance)
+
 
     <div class="row">
         @Html.ValidationSummary()
@@ -42,7 +41,7 @@
             <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
 
                 <label class="control-label">Number Tickets</label>
-                @Html.DropDownListFor(m => m.TicketCount, Enumerable.Range(1, Model.TicketAllowance ?? 0).Select(i => new SelectListItem() { Value = i.ToString(), Text = i.ToString() }), "Choose Number Tickets", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.TicketCount, Enumerable.Range(1, Model.EventTicketAllowance ?? 0).Select(i => new SelectListItem() { Value = i.ToString(), Text = i.ToString() }), "Choose Number Tickets", htmlAttributes: new { @class = "form-control" })
 
             </div>
         </div>

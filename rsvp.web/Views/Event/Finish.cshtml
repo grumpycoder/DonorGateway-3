@@ -8,7 +8,20 @@
 <p>
     Dear @Model.Guest.Name,
 
+    @if (Model.Guest.IsAttending == true)
+    {
     @Html.Raw(@Model.Event.Template.YesText)
+    }
 
+    @if (Model.Guest.IsAttending == false)
+    {
+        @Html.Raw(@Model.Event.Template.NoText)
+    }
+
+    @if (Model.Guest.IsWaiting == true)
+    {
+        @Html.Raw(@Model.Event.Template.WaitText)
+    }
+    
 </p>
 @Html.ActionLink("Back", "Index", "Event", new { id = Model.Event.Name}, null )

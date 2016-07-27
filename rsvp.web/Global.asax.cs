@@ -2,6 +2,8 @@
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AutoMapper;
+using web.App_Start;
 
 namespace rsvp.web
 {
@@ -9,6 +11,7 @@ namespace rsvp.web
     {
         protected void Application_Start()
         {
+            Mapper.Initialize(c => c.AddProfile<MappingProfile>());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

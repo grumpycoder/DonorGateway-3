@@ -42,6 +42,8 @@
                 </div>
             </div>
         }
+
+
         @if (!Model.IsExpired && !Model.IsCancelled)
         {
 
@@ -58,6 +60,15 @@
 
                 </div>
             </div>
+
+            if (Model.IsAtCapacity)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Raw(@Model.Template.WaitText)
+                    </div>
+                </div>
+            }
 
             <div class="row">
                 <div class="col-md-12">Enter the reservation code from your invitation below, then click the Submit button.</div>
