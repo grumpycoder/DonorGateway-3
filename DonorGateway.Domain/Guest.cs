@@ -31,7 +31,7 @@ namespace DonorGateway.Domain
         public string Zipcode { get; set; }
         public string Country { get; set; }
 
-        public int? TicketCount { get; set; }
+        public int TicketCount { get; set; }
         public bool? IsMailed { get; set; } = false;
 
         public bool? IsAttending { get; set; } = false;

@@ -21,7 +21,7 @@ namespace rsvp.web.Controllers
         [Route("{id}")]
         public ActionResult Index(string id)
         {
-            var @event = Mapper.Map<EventViewModel>(db.Events.Include(g => g.Guests).FirstOrDefault(x => x.Name == id));
+            var @event = Mapper.Map<EventViewModel>(db.Events.FirstOrDefault(x => x.Name == id));
 
             if (@event == null) return View("EventNotFound");
 
@@ -51,19 +51,26 @@ namespace rsvp.web.Controllers
 
             var guest = db.Guests.Include(e => e.Event).SingleOrDefault(x => x.Id == form.GuestId);
 
-            //var @event = Mapper.Map<EventViewModel>(db.Events.Include(g => g.Guests).Include(t => t.Template).FirstOrDefault(e => e.Id == form.EventId));
-            var @event = Mapper.Map<EventViewModel>(db.Events.Include(t => t.Template).FirstOrDefault(e => e.Id == form.EventId));
+            var eventViewModel = Mapper.Map<EventViewModel>(db.Events.FirstOrDefault(e => e.Id == form.EventId));
 
-            if (@event.IsAtCapacity)
+            if (eventViewModel.IsAtCapacity)
             {
                 form.IsWaiting = true;
                 form.WaitingDate = DateTime.Now;
+                eventViewModel.GuestWaitingCount += form.TicketCount ?? 0;
+            }
+            else
+            {
+                eventViewModel.GuestAttendanceCount += form.TicketCount ?? 0;
             }
 
             form.ResponseDate = DateTime.Now;
             Mapper.Map(form, guest);
+            var @event = db.Events.Find(form.EventId);
+            Mapper.Map(eventViewModel, @event);
             db.Guests.AddOrUpdate(guest);
-            //db.SaveChanges();
+            db.Events.AddOrUpdate(@event);
+            db.SaveChanges();
 
             var m = Mapper.Map<FinishFormViewModel>(guest);
             m.ProcessMessages();

@@ -28,6 +28,11 @@ namespace DonorGateway.Domain
         public bool? IsCancelled { get; set; }
         public int? TemplateId { get; set; }
 
+        public int GuestWaitingCount { get; set; }
+        public int GuestAttendanceCount { get; set; }
+        public int TicketMailedCount { get; set; }
+
+
         public ICollection<Guest> Guests { get; set; }
         public virtual Template Template { get; set; }
 

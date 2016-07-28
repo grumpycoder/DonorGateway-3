@@ -7,7 +7,6 @@ namespace rsvp.web.ViewModels
     {
         public string PromoCode { get; set; }
 
-        public string Name { get; set; }
         public string Speaker { get; set; }
         public string Venue { get; set; }
         public string Street { get; set; }
@@ -26,11 +25,12 @@ namespace rsvp.web.ViewModels
         public string EventName { get; set; }
         public string EventDisplayName { get; set; }
 
+        public int GuestWaitingCount { get; set; }
+        public int GuestAttendanceCount { get; set; }
+
         public bool IsExpired => EndDate < DateTime.Now;
         public bool IsAtCapacity => TicketRemainingCount <= 0;
-        public int RegisteredGuestCount { get; set; }
-        public int WaitingGuestCount { get; set; }
-        public int TicketRemainingCount => Capacity - RegisteredGuestCount;
+        public int TicketRemainingCount => Capacity - GuestAttendanceCount;
 
         public Template Template { get; set; }
     }

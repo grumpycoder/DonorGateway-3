@@ -14,9 +14,8 @@ namespace web.App_Start
             {
                 cfg.CreateMap<Event, EventViewModel>()
                     .ForMember(vm => vm.EventId, map => map.MapFrom(m => m.Id))
-                    .ForMember(vm => vm.EventName, map => map.MapFrom(m => m.Name))
-                    .ForMember(vm => vm.RegisteredGuestCount, map => map.MapFrom(x => x.Guests.Sum(guest => guest.TicketCount)))
-                    .ForMember(vm => vm.WaitingGuestCount, map => map.MapFrom(x => x.Guests.Where(g => g.IsWaiting == true).Sum(guest => guest.TicketCount)));
+                    .ForMember(vm => vm.EventDisplayName, map => map.MapFrom(m => m.DisplayName))
+                    .ReverseMap();
 
                 cfg.CreateMap<Guest, RegisterFormViewModel>()
                     .ForMember(vm => vm.GuestId, map => map.MapFrom(m => m.Id))

@@ -108,6 +108,22 @@
     <Compile Include="Migrations\201607281243391_EventDisplayName.Designer.cs">
       <DependentUpon>201607281243391_EventDisplayName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607281618374_EventSummaryData.cs" />
+    <Compile Include="Migrations\201607281618374_EventSummaryData.Designer.cs">
+      <DependentUpon>201607281618374_EventSummaryData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607281643205_EventSummaryDataUpdate.cs" />
+    <Compile Include="Migrations\201607281643205_EventSummaryDataUpdate.Designer.cs">
+      <DependentUpon>201607281643205_EventSummaryDataUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607281648228_EventSummaryDataUpdate3.cs" />
+    <Compile Include="Migrations\201607281648228_EventSummaryDataUpdate3.Designer.cs">
+      <DependentUpon>201607281648228_EventSummaryDataUpdate3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607281653414_GuestTicketCountDataTypeChange.cs" />
+    <Compile Include="Migrations\201607281653414_GuestTicketCountDataTypeChange.Designer.cs">
+      <DependentUpon>201607281653414_GuestTicketCountDataTypeChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -160,6 +176,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607281243391_EventDisplayName.resx">
       <DependentUpon>201607281243391_EventDisplayName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607281618374_EventSummaryData.resx">
+      <DependentUpon>201607281618374_EventSummaryData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607281643205_EventSummaryDataUpdate.resx">
+      <DependentUpon>201607281643205_EventSummaryDataUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607281648228_EventSummaryDataUpdate3.resx">
+      <DependentUpon>201607281648228_EventSummaryDataUpdate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607281653414_GuestTicketCountDataTypeChange.resx">
+      <DependentUpon>201607281653414_GuestTicketCountDataTypeChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
