@@ -11,6 +11,7 @@ namespace web.ViewModels
         public string MembershipYear { get; set; }
         public bool? LeadershipCouncil { get; set; }
         public string InsideSalutation { get; set; }
+        public string OutsideSalutation { get; set; }
         public string HouseholdSalutation1 { get; set; }
         public string HouseholdSalutation2 { get; set; }
         public string HouseholdSalutation3 { get; set; }
@@ -35,6 +36,7 @@ namespace web.ViewModels
 
 
         //ADDED FOR IMPORT/EXPORT FIELDS
+        public string BusinessProcessOutputPKID { get; set; }
         public string ActualDate { get; set; }
         public string ExpectedDate { get; set; }
         public string Comment { get; set; }

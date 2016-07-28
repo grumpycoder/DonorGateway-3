@@ -1,6 +1,4 @@
 using CsvHelper.Configuration;
-using DonorGateway.Domain;
-using web.Controllers;
 
 namespace web.ViewModels
 {
@@ -17,6 +15,7 @@ namespace web.ViewModels
             Map(m => m.LeadershipCouncil).Name("LeadershipCouncil");
 
             Map(m => m.InsideSalutation).Name("InsideSalutation");
+            Map(m => m.OutsideSalutation).Name("OutsideSalutation");
             Map(m => m.HouseholdSalutation1).Name("HouseholdSalutation1");
             Map(m => m.HouseholdSalutation2).Name("HouseholdSalutation2");
             Map(m => m.HouseholdSalutation3).Name("HouseholdSalutation3");
@@ -41,7 +40,7 @@ namespace web.ViewModels
 
             Map(m => m.ActualDate).Name("ActualDate");
             Map(m => m.ExpectedDate).Name("ExpectedDate");
-            Map(m => m.Comment).Name("Comment");
+            Map(m => m.Comment).Name("DonorComment");
             Map(m => m.ResponseType).Name("ResponseType");
             Map(m => m.SPLCComment).Name("SPLCComment");
             Map(m => m.Status).Name("Status");
