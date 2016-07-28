@@ -12,8 +12,8 @@ namespace rsvp.web.ViewModels
         public int EventId { get; set; }
 
         public string CurrentDate { get; private set; }
-        public byte[] Image { get; set; }
-        public string MimeType { get; set; }
+        public byte[] EventTemplateImage { get; set; }
+        public string EventTemplateMimeType { get; set; }
 
         public string EventTemplateHeaderText { get; set; }
         public string EventTemplateBodyText { get; set; }
@@ -23,14 +23,6 @@ namespace rsvp.web.ViewModels
         public string EventTemplateNoText { get; set; }
         public string EventTemplateWaitText { get; set; }
 
-        public string HeaderText { get; set; }
-        public string BodyText { get; set; }
-        public string FooterText { get; set; }
-        public string FAQText { get; set; }
-        public string YesText { get; set; }
-        public string NoText { get; set; }
-        public string WaitText { get; set; }
-
         public string Name { get; set; }
         public string Email { get; set; }
         public string InsideSalutation { get; set; }
@@ -38,21 +30,23 @@ namespace rsvp.web.ViewModels
         public bool IsAttending { get; set; }
         public bool IsWaiting { get; set; }
 
-        public string DisplayName { get; set; }
-        public string Speaker { get; set; }
-        public string Venue { get; set; }
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zipcode { get; set; }
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
-        public string VenueOpenDate { get; set; }
+        public string EventName { get; set; }
+        public string EventDisplayName { get; set; }
+        public string EventSpeaker { get; set; }
+        public string EventVenue { get; set; }
+        public string EventStreet { get; set; }
+        public string EventCity { get; set; }
+        public string EventState { get; set; }
+        public string EventZipcode { get; set; }
+        public string EventStartDate { get; set; }
+        public string EventEndDate { get; set; }
+        public string EventVenueOpenDate { get; set; }
 
         public FinishFormViewModel()
         {
             CurrentDate = DateTime.Today.ToString("d");
         }
+
         public void ProcessMessages()
         {
             var properties = ((Type)typeof(FinishFormViewModel)).GetProperties().Where(p => p.PropertyType == typeof(string));
@@ -87,7 +81,7 @@ namespace rsvp.web.ViewModels
         {
             var pattern = "@{" + fieldName + "}";
 
-            var regex = new Regex(pattern);
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
             var matches = regex.Matches(stringToReplace);
 
             return matches.Replace(stringToReplace, fieldValue);

@@ -25,20 +25,7 @@ namespace web.App_Start
                     .ReverseMap();
 
                 cfg.CreateMap<Guest, FinishFormViewModel>()
-                   .ForMember(vm => vm.HeaderText, map => map.MapFrom(m => m.Event.Template.HeaderText))
-                   .ForMember(vm => vm.BodyText, map => map.MapFrom(m => m.Event.Template.BodyText))
-                   .ForMember(vm => vm.FooterText, map => map.MapFrom(m => m.Event.Template.FooterText))
-                   .ForMember(vm => vm.FAQText, map => map.MapFrom(m => m.Event.Template.FAQText))
-                   .ForMember(vm => vm.YesText, map => map.MapFrom(m => m.Event.Template.YesText))
-                   .ForMember(vm => vm.NoText, map => map.MapFrom(m => m.Event.Template.NoText))
-                   .ForMember(vm => vm.WaitText, map => map.MapFrom(m => m.Event.Template.WaitText))
-                   .ForMember(vm => vm.Image, map => map.MapFrom(m => m.Event.Template.Image))
-                   .ForMember(vm => vm.MimeType, map => map.MapFrom(m => m.Event.Template.MimeType))
-                   .ForMember(vm => vm.DisplayName, map => map.MapFrom(m => m.Event.EventName))
-                   .ForMember(vm => vm.StartDate, map => map.MapFrom(m => m.Event.StartDate.Value.ToString("dd MMM yyyy @ hh:mm")))
-                   .ForMember(vm => vm.EndDate, map => map.MapFrom(m => m.Event.EndDate.Value.ToString("dd MMM yyyy @ hh:mm")))
-                   .ForMember(vm => vm.VenueOpenDate, map => map.MapFrom(m => m.Event.VenueOpenDate.Value.ToString("dd MMM yyyy @ hh:mm")))
-                   ;
+                          ;
             });
 
         }

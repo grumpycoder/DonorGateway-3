@@ -8,12 +8,12 @@
 <p>
     @if (Model.IsAttending == true)
     {
-    @Html.Raw(@Model.YesText)
+    @Html.Raw(@Model.EventTemplateYesText)
     }
 
     @if (Model.IsAttending == false)
     {
-        @Html.Raw(@Model.NoText)
+        @Html.Raw(@Model.EventTemplateNoText)
     }
 
     @if (Model.IsWaiting == true)
@@ -23,9 +23,9 @@
         </p>
     }
 
-    @Html.Raw(@Model.FAQText)
+    @Html.Raw(@Model.EventTemplateFAQText)
 
-    @Html.Raw(@Model.FooterText)
+    @Html.Raw(@Model.EventTemplateFooterText)
 
 </p>
-@Html.ActionLink("Back", "Index", "Event", new { id = Model.DisplayName}, null )
+@Html.ActionLink("Back", "Index", "Event", new { id = Model.EventDisplayName}, null )
