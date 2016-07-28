@@ -51,7 +51,8 @@ namespace rsvp.web.Controllers
 
             var guest = db.Guests.Include(e => e.Event).SingleOrDefault(x => x.Id == form.GuestId);
 
-            var @event = Mapper.Map<EventViewModel>(db.Events.Include(g => g.Guests).Include(t => t.Template).FirstOrDefault(e => e.Id == form.EventId));
+            //var @event = Mapper.Map<EventViewModel>(db.Events.Include(g => g.Guests).Include(t => t.Template).FirstOrDefault(e => e.Id == form.EventId));
+            var @event = Mapper.Map<EventViewModel>(db.Events.Include(t => t.Template).FirstOrDefault(e => e.Id == form.EventId));
 
             if (@event.IsAtCapacity)
             {

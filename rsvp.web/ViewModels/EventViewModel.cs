@@ -24,6 +24,7 @@ namespace rsvp.web.ViewModels
         public int? TemplateId { get; set; }
         public int EventId { get; set; }
         public string EventName { get; set; }
+        public string EventDisplayName { get; set; }
 
         public bool IsExpired => EndDate < DateTime.Now;
         public bool IsAtCapacity => TicketRemainingCount <= 0;

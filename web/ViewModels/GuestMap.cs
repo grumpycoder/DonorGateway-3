@@ -1,8 +1,9 @@
 using CsvHelper.Configuration;
+using DonorGateway.Domain;
 
 namespace web.ViewModels
 {
-    public sealed class GuestMap : CsvClassMap<GuestExportViewModel>
+    public sealed class GuestMap : CsvClassMap<Guest>
     {
         public GuestMap()
         {
@@ -21,11 +22,11 @@ namespace web.ViewModels
             Map(m => m.HouseholdSalutation3).Name("HouseholdSalutation3");
             Map(m => m.EmailSalutation).Name("EmailSalutation");
 
-            Map(m => m.Name).Name("ConstituentName");
+            Map(m => m.Name).Name("ConstituentName", "ConstituentName");
             Map(m => m.Email).Name("Email");
             Map(m => m.Phone).Name("Phone");
 
-            Map(m => m.Address).Name("Address1");
+            Map(m => m.Address).Name("Address1", "Address1");
             Map(m => m.Address2).Name("Address2");
             Map(m => m.Address3).Name("Address3");
             Map(m => m.City).Name("City");
@@ -50,8 +51,8 @@ namespace web.ViewModels
             Map(m => m.SubCategory).Name("SubCategory");
             Map(m => m.Owner).Name("Owner");
 
-            Map(m => m.EventName).Name("EventName");
-            Map(m => m.EventCode).Name("EventCode");
+            //Map(m => m.EventName).Name("EventName");
+            //Map(m => m.EventCode).Name("EventCode");
 
 
 
