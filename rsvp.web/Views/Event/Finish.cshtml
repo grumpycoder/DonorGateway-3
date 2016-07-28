@@ -1,4 +1,4 @@
-﻿@model rsvp.web.ViewModels.FinishViewModel
+﻿@model rsvp.web.ViewModels.FinishFormViewModel
 @{
     ViewBag.Title = "Finish";
 }
@@ -6,22 +6,26 @@
 <h2>Thank You</h2>
 
 <p>
-    Dear @Model.Guest.Name,
-
-    @if (Model.Guest.IsAttending == true)
+    @if (Model.IsAttending == true)
     {
-    @Html.Raw(@Model.Event.Template.YesText)
+    @Html.Raw(@Model.YesText)
     }
 
-    @if (Model.Guest.IsAttending == false)
+    @if (Model.IsAttending == false)
     {
-        @Html.Raw(@Model.Event.Template.NoText)
+        @Html.Raw(@Model.NoText)
     }
 
-    @if (Model.Guest.IsWaiting == true)
+    @if (Model.IsWaiting == true)
     {
-        @Html.Raw(@Model.Event.Template.WaitText)
+        <p>
+            Your name has been placed on waiting list.
+        </p>
     }
-    
+
+    @Html.Raw(@Model.FAQText)
+
+    @Html.Raw(@Model.FooterText)
+
 </p>
-@Html.ActionLink("Back", "Index", "Event", new { id = Model.Event.Name}, null )
+@Html.ActionLink("Back", "Index", "Event", new { id = Model.DisplayName}, null )

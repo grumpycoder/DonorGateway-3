@@ -1,3 +1,4 @@
+using DonorGateway.Domain;
 using FluentValidation;
 using FluentValidation.Attributes;
 using System;
@@ -46,6 +47,9 @@ namespace rsvp.web.ViewModels
         public string EventName { get; set; }
 
         public bool IsRegistered => ResponseDate != null;
+
+        public Template Template { get; set; }
+
     }
 
     public class RegisterFormViewModelValidator : AbstractValidator<RegisterFormViewModel>

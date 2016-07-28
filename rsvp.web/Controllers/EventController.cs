@@ -31,7 +31,7 @@ namespace rsvp.web.Controllers
         [HttpPost]
         public ActionResult Register(EventViewModel model)
         {
-            var guest = Mapper.Map<RegisterFormViewModel>(db.Guests.Include(e => e.Event).FirstOrDefault(g => g.FinderNumber == model.PromoCode));
+            var guest = Mapper.Map<RegisterFormViewModel>(db.Guests.Include(e => e.Event).Include(t => t.Event.Template).FirstOrDefault(g => g.FinderNumber == model.PromoCode));
 
             if (guest == null) ModelState.AddModelError("PromoCode", "Invalid Reservation Code");
 
@@ -48,9 +48,9 @@ namespace rsvp.web.Controllers
         {
             if (!ModelState.IsValid) return View("Register", form);
 
-            var guest = db.Guests.Find(form.GuestId);
+            var guest = db.Guests.Include(e => e.Event).SingleOrDefault(x => x.Id == form.GuestId);
 
-            var @event = Mapper.Map<EventViewModel>(db.Events.Include(g => g.Guests).FirstOrDefault(e => e.Id == form.EventId));
+            var @event = Mapper.Map<EventViewModel>(db.Events.Include(g => g.Guests).Include(t => t.Template).FirstOrDefault(e => e.Id == form.EventId));
 
             if (@event.IsAtCapacity)
             {
@@ -61,18 +61,16 @@ namespace rsvp.web.Controllers
             form.ResponseDate = DateTime.Now;
             Mapper.Map(form, guest);
             db.Guests.AddOrUpdate(guest);
-            db.SaveChanges();
+            //db.SaveChanges();
 
-            var finishViewModel = new FinishViewModel()
-            {
-                Guest = form,
-                Event = @event
-            };
-            return View("Finish", finishViewModel);
+            var m = Mapper.Map<FinishFormViewModel>(guest);
+            m.ProcessMessages();
+
+            return View("Finish", m);
 
         }
 
-        public ActionResult Finish(FinishViewModel model)
+        public ActionResult Finish(FinishFormViewModel model)
         {
             return View(model);
         }

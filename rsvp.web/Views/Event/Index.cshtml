@@ -11,10 +11,14 @@
 
     <div class="container">
 
-        @{
-            var imgSrc = $"data:{@Model.Template.MimeType};base64,{@System.Convert.ToBase64String(@Model.Template.Image)}";
-        }
-        <img src="@imgSrc" class="img-responsive center-block">
+        <div class="row">
+            <div class="col-md-12">
+                @{
+                    var imgSrc = $"data:{@Model.Template.MimeType};base64,{@System.Convert.ToBase64String(@Model.Template.Image)}";
+                }
+                <img src="@imgSrc" class="img-responsive center-block event-image" alt="Event Image" />
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-12">
@@ -42,7 +46,6 @@
                 </div>
             </div>
         }
-
 
         @if (!Model.IsExpired && !Model.IsCancelled)
         {
@@ -80,15 +83,17 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="input-group input-group-lg">
-                        @Html.TextBoxFor(x => x.PromoCode, new { @class = "form-control" })
+                        @Html.TextBoxFor(x => x.PromoCode, new { @class = "form-control", placeholder = "example: 55566677788" })
                         <span class="input-group-btn">
                             <button class="btn btn-lg btn-primary" type="submit">Submit</button>
                         </span>
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <p>Example: 55566677788</p>
-                </div>
+                @*<div class="col-lg-12 col-md-12 col-sm-12">
+                        <p>
+                            <span>For example:</span> <strong>55566677788</strong>
+                        </p>
+                    </div>*@
             </div>
 
             <div class="row">
@@ -100,4 +105,4 @@
         }
 
     </div>
-            }
+                    }

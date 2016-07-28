@@ -47,6 +47,15 @@ span.field-validation-error {
     /*margin-top: 0px;*/
 }
 
+img.event-image {
+    margin-bottom: 2em
+}
+
+/*SPLC Overrides*/ 
+form h3 {
+    font-size: inherit;
+}
+
 
 /*Bootstrap Overrides*/
 .input-group-btn {

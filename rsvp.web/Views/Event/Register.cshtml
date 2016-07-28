@@ -3,7 +3,6 @@
     ViewBag.Title = "Register";
 }
 
-<h3>PLEASE RSVP BY SELECTING ONE OF THE OPTIONS BELOW.</h3>
 
 @using (Html.BeginForm("Confirm", "Event"))
 {
@@ -13,9 +12,16 @@
     @Html.HiddenFor(m => m.EventTicketAllowance)
 
 
+    var imgSrc = $"data:{@Model.Template.MimeType};base64,{@System.Convert.ToBase64String(@Model.Template.Image)}";
+
+    <img src="@imgSrc" class="img-responsive center-block" alt="Event Image" />
+
+
     <div class="row">
         @Html.ValidationSummary()
     </div>
+
+    <h3>PLEASE RSVP BY SELECTING ONE OF THE OPTIONS BELOW.</h3>
 
     <div class="form-group">
         <label class="control-label">Attending?</label>
@@ -46,6 +52,10 @@
             </div>
         </div>
     </div>
+
+    <h3>
+        Please fill in the form below. All fields are required.
+    </h3>
 
     <div class="form-group">
         <label class="control-label">Name</label>
@@ -127,6 +137,12 @@
 
     <div class="form-group">
         <button class="btn btn-lg btn-primary">Submit</button>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Raw(@Model.Template.FAQText)
+        </div>
     </div>
 
 }

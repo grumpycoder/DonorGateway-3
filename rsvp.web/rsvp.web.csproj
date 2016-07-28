@@ -150,7 +150,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EventController.cs" />
-    <Compile Include="ViewModels\FinishViewModel.cs" />
+    <Compile Include="ViewModels\FinishFormViewModel.cs" />
     <Compile Include="ViewModels\RegisterFormViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
