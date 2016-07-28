@@ -11,6 +11,8 @@ namespace DonorGateway.Domain
         }
 
         public string Name { get; set; }
+        public string DisplayName { get; set; }
+        public string EventCode { get; set; }
         public string Speaker { get; set; }
         public string Venue { get; set; }
         public string Street { get; set; }
@@ -29,9 +31,5 @@ namespace DonorGateway.Domain
         public ICollection<Guest> Guests { get; set; }
         public virtual Template Template { get; set; }
 
-
-        //ADDED FOR IMPORT/EXPORT FIELDS
-        public string EventCode { get; set; }
-        public string EventName { get; set; }
     }
 }

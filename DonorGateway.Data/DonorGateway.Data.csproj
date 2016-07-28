@@ -100,6 +100,14 @@
     <Compile Include="Migrations\201607112119223_guest-refactor.Designer.cs">
       <DependentUpon>201607112119223_guest-refactor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607281238505_GuestOutsideSalutation.cs" />
+    <Compile Include="Migrations\201607281238505_GuestOutsideSalutation.Designer.cs">
+      <DependentUpon>201607281238505_GuestOutsideSalutation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607281243391_EventDisplayName.cs" />
+    <Compile Include="Migrations\201607281243391_EventDisplayName.Designer.cs">
+      <DependentUpon>201607281243391_EventDisplayName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -146,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607112119223_guest-refactor.resx">
       <DependentUpon>201607112119223_guest-refactor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607281238505_GuestOutsideSalutation.resx">
+      <DependentUpon>201607281238505_GuestOutsideSalutation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607281243391_EventDisplayName.resx">
+      <DependentUpon>201607281243391_EventDisplayName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

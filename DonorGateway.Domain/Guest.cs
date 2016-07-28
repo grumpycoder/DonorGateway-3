@@ -13,6 +13,7 @@ namespace DonorGateway.Domain
         public string MembershipYear { get; set; }
         public bool? LeadershipCouncil { get; set; }
         public string InsideSalutation { get; set; }
+        public string OutsideSalutation { get; set; }
         public string HouseholdSalutation1 { get; set; }
         public string HouseholdSalutation2 { get; set; }
         public string HouseholdSalutation3 { get; set; }
