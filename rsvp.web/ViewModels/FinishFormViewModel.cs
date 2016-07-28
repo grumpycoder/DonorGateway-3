@@ -14,6 +14,7 @@ namespace rsvp.web.ViewModels
         public byte[] Image { get; set; }
         public string MimeType { get; set; }
 
+
         public string HeaderText { get; set; }
         public string BodyText { get; set; }
         public string FooterText { get; set; }
@@ -54,28 +55,23 @@ namespace rsvp.web.ViewModels
             {
                 ProcessField(prop);
             }
-
         }
 
         private void ProcessField(PropertyInfo field)
         {
-
             if (field.GetValue(this, null) == null) return;
 
             var text = field.GetValue(this, null).ToString();
-
 
             var propertyInfos = ((Type)typeof(FinishFormViewModel)).GetProperties().Where(p => p.PropertyType == typeof(string));
 
             foreach (var propertyInfo in propertyInfos)
             {
-                if (propertyInfo.GetValue(this, null) != null)
-                {
+                if (propertyInfo.GetValue(this, null) == null) continue;
+                var propValue = propertyInfo.GetValue(this, null).ToString();
 
-                    var propValue = propertyInfo.GetValue(this, null).ToString();
-                    if (!string.IsNullOrWhiteSpace(propValue)) text = ReplaceText(text, propertyInfo.Name, propValue);
-                }
-
+                if (string.IsNullOrWhiteSpace(propValue)) continue;
+                text = ReplaceText(text, propertyInfo.Name, propValue);
             }
 
             field.SetValue(this, Convert.ChangeType(text, field.PropertyType), null);
@@ -83,20 +79,15 @@ namespace rsvp.web.ViewModels
         }
 
 
-        private string ReplaceText(string stringToReplace, string fieldName, string fieldValue)
+        private static string ReplaceText(string stringToReplace, string fieldName, string fieldValue)
         {
 
+            var pattern = "@{" + fieldName + "}";
 
-            string pattern1 = "@{" + fieldName + "}";
-            var replace1 = fieldValue;
+            var regex = new Regex(pattern);
+            var matches = regex.Matches(stringToReplace);
 
-            Regex rx = new Regex(pattern1);
-            var m = rx.Matches(stringToReplace);
-
-            var t = m.Replace(stringToReplace, replace1);
-
-            var r = rx.Replace(stringToReplace, replace1);
-            return t;
+            return matches.Replace(stringToReplace, fieldValue);
 
         }
     }
