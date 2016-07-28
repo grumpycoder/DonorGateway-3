@@ -1,4 +1,5 @@
-﻿using System;
+﻿using rsvp.web.Helpers;
+using System;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -14,6 +15,13 @@ namespace rsvp.web.ViewModels
         public byte[] Image { get; set; }
         public string MimeType { get; set; }
 
+        public string EventTemplateHeaderText { get; set; }
+        public string EventTemplateBodyText { get; set; }
+        public string EventTemplateFooterText { get; set; }
+        public string EventTemplateFAQText { get; set; }
+        public string EventTemplateYesText { get; set; }
+        public string EventTemplateNoText { get; set; }
+        public string EventTemplateWaitText { get; set; }
 
         public string HeaderText { get; set; }
         public string BodyText { get; set; }
@@ -24,11 +32,11 @@ namespace rsvp.web.ViewModels
         public string WaitText { get; set; }
 
         public string Name { get; set; }
-        public bool IsAttending { get; set; }
-        public bool IsWaiting { get; set; }
         public string Email { get; set; }
         public string InsideSalutation { get; set; }
         public string EmailSalutation { get; set; }
+        public bool IsAttending { get; set; }
+        public bool IsWaiting { get; set; }
 
         public string DisplayName { get; set; }
         public string Speaker { get; set; }
@@ -40,9 +48,6 @@ namespace rsvp.web.ViewModels
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public string VenueOpenDate { get; set; }
-
-        public RegisterFormViewModel RegisterForm { get; set; }
-        public EventViewModel EventViewModel { get; set; }
 
         public FinishFormViewModel()
         {
@@ -78,10 +83,8 @@ namespace rsvp.web.ViewModels
 
         }
 
-
         private static string ReplaceText(string stringToReplace, string fieldName, string fieldValue)
         {
-
             var pattern = "@{" + fieldName + "}";
 
             var regex = new Regex(pattern);
@@ -89,22 +92,6 @@ namespace rsvp.web.ViewModels
 
             return matches.Replace(stringToReplace, fieldValue);
 
-        }
-    }
-
-    public static class RegexExtensions
-    {
-        public static string Replace(this MatchCollection matches, string source, string replacement)
-        {
-            foreach (var match in matches.Cast<Match>())
-            {
-                source = match.Replace(source, replacement);
-            }
-            return source;
-        }
-        public static string Replace(this Match match, string source, string replacement)
-        {
-            return source.Substring(0, match.Index) + replacement + source.Substring(match.Index + match.Length);
         }
     }
 }
