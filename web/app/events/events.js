@@ -98,11 +98,15 @@
 
         }
 
+        vm.refreshGuests = function() {
+            vm.searchGuests(tableStateRef);
+        }
+
         vm.deleteEvent = function (id) {
             //TODO: Confirmation on delete
             vm.isBusy = true;
             service.remove(id)
-                .then(function (data) {
+                .then(function () {
                     vm.selectedEvent = null;
                     logger.success('Deleted event');
                 }).finally(function () {
@@ -194,11 +198,11 @@
             tableStateRef = tableState;
             if (!vm.selectedEvent) return false;
 
-            if (typeof (tableState.sort.predicate) != "undefined") {
+            if (typeof (tableState.sort.predicate) !== "undefined") {
                 vm.searchModel.orderBy = tableState.sort.predicate;
                 vm.searchModel.orderDirection = tableState.sort.reverse ? 'desc' : 'asc';
             }
-            if (typeof (tableState.search.predicateObject) != "undefined") {
+            if (typeof (tableState.search.predicateObject) !== "undefined") {
                 vm.searchModel.name = tableState.search.predicateObject.name;
                 vm.searchModel.address = tableState.search.predicateObject.address;
                 vm.searchModel.city = tableState.search.predicateObject.city;
@@ -267,9 +271,9 @@
             reader.onloadend = function () {
                 vm.isBusy = false;
             }
-            reader.onload = function (e) {
+            reader.onload = function () {
                 var dataUrl = reader.result;
-                vm.selectedEvent.template.image = dataUrl.split(',')[1];
+                vm.selectedEvent.template.image = dataUrl.split(",")[1];
                 vm.selectedEvent.template.mimeType = $file.type;
             };
             reader.readAsDataURL($file);

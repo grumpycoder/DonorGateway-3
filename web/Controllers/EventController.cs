@@ -1,7 +1,9 @@
-﻿using DonorGateway.Data;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using CsvHelper;
+using DonorGateway.Data;
 using DonorGateway.Domain;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.IO;
@@ -12,9 +14,6 @@ using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using CsvHelper;
 using web.Helpers;
 using web.ViewModels;
 
@@ -39,42 +38,17 @@ namespace web.Controllers
         [Route("{name}")]
         public IHttpActionResult Get(string name)
         {
-            var vm = context.Events.AsQueryable().Where(x => x.Name == name).Include(x => x.Guests).FirstOrDefault();
+            var vm = context.Events.AsQueryable().SingleOrDefault(x => x.Name == name);
             return Ok(vm);
         }
 
         [HttpGet, Route("{id:int}")]
         public IHttpActionResult Get(int id)
         {
-            var e = context.Events.Include(x => x.Guests).AsQueryable().FirstOrDefault(x => x.Id == id);
-            if (e == null) return NotFound();
-            //TODO: Automapper Here
-            var model = new EventViewModel
-            {
-                Id = e.Id,
-                Name = e.Name,
-                Speaker = e.Speaker,
-                Venue = e.Venue,
-                Street = e.Street,
-                City = e.City,
-                State = e.State,
-                Zipcode = e.Zipcode,
-                Capacity = e.Capacity,
-                StartDate = e.StartDate,
-                EndDate = e.EndDate,
-                VenueOpenDate = e.VenueOpenDate,
-                RegistrationCloseDate = e.RegistrationCloseDate,
-                TicketsAllowance = e.TicketAllowance,
-                IsCancelled = e.IsCancelled,
-                Template = e.Template,
-                RegisteredGuestCount = e.Guests.Count(x => x.IsAttending == true),
-                WaitingGuestCount = e.Guests.Count(x => x.IsWaiting == true),
-                TicketMailedCount = e.Guests.Count(x => x.IsMailed == true),
-                TicketMailedQueueCount =
-                    e.Guests.Count(x => x.IsAttending == true && x.IsWaiting == false && x.IsMailed == false)
-            };
+            var @event = context.Events.SingleOrDefault(x => x.Id == id);
+            if (@event == null) return NotFound();
 
-            model.TicketRemainingCount = e.Capacity - (model.RegisteredGuestCount - model.WaitingGuestCount);
+            var model = Mapper.Map<EventViewModel>(@event);
             return Ok(model);
         }
 
@@ -157,7 +131,7 @@ namespace web.Controllers
                 csv.WriteHeader<GuestExportViewModel>();
                 csv.WriteRecords(list);
             }
-            var filename = $"guest-list-{DateTime.Now.ToString("u")}.csv"; 
+            var filename = $"guest-list-{DateTime.Now.ToString("u")}.csv";
 
             var response = new HttpResponseMessage(HttpStatusCode.OK);
             var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -167,13 +141,10 @@ namespace web.Controllers
             {
                 FileName = filename
             };
-            response.Content.Headers.Add("x-filename", filename); 
-            
-
+            response.Content.Headers.Add("x-filename", filename);
 
             return ResponseMessage(response);
         }
-
 
         [HttpDelete, Route("{id}")]
         public IHttpActionResult Delete(int id)
@@ -207,66 +178,18 @@ namespace web.Controllers
             context.Events.Add(vm);
             context.SaveChanges();
 
-            var model = new EventViewModel
-            {
-                Id = vm.Id,
-                Name = vm.Name,
-                Speaker = vm.Speaker,
-                Venue = vm.Venue,
-                Street = vm.Street,
-                City = vm.City,
-                State = vm.State,
-                Zipcode = vm.Zipcode,
-                Capacity = vm.Capacity,
-                StartDate = vm.StartDate,
-                EndDate = vm.EndDate,
-                VenueOpenDate = vm.VenueOpenDate,
-                RegistrationCloseDate = vm.RegistrationCloseDate,
-                TicketsAllowance = vm.TicketAllowance,
-                IsCancelled = vm.IsCancelled,
-                Template = vm.Template,
-                RegisteredGuestCount = vm.Guests.Count(x => x.IsAttending == true),
-                WaitingGuestCount = vm.Guests.Count(x => x.IsWaiting == true),
-                TicketMailedCount = vm.Guests.Count(x => x.IsMailed == true),
-                TicketMailedQueueCount =
-                  vm.Guests.Count(x => x.IsAttending == true && x.IsWaiting == false && x.IsMailed == false)
-            };
-            model.TicketRemainingCount = vm.Capacity - (model.RegisteredGuestCount - model.WaitingGuestCount);
+            var @event = Mapper.Map<EventViewModel>(vm);
 
-            return Ok(vm);
+            return Ok(@event);
         }
 
         public IHttpActionResult Put(Event vm)
         {
             context.Events.AddOrUpdate(vm);
             context.SaveChanges();
-            var e = context.Events.Include(x => x.Guests).AsQueryable().FirstOrDefault(x => x.Id == vm.Id);
-            if (e == null) return NotFound();
-            var model = new EventViewModel
-            {
-                Id = e.Id,
-                Name = e.Name,
-                Speaker = e.Speaker,
-                Venue = e.Venue,
-                Street = e.Street,
-                City = e.City,
-                State = e.State,
-                Zipcode = e.Zipcode,
-                Capacity = e.Capacity,
-                StartDate = e.StartDate,
-                EndDate = e.EndDate,
-                VenueOpenDate = e.VenueOpenDate,
-                RegistrationCloseDate = e.RegistrationCloseDate,
-                TicketsAllowance = e.TicketAllowance,
-                IsCancelled = e.IsCancelled,
-                Template = e.Template,
-                RegisteredGuestCount = e.Guests.Count(x => x.IsAttending == true),
-                WaitingGuestCount = e.Guests.Count(x => x.IsWaiting == true),
-                TicketMailedCount = e.Guests.Count(x => x.IsMailed == true),
-                TicketMailedQueueCount =
-                   e.Guests.Count(x => x.IsAttending == true && x.IsWaiting == false && x.IsMailed == false)
-            };
-            model.TicketRemainingCount = e.Capacity - (model.RegisteredGuestCount - model.WaitingGuestCount);
+
+            var model = Mapper.Map<EventViewModel>(vm);
+
             return Ok(model);
         }
     }

@@ -47,11 +47,16 @@ namespace rsvp.web.Controllers
         [HttpPost]
         public ActionResult Confirm(RegisterFormViewModel form)
         {
-            if (!ModelState.IsValid) return View("Register", form);
+            if (!ModelState.IsValid)
+            {
+                var @evt = db.Events.Include(x => x.Template).SingleOrDefault(e => e.Id == form.EventId);
+                form.Template = @evt.Template;
+                return View("Register", form);
+            }
 
-            var guest = db.Guests.Include(e => e.Event).SingleOrDefault(x => x.Id == form.GuestId);
+            var guest = db.Guests.Include(e => e.Event).Include(t => t.Event.Template).SingleOrDefault(x => x.Id == form.GuestId);
 
-            var eventViewModel = Mapper.Map<EventViewModel>(db.Events.FirstOrDefault(e => e.Id == form.EventId));
+            var eventViewModel = Mapper.Map<EventViewModel>(db.Events.Include(t => t.Template).FirstOrDefault(e => e.Id == form.EventId));
 
             if (eventViewModel.IsAtCapacity)
             {

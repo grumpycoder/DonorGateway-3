@@ -1,4 +1,5 @@
-﻿using rsvp.web.Helpers;
+﻿using DonorGateway.Domain;
+using rsvp.web.Helpers;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -41,6 +42,8 @@ namespace rsvp.web.ViewModels
         public string EventStartDate { get; set; }
         public string EventEndDate { get; set; }
         public string EventVenueOpenDate { get; set; }
+
+        public Template Template { get; set; }
 
         public FinishFormViewModel()
         {
