@@ -9,7 +9,7 @@ namespace rsvp.web.ViewModels
     public class RegisterFormViewModel
     {
         public int GuestId { get; set; }
-
+        
         public string PromoCode { get; set; }
 
         public string Name { get; set; }

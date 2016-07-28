@@ -31,7 +31,8 @@ namespace rsvp.web.Controllers
         [HttpPost]
         public ActionResult Register(EventViewModel model)
         {
-            var guest = Mapper.Map<RegisterFormViewModel>(db.Guests.Include(e => e.Event).Include(t => t.Event.Template).FirstOrDefault(g => g.FinderNumber == model.PromoCode));
+            var guest = Mapper.Map<RegisterFormViewModel>(db.Guests.Include(e => e.Event).Include(t => t.Event.Template)
+                                                            .FirstOrDefault(g => g.FinderNumber == model.PromoCode));
 
             if (guest == null) ModelState.AddModelError("PromoCode", "Invalid Reservation Code");
 
