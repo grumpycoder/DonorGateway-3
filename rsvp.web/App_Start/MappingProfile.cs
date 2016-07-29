@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DonorGateway.Domain;
 using rsvp.web.ViewModels;
-using System.Linq;
+// ReSharper disable CheckNamespace
 
 namespace web.App_Start
 {

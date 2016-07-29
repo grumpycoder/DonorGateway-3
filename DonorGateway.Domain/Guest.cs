@@ -26,12 +26,12 @@ namespace DonorGateway.Domain
         public string Address2 { get; set; }
         public string Address3 { get; set; }
         public string City { get; set; }
-        public string State { get; set; }
+        public string State { get; set; } 
         public string StateName { get; set; }
         public string Zipcode { get; set; }
         public string Country { get; set; }
 
-        public int TicketCount { get; set; }
+        public int? TicketCount { get; set; }
         public bool? IsMailed { get; set; } = false;
 
         public bool? IsAttending { get; set; } = false;
@@ -43,7 +43,7 @@ namespace DonorGateway.Domain
 
         public string MailedBy { get; set; }
 
-        public int EventId { get; set; }
+        public int? EventId { get; set; }
 
         public virtual Event Event { get; set; }
 

@@ -52,7 +52,7 @@ namespace rsvp.web.ViewModels
 
         public void ProcessMessages()
         {
-            var properties = ((Type)typeof(FinishFormViewModel)).GetProperties().Where(p => p.PropertyType == typeof(string));
+            var properties = typeof(FinishFormViewModel).GetProperties().Where(p => p.PropertyType == typeof(string));
             foreach (var prop in properties)
             {
                 ProcessField(prop);
@@ -65,7 +65,7 @@ namespace rsvp.web.ViewModels
 
             var text = field.GetValue(this, null).ToString();
 
-            var propertyInfos = ((Type)typeof(FinishFormViewModel)).GetProperties().Where(p => p.PropertyType == typeof(string));
+            var propertyInfos = typeof(FinishFormViewModel).GetProperties().Where(p => p.PropertyType == typeof(string));
 
             foreach (var propertyInfo in propertyInfos)
             {

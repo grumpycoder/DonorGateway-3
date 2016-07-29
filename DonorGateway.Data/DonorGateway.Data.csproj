@@ -56,73 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\201606302034252_init.cs" />
-    <Compile Include="Migrations\201606302034252_init.Designer.cs">
-      <DependentUpon>201606302034252_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606302038293_event-refacotr.cs" />
-    <Compile Include="Migrations\201606302038293_event-refacotr.Designer.cs">
-      <DependentUpon>201606302038293_event-refacotr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607011132064_template-remove-headerimage.cs" />
-    <Compile Include="Migrations\201607011132064_template-remove-headerimage.Designer.cs">
-      <DependentUpon>201607011132064_template-remove-headerimage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607011336015_guest-leadcouncil-bool.cs" />
-    <Compile Include="Migrations\201607011336015_guest-leadcouncil-bool.Designer.cs">
-      <DependentUpon>201607011336015_guest-leadcouncil-bool.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607061905427_guest-event-update.cs" />
-    <Compile Include="Migrations\201607061905427_guest-event-update.Designer.cs">
-      <DependentUpon>201607061905427_guest-event-update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607062105551_event-ticketcount.cs" />
-    <Compile Include="Migrations\201607062105551_event-ticketcount.Designer.cs">
-      <DependentUpon>201607062105551_event-ticketcount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607062108290_remove-event-ticketcount.cs" />
-    <Compile Include="Migrations\201607062108290_remove-event-ticketcount.Designer.cs">
-      <DependentUpon>201607062108290_remove-event-ticketcount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607071402118_event-capacity.cs" />
-    <Compile Include="Migrations\201607071402118_event-capacity.Designer.cs">
-      <DependentUpon>201607071402118_event-capacity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607112034016_guest-event-add-fields-refactor.cs" />
-    <Compile Include="Migrations\201607112034016_guest-event-add-fields-refactor.Designer.cs">
-      <DependentUpon>201607112034016_guest-event-add-fields-refactor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607112035251_guest-expectedDate-rename.cs" />
-    <Compile Include="Migrations\201607112035251_guest-expectedDate-rename.Designer.cs">
-      <DependentUpon>201607112035251_guest-expectedDate-rename.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607112119223_guest-refactor.cs" />
-    <Compile Include="Migrations\201607112119223_guest-refactor.Designer.cs">
-      <DependentUpon>201607112119223_guest-refactor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607281238505_GuestOutsideSalutation.cs" />
-    <Compile Include="Migrations\201607281238505_GuestOutsideSalutation.Designer.cs">
-      <DependentUpon>201607281238505_GuestOutsideSalutation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607281243391_EventDisplayName.cs" />
-    <Compile Include="Migrations\201607281243391_EventDisplayName.Designer.cs">
-      <DependentUpon>201607281243391_EventDisplayName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607281618374_EventSummaryData.cs" />
-    <Compile Include="Migrations\201607281618374_EventSummaryData.Designer.cs">
-      <DependentUpon>201607281618374_EventSummaryData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607281643205_EventSummaryDataUpdate.cs" />
-    <Compile Include="Migrations\201607281643205_EventSummaryDataUpdate.Designer.cs">
-      <DependentUpon>201607281643205_EventSummaryDataUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607281648228_EventSummaryDataUpdate3.cs" />
-    <Compile Include="Migrations\201607281648228_EventSummaryDataUpdate3.Designer.cs">
-      <DependentUpon>201607281648228_EventSummaryDataUpdate3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607281653414_GuestTicketCountDataTypeChange.cs" />
-    <Compile Include="Migrations\201607281653414_GuestTicketCountDataTypeChange.Designer.cs">
-      <DependentUpon>201607281653414_GuestTicketCountDataTypeChange.cs</DependentUpon>
+    <Compile Include="Migrations\201607282353428_init.cs" />
+    <Compile Include="Migrations\201607282353428_init.Designer.cs">
+      <DependentUpon>201607282353428_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -138,56 +74,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606302034252_init.resx">
-      <DependentUpon>201606302034252_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606302038293_event-refacotr.resx">
-      <DependentUpon>201606302038293_event-refacotr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607011132064_template-remove-headerimage.resx">
-      <DependentUpon>201607011132064_template-remove-headerimage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607011336015_guest-leadcouncil-bool.resx">
-      <DependentUpon>201607011336015_guest-leadcouncil-bool.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607061905427_guest-event-update.resx">
-      <DependentUpon>201607061905427_guest-event-update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607062105551_event-ticketcount.resx">
-      <DependentUpon>201607062105551_event-ticketcount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607062108290_remove-event-ticketcount.resx">
-      <DependentUpon>201607062108290_remove-event-ticketcount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607071402118_event-capacity.resx">
-      <DependentUpon>201607071402118_event-capacity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607112034016_guest-event-add-fields-refactor.resx">
-      <DependentUpon>201607112034016_guest-event-add-fields-refactor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607112035251_guest-expectedDate-rename.resx">
-      <DependentUpon>201607112035251_guest-expectedDate-rename.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607112119223_guest-refactor.resx">
-      <DependentUpon>201607112119223_guest-refactor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607281238505_GuestOutsideSalutation.resx">
-      <DependentUpon>201607281238505_GuestOutsideSalutation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607281243391_EventDisplayName.resx">
-      <DependentUpon>201607281243391_EventDisplayName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607281618374_EventSummaryData.resx">
-      <DependentUpon>201607281618374_EventSummaryData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607281643205_EventSummaryDataUpdate.resx">
-      <DependentUpon>201607281643205_EventSummaryDataUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607281648228_EventSummaryDataUpdate3.resx">
-      <DependentUpon>201607281648228_EventSummaryDataUpdate3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607281653414_GuestTicketCountDataTypeChange.resx">
-      <DependentUpon>201607281653414_GuestTicketCountDataTypeChange.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607282353428_init.resx">
+      <DependentUpon>201607282353428_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

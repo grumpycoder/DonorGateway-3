@@ -40,7 +40,7 @@ namespace web
                     FullName = "Administrator",
                     Email = "mark.lawrence@splcenter.org"
                 };
-                var result = userManager.Create(user, "password");
+                userManager.Create(user, "password");
                 //                await userManager.AddToRoleAsync(user.Id, "admin");
             }
         }

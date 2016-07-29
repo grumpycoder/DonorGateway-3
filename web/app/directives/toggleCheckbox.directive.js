@@ -19,7 +19,7 @@
                 var updateModelFromElement = function() {
                     // If modified
                     var checked = $element.prop('checked');
-                    if (checked != ngModel.$viewValue) {
+                    if (checked !== ngModel.$viewValue) {
                         // Update ngModel
                         ngModel.$setViewValue(checked);
                         $scope.$apply();

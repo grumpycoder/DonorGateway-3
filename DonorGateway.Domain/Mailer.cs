@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DonorGateway.Domain
+﻿namespace DonorGateway.Domain
 {
     public class Mailer
     {

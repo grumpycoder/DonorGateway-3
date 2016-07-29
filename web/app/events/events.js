@@ -90,7 +90,7 @@
             service.getById(vm.selectedEvent.id)
                 .then(function (data) {
                     angular.extend(vm.selectedEvent, data);
-                    vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
+                    //vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
                 }).finally(function () {
                     vm.isBusy = false;
                     vm.searchGuests(tableStateRef);
@@ -107,7 +107,7 @@
             vm.isBusy = true;
             service.remove(id)
                 .then(function () {
-                    vm.selectedEvent = null;
+                    vm.selectedEvent = undefined;
                     logger.success('Deleted event');
                 }).finally(function () {
                     vm.isBusy = false;
@@ -264,6 +264,7 @@
         }
 
         vm.fileSelected = function ($files, $file) {
+            debugger;
             var reader = new FileReader();
             reader.onloadstart = function () {
                 vm.isBusy = true;
@@ -311,6 +312,7 @@
             }).result.then(function (data) {
                 vm.selectedEvent = data;
                 vm.events.unshift(vm.selectedEvent);
+                logger.log('event', vm.selectedEvent);
                 logger.success('Successfully created ' + data.name);
             });
         }

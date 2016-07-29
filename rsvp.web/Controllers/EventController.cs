@@ -50,7 +50,7 @@ namespace rsvp.web.Controllers
             if (!ModelState.IsValid)
             {
                 var @evt = db.Events.Include(x => x.Template).SingleOrDefault(e => e.Id == form.EventId);
-                form.Template = @evt.Template;
+                if (@evt != null) form.Template = @evt.Template;
                 return View("Register", form);
             }
 

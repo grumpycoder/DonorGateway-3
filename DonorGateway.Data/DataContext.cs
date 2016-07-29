@@ -33,10 +33,9 @@ namespace DonorGateway.Data
 
             builder.Entity<Constituent>().HasMany(t => t.TaxItems);
             builder.Entity<TaxItem>().Property(p => p.DonationDate).HasColumnType("date");
-            //builder.Entity<Event>().HasMany(t => t.Guests);
 
             builder.Entity<Event>().HasMany(x => x.Guests).WithRequired(x => x.Event).WillCascadeOnDelete(true);
-            
+
 
         }
 

@@ -45,7 +45,7 @@ namespace web.Controllers
         [HttpGet, Route("{id:int}")]
         public IHttpActionResult Get(int id)
         {
-            var @event = context.Events.SingleOrDefault(x => x.Id == id);
+            var @event = context.Events.Include(t => t.Template).SingleOrDefault(x => x.Id == id);
             if (@event == null) return NotFound();
 
             var model = Mapper.Map<EventViewModel>(@event);
@@ -149,26 +149,18 @@ namespace web.Controllers
         [HttpDelete, Route("{id}")]
         public IHttpActionResult Delete(int id)
         {
-            var vm = context.Events.Find(id);
-            var message = "Deleted Event";
+            var @event = context.Events.Find(id);
+            if (@event == null) return NotFound();
 
-            if (vm != null)
-            {
-                try
-                {
-                    context.Events.Remove(vm);
-                    context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    message = ex.Message;
-                }
-            }
-            else
-            {
-                return NotFound();
-            }
-            return Ok(message);
+            var template = context.Templates.Find(@event.TemplateId);
+
+            context.Templates.Remove(template);
+            context.SaveChanges();
+
+            context.Events.Remove(@event);
+            context.SaveChanges();
+
+            return Ok("Deleted Event");
         }
 
         public IHttpActionResult Post(Event vm)
