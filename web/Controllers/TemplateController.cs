@@ -50,7 +50,9 @@ namespace web.Controllers
 
         public IHttpActionResult Delete(int id)
         {
-            var c = context.Templates.Find(id);
+            var template = context.Templates.Find(id);
+            context.Templates.Remove(template);
+            context.SaveChanges();
             return Ok($"Deleted {id}");
         }
     }

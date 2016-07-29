@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-12">
                 @{
-                    var imgSrc = $"data:{@Model.Template.MimeType};base64,{@System.Convert.ToBase64String(@Model.Template.Image)}";
+                    var imgSrc = $"data:{Model.Template.MimeType};base64,{Convert.ToBase64String(Model.Template.Image)}";
                 }
                 <img src="@imgSrc" class="img-responsive center-block event-image" alt="Event Image" />
             </div>
@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>
-                    @Html.DisplayFor(m => @Model.EventDisplayName)
+                    @Html.DisplayFor(m => Model.EventDisplayName)
                 </h2>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 {
             <div class="row">
                 <div class="col-md-12">
-                    @Html.Raw(@Model.Template.ExpiredText)
+                    @Html.Raw(Model.Template.ExpiredText)
                 </div>
             </div>
         }
@@ -42,7 +42,7 @@
                 {
             <div class="row">
                 <div class="col-md-12">
-                    @Html.Raw(@Model.Template.CancelText)
+                    @Html.Raw(Model.Template.CancelText)
                 </div>
             </div>
         }
@@ -52,14 +52,14 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    @Html.Raw(@Model.Template.HeaderText)
+                    @Html.Raw(Model.Template.HeaderText)
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
 
-                    @Html.Raw(@Model.Template.BodyText)
+                    @Html.Raw(Model.Template.BodyText)
 
                 </div>
             </div>
@@ -68,7 +68,7 @@
             {
                 <div class="row">
                     <div class="col-md-12">
-                        @Html.Raw(@Model.Template.WaitText)
+                        @Html.Raw(Model.Template.WaitText)
                     </div>
                 </div>
             }
@@ -98,7 +98,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    @Html.Raw(@Model.Template.FAQText)
+                    @Html.Raw(Model.Template.FAQText)
                 </div>
             </div>
 

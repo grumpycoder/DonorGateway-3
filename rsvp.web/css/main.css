@@ -43,9 +43,6 @@ span.field-validation-error {
     font-weight: bold;
 }
 
-.body-content {
-    /*margin-top: 0px;*/
-}
 
 img.event-image {
     margin-bottom: 2em
@@ -87,8 +84,8 @@ form h3 {
     padding: 10px 16px;
     font-size: 18px;
     line-height: 1.3333333;
-    -ms-border-radius: 0px;
-    border-radius: 0px;
+    -ms-border-radius: 0;
+    border-radius: 0;
 }
 
 
@@ -102,13 +99,17 @@ label.btn.btn-primary {
     color: #393635;
     padding: 0.5rem 1rem;
     border: 3px solid #393635;
+    -webkit-transition: color 0.3s ease;
+    -moz-transition: color 0.3s ease;
+    -ms-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
     transition: color 0.3s ease;
     cursor: pointer;
     transition: color 0.3s ease;
     cursor: pointer;
 }
 
-    label.btn.btn-primary.active {
+label.btn.btn-primary.active {
         background: #d5292a;
         border: 3px solid #cb1f20;
         color: #ffffff;

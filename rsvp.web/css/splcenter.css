@@ -15,9 +15,6 @@
     -ms-border-radius: 0;
     border-radius: 0;
 }
-.btn-primary {
-    /*background-color: #234472;*/ 
-}
 
 .btn-info:hover {
     background-color: #d5292a;

@@ -90,7 +90,7 @@
             service.getById(vm.selectedEvent.id)
                 .then(function (data) {
                     angular.extend(vm.selectedEvent, data);
-                    vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
+                    //vm.selectedEvent.isExpired = moment(vm.selectedEvent.endDate).toDate() < vm.currentDate;
                 }).finally(function () {
                     vm.isBusy = false;
                     vm.searchGuests(tableStateRef);
@@ -98,12 +98,16 @@
 
         }
 
+        vm.refreshGuests = function() {
+            vm.searchGuests(tableStateRef);
+        }
+
         vm.deleteEvent = function (id) {
             //TODO: Confirmation on delete
             vm.isBusy = true;
             service.remove(id)
-                .then(function (data) {
-                    vm.selectedEvent = null;
+                .then(function () {
+                    vm.selectedEvent = undefined;
                     logger.success('Deleted event');
                 }).finally(function () {
                     vm.isBusy = false;
@@ -194,11 +198,11 @@
             tableStateRef = tableState;
             if (!vm.selectedEvent) return false;
 
-            if (typeof (tableState.sort.predicate) != "undefined") {
+            if (typeof (tableState.sort.predicate) !== "undefined") {
                 vm.searchModel.orderBy = tableState.sort.predicate;
                 vm.searchModel.orderDirection = tableState.sort.reverse ? 'desc' : 'asc';
             }
-            if (typeof (tableState.search.predicateObject) != "undefined") {
+            if (typeof (tableState.search.predicateObject) !== "undefined") {
                 vm.searchModel.name = tableState.search.predicateObject.name;
                 vm.searchModel.address = tableState.search.predicateObject.address;
                 vm.searchModel.city = tableState.search.predicateObject.city;
@@ -260,6 +264,7 @@
         }
 
         vm.fileSelected = function ($files, $file) {
+            debugger;
             var reader = new FileReader();
             reader.onloadstart = function () {
                 vm.isBusy = true;
@@ -267,9 +272,9 @@
             reader.onloadend = function () {
                 vm.isBusy = false;
             }
-            reader.onload = function (e) {
+            reader.onload = function () {
                 var dataUrl = reader.result;
-                vm.selectedEvent.template.image = dataUrl.split(',')[1];
+                vm.selectedEvent.template.image = dataUrl.split(",")[1];
                 vm.selectedEvent.template.mimeType = $file.type;
             };
             reader.readAsDataURL($file);
@@ -307,6 +312,7 @@
             }).result.then(function (data) {
                 vm.selectedEvent = data;
                 vm.events.unshift(vm.selectedEvent);
+                logger.log('event', vm.selectedEvent);
                 logger.success('Successfully created ' + data.name);
             });
         }

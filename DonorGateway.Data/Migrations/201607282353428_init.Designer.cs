@@ -7,13 +7,13 @@ namespace DonorGateway.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class eventcapacity : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(eventcapacity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201607071402118_event-capacity"; }
+            get { return "201607282353428_init"; }
         }
         
         string IMigrationMetadata.Source

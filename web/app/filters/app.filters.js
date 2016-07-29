@@ -30,5 +30,6 @@ angular.module('app.filter').filter('updateStatus', function () {
         if (input === 6) {
             return 'Reconciled';
         }
+        return "";
     };
 });

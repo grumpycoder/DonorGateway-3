@@ -6,10 +6,18 @@
         <button class="btn btn-default" ng-class="{ 'btn-warning': vm.showWaitQueue, 'btn-default': !vm.showWaitQueue }" ng-click="vm.filterWaitingQueue()"> <i class="fa fa-clock-o"></i> Show Waiting List</button>
         <button class="btn btn-default" ng-class="{ 'btn-warning': vm.showMailQueue, 'btn-default': !vm.showMailQueue }" ng-click="vm.filterMailQueue()"> <i class="fa fa-envelope"></i> Show Mail Queue</button>
 
-        <button class="btn btn-info pull-right" ng-click="vm.exportGuests()">
-            <i class="fa fa-download"></i>
-            Export
-        </button>
+
+        <span class="pull-right">
+            <button class="btn btn-default" ng-click="vm.refreshGuests()">
+                <i class="fa fa-refresh"></i>
+                Refresh
+            </button>
+            <button class="btn btn-info" ng-click="vm.exportGuests()">
+                <i class="fa fa-download"></i>
+                Export
+            </button>
+</span>
+        
     </div>
     <div class="box-body">
 
@@ -55,7 +63,7 @@
             </thead>
             <tbody>
 
-                <tr ng-repeat="g in vm.selectedEvent.guests" ng-dblclick="vm.registerGuest(g)">
+                <tr ng-repeat="g in vm.selectedEvent.guests">
                     <td>{{g.name}}</td>
                     <td>
                         <address>

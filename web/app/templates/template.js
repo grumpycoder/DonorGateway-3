@@ -38,8 +38,8 @@
         vm.fileSelected = function ($files, $file, $event, $rejectedFiles) {
             var reader = new FileReader();
             reader.onload = function (e) {
-                var dataURL = reader.result;
-                vm.selectedTemplate.image = dataURL.split(',')[1];
+                var dataUrl = reader.result;
+                vm.selectedTemplate.image = dataUrl.split(',')[1];
                 vm.selectedTemplate.mimeType = $file.type;
             };
             reader.readAsDataURL($file);

@@ -42,15 +42,13 @@ namespace web.Controllers
             private set { _roleManager = value; }
         }
 
-        private IAuthenticationManager AuthenticationManager
-        {
-            get { return HttpContext.Current.GetOwinContext().Authentication; }
-        }
+        private IAuthenticationManager AuthenticationManager => HttpContext.Current.GetOwinContext().Authentication;
 
         public IHttpActionResult Get()
         {
             var userId = User.Identity.GetUserId();
             var u = UserManager.Users.FirstOrDefault(x => x.Id == userId);
+            if (u == null) return NotFound();
 
             var vm = new UserViewModel()
             {
@@ -105,7 +103,7 @@ namespace web.Controllers
                 return await GetErrorResult(addUserResult);
             }
 
-            IdentityResult addResult = await UserManager.AddToRolesAsync(user.Id, vm.Roles);
+            var addResult = await UserManager.AddToRolesAsync(user.Id, vm.Roles);
             //TODO: Need automapping
             vm.Id = user.Id;
             return Ok(vm);
@@ -171,7 +169,7 @@ namespace web.Controllers
 
             var postedFile = request.Files[0];
 
-            var filename = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf("\\") + 1);
+            var filename = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf("\\", StringComparison.Ordinal) + 1);
 
             try
             {

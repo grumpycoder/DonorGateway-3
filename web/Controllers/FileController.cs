@@ -1,15 +1,14 @@
-﻿using DonorGateway.Data;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using DonorGateway.Data;
 using DonorGateway.Domain;
+using EntityFramework.Utilities;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Http;
-using CsvHelper;
-using CsvHelper.Configuration;
-using EntityFramework.Utilities;
 using web.Services;
 using web.ViewModels;
 
@@ -35,7 +34,7 @@ namespace web.Controllers
             {
                 var postedFile = httpRequest.Files[0];
                 // Fix for IE file path issue.
-                var filename = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf("\\") + 1);
+                var filename = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf("\\", StringComparison.Ordinal) + 1);
                 var filePath = HttpContext.Current.Server.MapPath(@"~\app_data\" + filename);
                 postedFile.SaveAs(filePath);
 
@@ -59,6 +58,7 @@ namespace web.Controllers
                 {
                     EFBatchOperation.For(context, context.Guests).InsertAll(list);
                 }
+
                 var message = $"Processed {list.Count} records";
                 var result = new OperationResult(true, message, DateTime.Now.Subtract(startTime));
 

@@ -11,7 +11,7 @@
     @Html.HiddenFor(m => m.PromoCode)
     @Html.HiddenFor(m => m.EventTicketAllowance)
 
-    var imgSrc = $"data:{@Model.Template.MimeType};base64,{@System.Convert.ToBase64String(@Model.Template.Image)}";
+    var imgSrc = $"data:{Model.Template.MimeType};base64,{Convert.ToBase64String(Model.Template.Image)}";
 
     <img src="@imgSrc" class="img-responsive center-block" alt="Event Image" />
 
@@ -28,11 +28,11 @@
         <div class="btn-group" data-toggle="buttons">
 
             <label class="btn btn-primary">
-                @Html.RadioButtonFor(m => m.IsAttending, true, new { @data_isAttending = true }) Yes, I wIll attend
+                @Html.RadioButtonFor(m => m.IsAttending, true, new { data_isAttending = true }) Yes, I wIll attend
             </label>
 
             <label class="btn btn-primary">
-                @Html.RadioButtonFor(m => m.IsAttending, false, new { @data_isAttending = true }) No, I am not able to attend
+                @Html.RadioButtonFor(m => m.IsAttending, false, new { data_isAttending = true }) No, I am not able to attend
             </label>
 
             <div class="error-messages">
@@ -140,7 +140,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            @Html.Raw(@Model.Template.FAQText)
+            @Html.Raw(Model.Template.FAQText)
         </div>
     </div>
 

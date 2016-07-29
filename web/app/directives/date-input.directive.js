@@ -10,7 +10,7 @@
                 var moment = $window.moment;
                 var dateFormat = attrs.dateInput;
                 attrs.$observe('dateInput', function (newValue) {
-                    if (dateFormat == newValue || !ctrl.$modelValue) return;
+                    if (dateFormat === newValue || !ctrl.$modelValue) return;
                     dateFormat = newValue;
                     ctrl.$modelValue = new Date(ctrl.$setViewValue);
                 });
